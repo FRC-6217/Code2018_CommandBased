@@ -11,10 +11,10 @@
 class DriveTrain : public frc::Subsystem {
 private:
 	// Drive Train Motor Controllers
-	WPI_TalonSRX * _victorL1;
-	WPI_TalonSRX * _victorL2;
-	WPI_TalonSRX * _victorR1;
-	WPI_TalonSRX * _victorR2;
+	WPI_VictorSPX* _victorL1;
+	WPI_VictorSPX* _victorL2;
+	WPI_VictorSPX* _victorR1;
+	WPI_VictorSPX* _victorR2;
 
 	// Speed Controller Groups
 	SpeedControllerGroup * _leftSide;
