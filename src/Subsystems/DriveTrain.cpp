@@ -4,10 +4,10 @@
 
 DriveTrain::DriveTrain() : frc::Subsystem("DriveTrain") {
 	// Drive Train Motor Controllers
-	_victorL1 = new WPI_TalonSRX(VICTOR_SPX_DRIVE_LEFT1);
-	_victorL2 = new WPI_TalonSRX(VICTOR_SPX_DRIVE_LEFT2);
-	_victorR1 = new WPI_TalonSRX(VICTOR_SPX_DRIVE_RIGHT1);
-	_victorR2 = new WPI_TalonSRX(VICTOR_SPX_DRIVE_RIGHT2);
+	_victorL1 = new WPI_VictorSPX(VICTOR_SPX_DRIVE_LEFT1);
+	_victorL2 = new WPI_VictorSPX(VICTOR_SPX_DRIVE_LEFT2);
+	_victorR1 = new WPI_VictorSPX(VICTOR_SPX_DRIVE_RIGHT1);
+	_victorR2 = new WPI_VictorSPX(VICTOR_SPX_DRIVE_RIGHT2);
 
 	// Speed Controller Groups
 	_leftSide = new SpeedControllerGroup(*_victorL1, *_victorL2);
