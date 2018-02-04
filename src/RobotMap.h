@@ -12,15 +12,16 @@
 #pragma once
 
 // Drive Train Motor Controller Ports
-constexpr int VICTOR_SPX_DRIVE_LEFT1	=	41; /* DeviceID matches the web-based config */
-constexpr int VICTOR_SPX_DRIVE_LEFT2	=	42; /* DeviceID matches the web-based config */
-constexpr int VICTOR_SPX_DRIVE_RIGHT1	=	43; /* DeviceID matches the web-based config */
-constexpr int VICTOR_SPX_DRIVE_RIGHT2	=	45; /* DeviceID matches the web-based config */
+constexpr int VICTOR_SPX_DRIVE_LEFT1	=	40; /* DeviceID matches the web-based config */
+constexpr int VICTOR_SPX_DRIVE_LEFT2	=	41; /* DeviceID matches the web-based config */
+constexpr int VICTOR_SPX_DRIVE_RIGHT1	=	42; /* DeviceID matches the web-based config */
+constexpr int VICTOR_SPX_DRIVE_RIGHT2	=	43; /* DeviceID matches the web-based config */
 
 // Joystick Ports
 constexpr int DRIVE_JOYSTICK_PORT	=	0;
 
-// Joystick Button Numbers
+// Joystick Items
 constexpr int DRIVE_DISTANCE_BUTTON_NUMBER = 9;
+constexpr int DRIVE_GOVERNOR_NUMBER = 3;
 
 #endif // ROBOTMAP_H

@@ -27,7 +27,7 @@ public:
 	DriveTrain();
 	void InitDefaultCommand();
 
-	void ArcadeDrive(double xSpeed, double zRotation, bool squaredInputs);
+	void ArcadeDrive(float xDir, float yDir, float zRotation, float governor, bool squaredInputs);
 
 };
 
