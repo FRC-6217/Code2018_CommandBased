@@ -24,4 +24,9 @@ constexpr int DRIVE_JOYSTICK_PORT	=	0;
 constexpr int DRIVE_DISTANCE_BUTTON_NUMBER = 9;
 constexpr int DRIVE_GOVERNOR_NUMBER = 3;
 
+// Pneumatics Items
+constexpr int COMPRESSOR_PCM_ID = 0;
+constexpr int PRESSURE_SENSOR_CHANNEL = 3;
+
+
 #endif // ROBOTMAP_H
