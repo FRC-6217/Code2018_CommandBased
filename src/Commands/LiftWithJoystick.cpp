@@ -1,0 +1,51 @@
+#include "LiftWithJoystick.h"
+
+LiftWithJoystick::LiftWithJoystick() {
+	Requires(lift);
+}
+
+// Called just before this Command runs the first time
+void LiftWithJoystick::Initialize() {
+
+}
+
+// Called repeatedly when this Command is scheduled to run
+void LiftWithJoystick::Execute() {
+	int lift1Direction = LIFT_DIRECTION_STOP;
+	int lift2Direction = LIFT_DIRECTION_STOP;
+
+	//Determine Lift1 Direction based off buttons
+	if(oi->GetGameStick()->GetRawButton(LIFT_1_UP) == 1) {
+		lift1Direction = LIFT_DIRECTION_UP;
+	}
+	else if(oi->GetGameStick()->GetRawButton(LIFT_1_DOWN) == 1) {
+		lift1Direction = LIFT_DIRECTION_DOWN;
+	}
+	lift->Lift1Operate(lift1Direction);
+
+	//Determine Lift2 Direction based off buttons
+	if(oi->GetGameStick()->GetRawButton(LIFT_2_UP) == 1) {
+		lift2Direction = LIFT_DIRECTION_UP;
+	}
+	else if(oi->GetGameStick()->GetRawButton(LIFT_2_DOWN) == 1) {
+		lift2Direction = LIFT_DIRECTION_DOWN;
+	}
+	lift->Lift2Operate(lift2Direction);
+}
+
+// Make this return true when this Command no longer needs to run execute()
+bool LiftWithJoystick::IsFinished() {
+	return false;
+}
+
+// Called once after isFinished returns true
+void LiftWithJoystick::End() {
+	lift->Lift1Operate(LIFT_DIRECTION_STOP);
+	lift->Lift2Operate(LIFT_DIRECTION_STOP);
+}
+
+// Called when another command which requires one or more of the same
+// subsystems is scheduled to run
+void LiftWithJoystick::Interrupted() {
+	End();
+}
