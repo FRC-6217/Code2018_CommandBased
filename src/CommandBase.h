@@ -8,6 +8,7 @@
 
 #include "OI.h"
 #include "Subsystems/DriveTrain.h"
+#include "Subsystems/Lift.h"
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -22,6 +23,7 @@ public:
 	static void init();
 	// Create a single static instance of all of your subsystems
 	static DriveTrain *driveTrain;
+	static Lift *lift;
 	static OI *oi;
 };
 

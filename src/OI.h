@@ -17,8 +17,10 @@ class OI {
 private:
 	Joystick * _driveStick;
 	JoystickButton * _buttonDrive;
+	Joystick * _gameStick;
 public:
 	OI();
+	Joystick* GetGameStick();
 	Joystick* GetDriveStick();
 };
 

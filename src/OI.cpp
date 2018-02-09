@@ -14,11 +14,14 @@
 OI::OI() {
 	_driveStick = new Joystick(DRIVE_JOYSTICK_PORT);
 	_buttonDrive = new JoystickButton(_driveStick, DRIVE_DISTANCE_BUTTON_NUMBER);
-
+	_gameStick = new Joystick(GAME_JOYSTICK_PORT);
 	// Connect the buttons to commands
 	_buttonDrive->WhenPressed(new DriveDistance());
 }
 
 Joystick* OI::GetDriveStick(){
 	return _driveStick;
+}
+Joystick* OI::GetGameStick(){
+	return _gameStick;
 }

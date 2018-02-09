@@ -23,12 +23,12 @@ void DriveTrain::InitDefaultCommand() {
 
 void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float governor, bool squaredInputs){
 	//Dead zone
-	xDir = fabs(xDir) > 0.15 ? xDir : 0.0;
+	zRotation = fabs(zRotation) > 0.15 ? zRotation : 0.0;
 	yDir = fabs(yDir) > 0.1 ? yDir : 0.0;
 	//Use governor to limit speed, governor paddle on joystick - down is 0%, up is 100%
 	xDir *= (1 - governor);
 	yDir *= (1 - governor);
 
 	// Drive Robot
-	_driveTrain->ArcadeDrive(-yDir, xDir, squaredInputs);
+	_driveTrain->ArcadeDrive(-yDir, zRotation, squaredInputs);
 }
