@@ -4,6 +4,8 @@
 #include "../CommandBase.h"
 
 class grabbingWithButtons : public CommandBase {
+private:
+	int currentDirection = GRABBER_STOP;
 public:
 	grabbingWithButtons();
 	void Initialize() override;

@@ -1,3 +1,4 @@
+//#define SECONDARY_ROBOT
 #ifndef ROBOTMAP_H
 #define ROBOTMAP_H
 
@@ -20,10 +21,18 @@ constexpr int LIFT_DIRECTION_STOP = 0;
 constexpr float ACME_SCREW_SPEED = 0.5;
 
 // Drive Train Motor Controller Ports
-constexpr int VICTOR_SPX_DRIVE_LEFT1	=	40; /* DeviceID matches the web-based config */
-constexpr int VICTOR_SPX_DRIVE_LEFT2	=	41; /* DeviceID matches the web-based config */
-constexpr int VICTOR_SPX_DRIVE_RIGHT1	=	42; /* DeviceID matches the web-based config */
-constexpr int VICTOR_SPX_DRIVE_RIGHT2	=	43; /* DeviceID matches the web-based config */
+#ifdef SECONDARY_ROBOT
+constexpr int VICTOR_SP_DRIVE_LEFT1		=	0; /* DeviceID matches the PWM Port */
+constexpr int VICTOR_SP_DRIVE_LEFT2		=	1; /* DeviceID matches the PWM Port */
+constexpr int VICTOR_SP_DRIVE_RIGHT1	=	2; /* DeviceID matches the PWM Port */
+constexpr int VICTOR_SP_DRIVE_RIGHT2	=	3; /* DeviceID matches the PWM Port */
+#endif
+#ifndef SECONDARY_ROBOT
+constexpr int VICTOR_SPX_DRIVE_LEFT1	=	40; /* DeviceID matches the web-based config for the CAN enabled Motor Contoller */
+constexpr int VICTOR_SPX_DRIVE_LEFT2	=	41; /* DeviceID matches the web-based config for the CAN enabled Motor Contoller */
+constexpr int VICTOR_SPX_DRIVE_RIGHT1	=	42; /* DeviceID matches the web-based config for the CAN enabled Motor Contoller */
+constexpr int VICTOR_SPX_DRIVE_RIGHT2	=	43; /* DeviceID matches the web-based config for the CAN enabled Motor Contoller */
+#endif
 
 // Joystick Ports
 constexpr int DRIVE_JOYSTICK_PORT	=	0;
@@ -37,8 +46,9 @@ constexpr int LIFT_1_DOWN = 3; //Right Trigger Button
 constexpr int LIFT_2_UP = 5; //Left Bumper Up
 constexpr int LIFT_2_DOWN = 2; //Left Trigger Down
 constexpr float TRIGGER_PERCENT_PRESS = .25;//trigger have a percent not a one
-constexpr int GRABBER_IN_BUTTON = 1;//a button
-constexpr int GRABBER_OUT_BUTTON = 2;//b button
+constexpr int GRABBER_IN_BUTTON = 1;//a button In
+constexpr int GRABBER_OUT_BUTTON = 2;//b button Out
+constexpr int GRABBER_STOP_BUTTON = 3;//x Button Stop
 
 // Pneumatics Items
 constexpr int COMPRESSOR_PCM_ID = 0;

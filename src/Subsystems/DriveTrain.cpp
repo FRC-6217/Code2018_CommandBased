@@ -4,11 +4,18 @@
 
 DriveTrain::DriveTrain() : frc::Subsystem("DriveTrain") {
 	// Drive Train Motor Controllers
+#ifdef SECONDARY_ROBOT
+	_victorL1 = new frc::VictorSP(VICTOR_SP_DRIVE_LEFT1);
+	_victorL2 = new frc::VictorSP(VICTOR_SP_DRIVE_LEFT2);
+	_victorR1 = new frc::VictorSP(VICTOR_SP_DRIVE_RIGHT1);
+	_victorR2 = new frc::VictorSP(VICTOR_SP_DRIVE_RIGHT2);
+#endif
+#ifndef SECONDARY_ROBOT
 	_victorL1 = new WPI_VictorSPX(VICTOR_SPX_DRIVE_LEFT1);
 	_victorL2 = new WPI_VictorSPX(VICTOR_SPX_DRIVE_LEFT2);
 	_victorR1 = new WPI_VictorSPX(VICTOR_SPX_DRIVE_RIGHT1);
 	_victorR2 = new WPI_VictorSPX(VICTOR_SPX_DRIVE_RIGHT2);
-
+#endif
 	// Speed Controller Groups
 	_leftSide = new SpeedControllerGroup(*_victorL1, *_victorL2);
 	_rightSide = new SpeedControllerGroup(*_victorR1, *_victorR2);

@@ -11,17 +11,16 @@ void grabbingWithButtons::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void grabbingWithButtons::Execute() {
-	int directionOfGrabber;
 	if (oi->GetGameStick()->GetRawButton(GRABBER_IN_BUTTON) == 1){
-			directionOfGrabber = GRABBER_IN;
+		currentDirection = GRABBER_IN;
 	}
 	else if (oi->GetGameStick()->GetRawButton(GRABBER_OUT_BUTTON) == 1){
-			directionOfGrabber = GRABBER_OUT;
+		currentDirection = GRABBER_OUT;
 	}
-	else{
-		directionOfGrabber = GRABBER_STOP;
+	else if(oi->GetGameStick()->GetRawButton(GRABBER_STOP_BUTTON) == 1){
+		currentDirection = GRABBER_STOP;
 	}
-	grabber->RunGrabber(directionOfGrabber);
+	grabber->RunGrabber(currentDirection);
 }
 
 // Make this return true when this Command no longer needs to run execute()
