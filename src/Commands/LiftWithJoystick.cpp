@@ -13,21 +13,25 @@ void LiftWithJoystick::Initialize() {
 void LiftWithJoystick::Execute() {
 	int lift1Direction = LIFT_DIRECTION_STOP;
 	int lift2Direction = LIFT_DIRECTION_STOP;
-
+	double lift1Down = oi->GetGameStick()->GetRawAxis(LIFT_1_DOWN);
+	double lift2Down = oi->GetGameStick()->GetRawAxis(LIFT_2_DOWN);
+	frc::SmartDashboard::PutNumber("Lift 1 down percent", lift1Down);
+	frc::SmartDashboard::PutNumber("Lift 2 down percent", lift2Down);
 	//Determine Lift1 Direction based off buttons
 	if(oi->GetGameStick()->GetRawButton(LIFT_1_UP) == 1) {
 		lift1Direction = LIFT_DIRECTION_UP;
 	}
-	else if(oi->GetGameStick()->GetRawButton(LIFT_1_DOWN) == 1) {
+	else if(lift1Down >= TRIGGER_PERCENT_PRESS) {
 		lift1Direction = LIFT_DIRECTION_DOWN;
 	}
+
 	lift->Lift1Operate(lift1Direction);
 
 	//Determine Lift2 Direction based off buttons
 	if(oi->GetGameStick()->GetRawButton(LIFT_2_UP) == 1) {
 		lift2Direction = LIFT_DIRECTION_UP;
 	}
-	else if(oi->GetGameStick()->GetRawButton(LIFT_2_DOWN) == 1) {
+	else if(lift2Down >= TRIGGER_PERCENT_PRESS) {
 		lift2Direction = LIFT_DIRECTION_DOWN;
 	}
 	lift->Lift2Operate(lift2Direction);

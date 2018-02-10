@@ -33,13 +33,25 @@ constexpr int GAME_JOYSTICK_PORT  =	1;
 constexpr int DRIVE_DISTANCE_BUTTON_NUMBER = 9;
 constexpr int DRIVE_GOVERNOR_NUMBER = 3;
 constexpr int LIFT_1_UP = 6; //Right Bumper Button
-constexpr int LIFT_1_DOWN = 5; //Left Bumper Button
-constexpr int LIFT_2_UP = 1; //A Button Up
-constexpr int LIFT_2_DOWN = 2; //B Button Down
+constexpr int LIFT_1_DOWN = 3; //Right Trigger Button
+constexpr int LIFT_2_UP = 5; //Left Bumper Up
+constexpr int LIFT_2_DOWN = 2; //Left Trigger Down
+constexpr float TRIGGER_PERCENT_PRESS = .25;//trigger have a percent not a one
+constexpr int GRABBER_IN_BUTTON = 1;//a button
+constexpr int GRABBER_OUT_BUTTON = 2;//b button
 
 // Pneumatics Items
 constexpr int COMPRESSOR_PCM_ID = 0;
 constexpr int PRESSURE_SENSOR_CHANNEL = 3;
 
+//Grabber Ports
+constexpr int GRABBER_LEFT_SIDE_PORT = 45;
+constexpr int GRABBER_RIGHT_SIDE_PORT = 46;
+
+//Grabber direction and speed
+constexpr int GRABBER_IN = 1;
+constexpr int GRABBER_OUT = -1;
+constexpr int GRABBER_STOP = 0;
+constexpr float GRABBER_SPEED = 1.0;
 
 #endif // ROBOTMAP_H
