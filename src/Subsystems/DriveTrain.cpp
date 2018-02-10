@@ -15,6 +15,12 @@ DriveTrain::DriveTrain() : frc::Subsystem("DriveTrain") {
 
 	// Differential Drive Class
 	_driveTrain = new DifferentialDrive(*_leftSide, *_rightSide);
+
+	// Sensors
+	_leftEncoder = new Encoder{LEFT_ENCODER_A_CHANNEL, LEFT_ENCODER_B_CHANNEL};
+	_rightEncoder = new Encoder{RIGHT_ENCODER_A_CHANNEL, RIGHT_ENCODER_B_CHANNEL};
+	_rangeFinder = new AnalogInput(6);
+	_gyro = new AnalogGyro(1);
 }
 
 void DriveTrain::InitDefaultCommand() {

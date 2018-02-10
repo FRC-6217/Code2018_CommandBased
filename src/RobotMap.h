@@ -54,4 +54,10 @@ constexpr int GRABBER_OUT = -1;
 constexpr int GRABBER_STOP = 0;
 constexpr float GRABBER_SPEED = 1.0;
 
+//Drive Sensor Channels
+constexpr int LEFT_ENCODER_A_CHANNEL = 1;
+constexpr int LEFT_ENCODER_B_CHANNEL = 2;
+constexpr int RIGHT_ENCODER_A_CHANNEL = 3;
+constexpr int RIGHT_ENCODER_B_CHANNEL = 4;
+
 #endif // ROBOTMAP_H

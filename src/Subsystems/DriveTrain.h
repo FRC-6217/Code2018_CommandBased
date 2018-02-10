@@ -1,6 +1,9 @@
 #ifndef DriveTrain_H
 #define DriveTrain_H
 
+#include <AnalogGyro.h>
+#include <AnalogInput.h>
+#include <Encoder.h>
 #include <SpeedControllerGroup.h>
 #include <Drive/DifferentialDrive.h>
 #include <Commands/Subsystem.h>
@@ -23,11 +26,24 @@ private:
 	// Differential Drive Class
 	DifferentialDrive * _driveTrain;
 
+	// Sensors
+	frc::Encoder * _leftEncoder;
+	frc::Encoder * _rightEncoder;
+	frc::AnalogInput * _rangeFinder;
+	frc::AnalogGyro * _gyro;
+
 public:
 	DriveTrain();
 	void InitDefaultCommand();
 
 	void ArcadeDrive(float xDir, float yDir, float zRotation, float governor, bool squaredInputs);
+	void Log();
+	void ResetSensors();
+	void ResetEncoders();
+	void ResetGyro();
+	double GetDistance();
+	double GetDistanceToObstacle();
+	double GetHeading();
 
 };
 

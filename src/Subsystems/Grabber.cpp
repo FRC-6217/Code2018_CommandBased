@@ -1,4 +1,6 @@
 #include "Grabber.h"
+#include "..\CommandBase.h"
+#include "../Commands/grabbingWithButtons.h"
 
 
 Grabber::Grabber() : frc::Subsystem("Grabber") {
@@ -9,8 +11,7 @@ Grabber::Grabber() : frc::Subsystem("Grabber") {
 }
 
 void Grabber::InitDefaultCommand() {
-	// Set the default command for a subsystem here.
-	// SetDefaultCommand(new MySpecialCommand());
+	SetDefaultCommand(new grabbingWithButtons());
 }
 void Grabber::RunLeftGrabber(int direction){
 	if (direction == GRABBER_IN){
