@@ -40,6 +40,11 @@ private:
 	frc::AnalogInput * _rangeFinder;
 	frc::AnalogGyro * _gyro;
 
+	//Speed of last time
+	double lastSpeedOfX = 0;
+	double lastSpeedOfY = 0;
+	double lastSpeedOfZ = 0;
+
 public:
 	DriveTrain();
 	void InitDefaultCommand();
