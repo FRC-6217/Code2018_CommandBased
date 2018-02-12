@@ -34,7 +34,32 @@ void DriveTrain::InitDefaultCommand() {
 	SetDefaultCommand(new DriveWithJoystick());
 }
 
+bool DriveTrain::signbit(double xSignbit){
+	if (xSignbit <= 0){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+void DriveTrain::ResetEncoders(){
+	_leftEncoder->Reset();
+	_rightEncoder->Reset();
+}
+
+double DriveTrain::GetEncoderValue() {
+	frc::SmartDashboard::PutNumber("Left Encoder Value", _leftEncoder->Get());
+	return _leftEncoder->Get();
+}
+
 void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float governor, bool squaredInputs){
+	//Speed To Use in The arcade drive
+
+	double SpeedOfX = 0;
+	double SpeedOfY = 0;
+	double SpeedOfZ = 0;
+
 	//Dead zone
 	xDir = fabs(xDir) > 0.10 ? xDir : 0.0;
 	yDir = fabs(yDir) > 0.10 ? yDir : 0.0;
@@ -44,7 +69,72 @@ void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float gove
 	xDir *= (1 - governor);
 	yDir *= (1 - governor);
 	zRotation *= (1 - governor);
+	//
+	//Acceleration section of the code
+
+	//Acceleration of z
+	//Checking if the Sign of last Speed of z is a different sign of request speed or zRotation
+	if (DriveTrain::signbit(zRotation) != DriveTrain::signbit(lastSpeedOfZ)){
+		lastSpeedOfZ = 0;
+	}
+	//Do the Acceleration of turning
+	if (zRotation == 0){
+		SpeedOfZ = 0;
+	}
+	else if (fabs(zRotation) <= fabs(lastSpeedOfZ)){
+		SpeedOfZ = zRotation;
+	}
+	else if (fabs(zRotation) > fabs(lastSpeedOfZ)){
+		SpeedOfZ += (zRotation * PERCENT_ACCER);
+	}
+
+	//Acceleration of Y
+	//Checking if the Sign of last Speed of Y is a different sign of request speed or ydir
+	if (DriveTrain::signbit(yDir) != DriveTrain::signbit(lastSpeedOfY)){
+		lastSpeedOfY = 0;
+	}
+	//Do the Acceleration of turning
+	if (yDir == 0){
+		SpeedOfY = 0;
+	}
+	else if (fabs(yDir) <= fabs(lastSpeedOfY)){
+		SpeedOfY = yDir;
+	}
+	else if (fabs(yDir) > fabs(lastSpeedOfY)){
+		SpeedOfY += (yDir * PERCENT_ACCER);
+	}
+
+	//Acceleration of X
+	//We aren't Use this right now. Z is the turning
+	//kyle says drive good
+	//kyle says lift the milkcrates
+	//kyle says turn right
+	//kyle says turn left
+	//kyle says eat eric
+
+	//Checking if the Sign of last Speed of X is a different sign of request speed or xdir
+	if (DriveTrain::signbit(xDir) != DriveTrain::signbit(lastSpeedOfX)){
+		lastSpeedOfX = 0;
+	}
+	//Do the Acceleration of turning
+	if (xDir == 0){
+		SpeedOfX = 0;
+	}
+	else if (fabs(xDir) <= fabs(lastSpeedOfX)){
+		SpeedOfX = xDir;
+	}
+	else if (fabs(xDir) > fabs(lastSpeedOfX)){
+		SpeedOfX += (xDir * PERCENT_ACCER);
+	}
 
 	// Drive Robot
-	_driveTrain->ArcadeDrive(-yDir, zRotation, squaredInputs);
+	_driveTrain->ArcadeDrive(-SpeedOfY, SpeedOfZ, squaredInputs);
+
+	//Setting the lastSpeed
+	lastSpeedOfZ = SpeedOfZ;
+	lastSpeedOfY = SpeedOfY;
+	lastSpeedOfX = SpeedOfX;
+
+	DriveTrain::GetEncoderValue();
+
 }

@@ -70,4 +70,6 @@ constexpr int LEFT_ENCODER_B_CHANNEL = 2;
 constexpr int RIGHT_ENCODER_A_CHANNEL = 3;
 constexpr int RIGHT_ENCODER_B_CHANNEL = 4;
 
+//Acceleration percent
+constexpr double PERCENT_ACCER = .01;
 #endif // ROBOTMAP_H

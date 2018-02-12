@@ -10,6 +10,7 @@
 #include "WPILib.h"
 #include "ctre\Phoenix.h"
 #include "..\RobotMap.h"
+#include <SmartDashboard/SmartDashboard.h>
 
 class DriveTrain : public frc::Subsystem {
 private:
@@ -45,14 +46,20 @@ private:
 	double lastSpeedOfY = 0;
 	double lastSpeedOfZ = 0;
 
+
+
 public:
 	DriveTrain();
 	void InitDefaultCommand();
 
+	bool signbit(double xSignbit);
+
 	void ArcadeDrive(float xDir, float yDir, float zRotation, float governor, bool squaredInputs);
+
 	void Log();
 	void ResetSensors();
 	void ResetEncoders();
+	double GetEncoderValue();
 	void ResetGyro();
 	double GetDistance();
 	double GetDistanceToObstacle();
