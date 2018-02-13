@@ -5,9 +5,15 @@
 
 Grabber::Grabber() : frc::Subsystem("Grabber") {
 	//Grabber Motor controls
+	#ifdef SECONDARY_ROBOT
+	_leftGrabber = new frc::VictorSP(VICTOR_SP_GRABBER_LEFT);
+	_rightGrabber = new frc::VictorSP(VICTOR_SP_GRABBER_RIGHT);
+	#endif
+
+	#ifndef SECONDARY_ROBOT
 	_leftGrabber = new WPI_VictorSPX(GRABBER_LEFT_SIDE_PORT);
 	_rightGrabber = new WPI_VictorSPX(GRABBER_RIGHT_SIDE_PORT);
-
+	#endif
 }
 
 void Grabber::InitDefaultCommand() {

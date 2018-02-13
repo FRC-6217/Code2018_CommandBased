@@ -1,4 +1,4 @@
-//#define SECONDARY_ROBOT
+#define SECONDARY_ROBOT
 #ifndef ROBOTMAP_H
 #define ROBOTMAP_H
 
@@ -26,12 +26,19 @@ constexpr int VICTOR_SP_DRIVE_LEFT1		=	0; /* DeviceID matches the PWM Port */
 constexpr int VICTOR_SP_DRIVE_LEFT2		=	1; /* DeviceID matches the PWM Port */
 constexpr int VICTOR_SP_DRIVE_RIGHT1	=	2; /* DeviceID matches the PWM Port */
 constexpr int VICTOR_SP_DRIVE_RIGHT2	=	3; /* DeviceID matches the PWM Port */
+constexpr int VICTOR_SP_GRABBER_LEFT	=	4; /* DeviceID matches the PWM Port */
+constexpr int VICTOR_SP_GRABBER_RIGHT	=	5; /* DeviceID matches the PWM Port */
 #endif
 #ifndef SECONDARY_ROBOT
 constexpr int VICTOR_SPX_DRIVE_LEFT1	=	40; /* DeviceID matches the web-based config for the CAN enabled Motor Contoller */
 constexpr int VICTOR_SPX_DRIVE_LEFT2	=	41; /* DeviceID matches the web-based config for the CAN enabled Motor Contoller */
 constexpr int VICTOR_SPX_DRIVE_RIGHT1	=	42; /* DeviceID matches the web-based config for the CAN enabled Motor Contoller */
 constexpr int VICTOR_SPX_DRIVE_RIGHT2	=	43; /* DeviceID matches the web-based config for the CAN enabled Motor Contoller */
+
+//Grabber Ports
+constexpr int GRABBER_LEFT_SIDE_PORT = 45;
+constexpr int GRABBER_RIGHT_SIDE_PORT = 46;
+
 #endif
 
 // Joystick Ports
@@ -49,14 +56,12 @@ constexpr float TRIGGER_PERCENT_PRESS = .25;//trigger have a percent not a one
 constexpr int GRABBER_IN_BUTTON = 1;//a button In
 constexpr int GRABBER_OUT_BUTTON = 2;//b button Out
 constexpr int GRABBER_STOP_BUTTON = 3;//x Button Stop
+constexpr int GRABBER_LEFT_SIDE_AXIS = 1;
+constexpr int GRABBER_RIGHT_SIDE_AXIS = 5;
 
 // Pneumatics Items
 constexpr int COMPRESSOR_PCM_ID = 0;
 constexpr int PRESSURE_SENSOR_CHANNEL = 3;
-
-//Grabber Ports
-constexpr int GRABBER_LEFT_SIDE_PORT = 45;
-constexpr int GRABBER_RIGHT_SIDE_PORT = 46;
 
 //Grabber direction and speed
 constexpr int GRABBER_IN = 1;
@@ -65,10 +70,10 @@ constexpr int GRABBER_STOP = 0;
 constexpr float GRABBER_SPEED = 1.0;
 
 //Drive Sensor Channels
-constexpr int LEFT_ENCODER_A_CHANNEL = 1;
-constexpr int LEFT_ENCODER_B_CHANNEL = 2;
-constexpr int RIGHT_ENCODER_A_CHANNEL = 3;
-constexpr int RIGHT_ENCODER_B_CHANNEL = 4;
+constexpr int LEFT_ENCODER_A_CHANNEL = 0;
+constexpr int LEFT_ENCODER_B_CHANNEL = 1;
+constexpr int RIGHT_ENCODER_A_CHANNEL = 2;
+constexpr int RIGHT_ENCODER_B_CHANNEL = 3;
 
 //Acceleration percent
 constexpr double PERCENT_ACCER = .01;

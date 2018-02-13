@@ -129,14 +129,24 @@ void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float gove
 		SpeedOfX += (xDir * PERCENT_ACCER);
 	}
 
-	// Drive Robot
-	_driveTrain->ArcadeDrive(-SpeedOfY, SpeedOfZ, squaredInputs);
+	frc::SmartDashboard::PutNumber("Speed Y", SpeedOfY);
+	frc::SmartDashboard::PutNumber("Speed Z", SpeedOfZ);
+	frc::SmartDashboard::PutNumber("Speed X", SpeedOfX);
+	frc::SmartDashboard::PutNumber("yDir", yDir);
+	frc::SmartDashboard::PutNumber("zRotation", zRotation);
+
+	// Drive Robot - only uncomment one of the following
+	// Speed without acceleration limiting
+	_driveTrain->ArcadeDrive(-yDir, zRotation, squaredInputs);
+	// Speed with acceleration limiting
+	//_driveTrain->ArcadeDrive(-SpeedOfY, SpeedOfZ, squaredInputs);
 
 	//Setting the lastSpeed
 	lastSpeedOfZ = SpeedOfZ;
 	lastSpeedOfY = SpeedOfY;
 	lastSpeedOfX = SpeedOfX;
 
+	//This is displaying the encoder value on smartdashboard
+	//Joe - do NOT delete again.
 	DriveTrain::GetEncoderValue();
-
 }

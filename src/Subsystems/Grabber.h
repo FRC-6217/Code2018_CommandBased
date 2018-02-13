@@ -9,9 +9,15 @@
 
 class Grabber : public Subsystem {
 private:
+
+	#ifdef SECONDARY_ROBOT
+	frc::VictorSP* _leftGrabber;
+	frc::VictorSP* _rightGrabber;
+	#endif
+	#ifndef SECONDARY_ROBOT
 	WPI_VictorSPX* _leftGrabber;
 	WPI_VictorSPX* _rightGrabber;
-
+	#endif
 
 public:
 	Grabber();

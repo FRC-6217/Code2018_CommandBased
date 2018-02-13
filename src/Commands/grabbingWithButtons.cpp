@@ -20,7 +20,30 @@ void grabbingWithButtons::Execute() {
 	else if(oi->GetGameStick()->GetRawButton(GRABBER_STOP_BUTTON) == 1){
 		currentDirection = GRABBER_STOP;
 	}
-	grabber->RunGrabber(currentDirection);
+	if (currentDirection == GRABBER_STOP){
+		if (oi->GetGameStick()->GetRawAxis(GRABBER_LEFT_SIDE_AXIS) >= .25){
+			grabber->RunLeftGrabber(-GRABBER_OUT);
+		}
+		else if (oi->GetGameStick()->GetRawAxis(GRABBER_LEFT_SIDE_AXIS) <= -.25){
+			grabber->RunLeftGrabber(-GRABBER_IN);
+		}
+		else{
+			grabber->RunLeftGrabber(GRABBER_STOP);
+		}
+
+		if (oi->GetGameStick()->GetRawAxis(GRABBER_RIGHT_SIDE_AXIS) >= .25){
+			grabber->RunRightGrabber(-GRABBER_OUT);
+		}
+		else if (oi->GetGameStick()->GetRawAxis(GRABBER_RIGHT_SIDE_AXIS) <= -.25){
+			grabber->RunRightGrabber(-GRABBER_IN);
+		}
+		else{
+			grabber->RunRightGrabber(GRABBER_STOP);
+		}
+	}
+	else{
+		grabber->RunGrabber(currentDirection);
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()
