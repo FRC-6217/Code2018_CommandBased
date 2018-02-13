@@ -72,4 +72,7 @@ constexpr int RIGHT_ENCODER_B_CHANNEL = 4;
 
 //Acceleration percent
 constexpr double PERCENT_ACCER = .01;
+
+//Distance for Encoder
+constexpr double DRIVE_ENC_20_INCHES = 20;
 #endif // ROBOTMAP_H

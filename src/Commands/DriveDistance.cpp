@@ -2,7 +2,7 @@
 
 DriveDistance::DriveDistance() {
 	Requires(driveTrain);
-	SetTimeout(1);
+	//SetTimeout(1);
 }
 
 // Called just before this Command runs the first time
@@ -17,7 +17,8 @@ void DriveDistance::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool DriveDistance::IsFinished() {
-	return IsTimedOut();
+	//return IsTimedOut();
+	return driveTrain->GetEncoderValue() > DRIVE_ENC_20_INCHES;
 }
 
 // Called once after isFinished returns true

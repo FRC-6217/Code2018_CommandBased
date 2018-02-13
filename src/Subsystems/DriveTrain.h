@@ -46,7 +46,7 @@ private:
 	double lastSpeedOfY = 0;
 	double lastSpeedOfZ = 0;
 
-
+	//Distance used for encoder
 
 public:
 	DriveTrain();

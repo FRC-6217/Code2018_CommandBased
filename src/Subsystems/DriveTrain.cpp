@@ -25,7 +25,9 @@ DriveTrain::DriveTrain() : frc::Subsystem("DriveTrain") {
 
 	// Sensors
 	_leftEncoder = new Encoder{LEFT_ENCODER_A_CHANNEL, LEFT_ENCODER_B_CHANNEL};
+	_leftEncoder->SetDistancePerPulse(0.00460194236);
 	_rightEncoder = new Encoder{RIGHT_ENCODER_A_CHANNEL, RIGHT_ENCODER_B_CHANNEL};
+	_rightEncoder->SetDistancePerPulse(0.00460194236);
 	_rangeFinder = new AnalogInput(6);
 	_gyro = new AnalogGyro(1);
 }
