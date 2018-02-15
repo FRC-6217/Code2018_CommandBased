@@ -25,11 +25,11 @@ DriveTrain::DriveTrain() : frc::Subsystem("DriveTrain") {
 
 	// Sensors
 	_leftEncoder = new Encoder{LEFT_ENCODER_A_CHANNEL, LEFT_ENCODER_B_CHANNEL};
-	_leftEncoder->SetDistancePerPulse(0.00460194236);
+	_leftEncoder->SetDistancePerPulse(0.01308996939);
 	_rightEncoder = new Encoder{RIGHT_ENCODER_A_CHANNEL, RIGHT_ENCODER_B_CHANNEL};
-	_rightEncoder->SetDistancePerPulse(0.00460194236);
+	_rightEncoder->SetDistancePerPulse(0.01308996939);
 	_rangeFinder = new AnalogInput(6);
-	_gyro = new AnalogGyro(1);
+	_gyro = new AnalogGyro(GYRO_PORT);
 }
 
 void DriveTrain::InitDefaultCommand() {
@@ -45,14 +45,30 @@ bool DriveTrain::signbit(double xSignbit){
 	}
 }
 
+void DriveTrain::ResetGyro(){
+	_gyro->Reset();
+}
+
+
+
+double DriveTrain::GetGyroAngle(){
+	frc::SmartDashboard::PutNumber("Gyro angle", _gyro->GetAngle());
+	return _gyro->GetAngle();
+}
+
 void DriveTrain::ResetEncoders(){
 	_leftEncoder->Reset();
 	_rightEncoder->Reset();
 }
 
 double DriveTrain::GetEncoderValue() {
-	frc::SmartDashboard::PutNumber("Left Encoder Value", _leftEncoder->Get());
-	return _leftEncoder->Get();
+	frc::SmartDashboard::PutNumber("Left Encoder Value", _leftEncoder->GetDistance());
+	return _leftEncoder->GetDistance();
+}
+
+double DriveTrain::GetREncoderValue() {
+	frc::SmartDashboard::PutNumber("Right Encoder Value", _rightEncoder->Get());
+	return _rightEncoder->Get();
 }
 
 void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float governor, bool squaredInputs){
@@ -87,7 +103,7 @@ void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float gove
 		SpeedOfZ = zRotation;
 	}
 	else if (fabs(zRotation) > fabs(lastSpeedOfZ)){
-		SpeedOfZ += (zRotation * PERCENT_ACCER);
+		SpeedOfZ += (zRotation * PERCENT_ACCEL);
 	}
 
 	//Acceleration of Y
@@ -103,7 +119,7 @@ void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float gove
 		SpeedOfY = yDir;
 	}
 	else if (fabs(yDir) > fabs(lastSpeedOfY)){
-		SpeedOfY += (yDir * PERCENT_ACCER);
+		SpeedOfY += (yDir * PERCENT_ACCEL);
 	}
 
 	//Acceleration of X
@@ -126,7 +142,7 @@ void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float gove
 		SpeedOfX = xDir;
 	}
 	else if (fabs(xDir) > fabs(lastSpeedOfX)){
-		SpeedOfX += (xDir * PERCENT_ACCER);
+		SpeedOfX += (xDir * PERCENT_ACCEL);
 	}
 
 	frc::SmartDashboard::PutNumber("Speed Y", SpeedOfY);
@@ -147,6 +163,7 @@ void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float gove
 	lastSpeedOfX = SpeedOfX;
 
 	//This is displaying the encoder value on smartdashboard
+
 	//Joe - do NOT delete again.
 	DriveTrain::GetEncoderValue();
 }

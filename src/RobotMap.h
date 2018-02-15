@@ -76,7 +76,10 @@ constexpr int RIGHT_ENCODER_A_CHANNEL = 2;
 constexpr int RIGHT_ENCODER_B_CHANNEL = 3;
 
 //Acceleration percent
-constexpr double PERCENT_ACCER = .01;
+constexpr double PERCENT_ACCEL = 1.01;
+
+//Gyro Channel
+constexpr double GYRO_PORT = 0;
 
 //Distance for Encoder
 constexpr double DRIVE_ENC_20_INCHES = 20;

@@ -60,7 +60,9 @@ public:
 	void ResetSensors();
 	void ResetEncoders();
 	double GetEncoderValue();
+	double GetREncoderValue();
 	void ResetGyro();
+	double GetGyroAngle();
 	double GetDistance();
 	double GetDistanceToObstacle();
 	double GetHeading();
