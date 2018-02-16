@@ -15,18 +15,40 @@
 
 #include "Commands/DriveDistance.h"
 #include "Commands/DriveWithJoystick.h"
+#include "Commands/Auto1.h"
 #include "CommandBase.h"
 #include "ctre\Phoenix.h"
 
 class Robot : public frc::TimedRobot {
+private:
+	// Have it null by default so that if testing teleop it
+	// doesn't have undefined behavior and potentially crash.
+	frc::CommandGroup* _autoCommandGroup = nullptr;
+	frc::SendableChooser<std::string> _chooserStartingPosition;
+	frc::SendableChooser<std::string> _chooserPriorityGoal;
+	frc::SendableChooser<std::string> _chooserCrossField;
 public:
 
 	void RobotInit() override {
 		CommandBase::init();
 
-		//m_chooser.AddDefault("Default Auto", new DriveDistance(20));
-		m_chooser.AddObject("My Auto", new DriveWithJoystick());
-		frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
+		// Build Autonomous Mode Choices on Smart Dashboard
+		_chooserStartingPosition.AddObject("Left", "L");
+		_chooserStartingPosition.AddDefault("Middle", "M");
+		_chooserStartingPosition.AddObject("Right", "R");
+		frc::SmartDashboard::PutData("Starting Position", &_chooserStartingPosition);
+		_chooserPriorityGoal.AddDefault("Switch", "W");
+		_chooserPriorityGoal.AddObject("Scale", "C");
+		_chooserPriorityGoal.AddObject("Auto Line", "A");
+		frc::SmartDashboard::PutData("Goal Priority", &_chooserPriorityGoal);
+		_chooserCrossField.AddDefault("No", "N");
+		_chooserCrossField.AddObject("Yes", "Y");
+		frc::SmartDashboard::PutData("Cross field for Goal", &_chooserCrossField);
+
+		// Add test commands on Smart Dashboard
+		frc::SmartDashboard::PutData("Test Auto 1", new Auto1());
+		frc::SmartDashboard::PutData("Drive 20 inches", new DriveDistance(10));
+		frc::SmartDashboard::PutData("Turn 90 degrees", new TurnDegrees(90));
 	}
 
 	void DisabledInit() override {}
@@ -37,28 +59,49 @@ public:
 
 	void AutonomousInit() override {
 		std::string gameData;
-		std::string autoSelected = frc::SmartDashboard::GetString("Auto Selector", "Default");
+		std::string startingPosition;
+		std::string priorityGoal;
+		std::string crossField;
+		std::string autoModeOptions;
 
+		startingPosition = _chooserStartingPosition.GetSelected();
+		priorityGoal = _chooserPriorityGoal.GetSelected();
+		crossField = _chooserCrossField.GetSelected();
+
+		// Game data - for 2018 three characters indicating position of switch and scale (e.g. LRL)
 		gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
-		if(gameData.length() > 0) {
-			if(gameData[0] == 'L') {
-				//Put left auto code here
-			}
-			else {
-				//Put right auto code here
-			}
+		// Default game data
+		if(gameData.length() < 2) {
+			gameData = "LRL";
+		}
+		// Decide on autonomous command group
+		autoModeOptions = gameData[0];
+		autoModeOptions += gameData[1];
+		autoModeOptions += startingPosition;
+		autoModeOptions += priorityGoal;
+		autoModeOptions += crossField;
+
+		// Left Switch, Scale does not matter, Left Starting, Switch Priority, cross field does not matter
+		if (autoModeOptions == "LLLWN" ||
+	        autoModeOptions == "LLLWY" ||
+	        autoModeOptions == "LRLWN" ||
+	        autoModeOptions == "LRLWY") {
+			_autoCommandGroup = new Auto1();
+		}
+		// Right Switch, Scale does not matter, Right Starting, Switch Priority, cross field does not matter
+		else if (autoModeOptions == "RRLWN" ||
+                 autoModeOptions == "RRLWY" ||
+                 autoModeOptions == "RLLWY" ||
+                 autoModeOptions == "RLLWY") {
+			_autoCommandGroup = new Auto1();
+		}
+		else {
+			_autoCommandGroup = new Auto1();
 		}
 
-//		if (autoSelected == "My Auto") {
-//			m_autonomousCommand = &m_myAuto;
-//		} else {
-			m_autonomousCommand = &m_myAuto;
-//		}
 
-		m_autonomousCommand = m_chooser.GetSelected();
-
-		if (m_autonomousCommand != nullptr) {
-			m_autonomousCommand->Start();
+		if (_autoCommandGroup != nullptr) {
+			_autoCommandGroup->Start();
 		}
 	}
 
@@ -67,25 +110,17 @@ public:
 	}
 
 	void TeleopInit() override {
-		if (m_autonomousCommand != nullptr) {
-			m_autonomousCommand->Cancel();
-			m_autonomousCommand = nullptr;
+		if (_autoCommandGroup != nullptr) {
+			_autoCommandGroup->Cancel();
+			_autoCommandGroup = nullptr;
 		}
 	}
 
 	void TeleopPeriodic() override { frc::Scheduler::GetInstance()->Run(); }
 
 	void TestPeriodic() override {
-//		frc::LiveWindow::GetInstance()->Run();
 }
 
-private:
-	// Have it null by default so that if testing teleop it
-	// doesn't have undefined behavior and potentially crash.
-	frc::Command* m_autonomousCommand = nullptr;
-	//DriveDistance m_defaultAuto;
-	DriveWithJoystick m_myAuto;
-	frc::SendableChooser<frc::Command*> m_chooser;
 };
 
 START_ROBOT_CLASS(Robot)
