@@ -55,7 +55,8 @@ public:
 			m_autonomousCommand = &m_myAuto;
 //		}
 
-		m_autonomousCommand = m_chooser.GetSelected();
+		//m_autonomousCommand = m_chooser.GetSelected();
+			m_autonomousCommand = new Auto1();
 
 		if (m_autonomousCommand != nullptr) {
 			m_autonomousCommand->Start();
