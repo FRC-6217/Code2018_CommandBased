@@ -15,7 +15,7 @@ void spitOutCube::Execute() {
 
 }
 
-// Make this return true when this Command no  longer needs to run execute()
+// Make this return true when this Command no longer needs to run execute()
 bool spitOutCube::IsFinished() {
 	return false;
 }
