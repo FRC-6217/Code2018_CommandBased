@@ -86,7 +86,8 @@ constexpr double GYRO_PORT = 0;
 
 //Distance for Encoder
 constexpr double DRIVE_ENC_20_INCHES = 20;
-#endif // ROBOTMAP_H
 
 //Grabber information
 constexpr double SPIT_OUT_CUDE_TIME = 2;
+
+#endif // ROBOTMAP_H
