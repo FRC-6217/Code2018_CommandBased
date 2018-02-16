@@ -24,7 +24,7 @@ public:
 	void RobotInit() override {
 		CommandBase::init();
 
-		m_chooser.AddDefault("Default Auto", new DriveDistance());
+		//m_chooser.AddDefault("Default Auto", new DriveDistance(20));
 		m_chooser.AddObject("My Auto", new DriveWithJoystick());
 		frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
 	}
@@ -52,7 +52,7 @@ public:
 //		if (autoSelected == "My Auto") {
 //			m_autonomousCommand = &m_myAuto;
 //		} else {
-			m_autonomousCommand = &m_defaultAuto;
+			m_autonomousCommand = &m_myAuto;
 //		}
 
 		m_autonomousCommand = m_chooser.GetSelected();
@@ -83,7 +83,7 @@ private:
 	// Have it null by default so that if testing teleop it
 	// doesn't have undefined behavior and potentially crash.
 	frc::Command* m_autonomousCommand = nullptr;
-	DriveDistance m_defaultAuto;
+	//DriveDistance m_defaultAuto;
 	DriveWithJoystick m_myAuto;
 	frc::SendableChooser<frc::Command*> m_chooser;
 };

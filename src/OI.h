@@ -18,6 +18,7 @@ private:
 	Joystick * _driveStick;
 	JoystickButton * _buttonDrive;
 	JoystickButton * _buttonTurn;
+	JoystickButton * _buttonGrabOut;
 	Joystick * _gameStick;
 public:
 	OI();
