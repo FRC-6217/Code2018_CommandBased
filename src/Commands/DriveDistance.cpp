@@ -1,7 +1,8 @@
 #include "DriveDistance.h"
 
-DriveDistance::DriveDistance() {
+DriveDistance::DriveDistance(float distanceToDrive) {
 	Requires(driveTrain);
+	_distanceToDrive = distanceToDrive;
 	//SetTimeout(1);
 }
 
@@ -18,7 +19,7 @@ void DriveDistance::Execute() {
 // Make this return true when this Command no longer needs to run execute()
 bool DriveDistance::IsFinished() {
 	//return IsTimedOut();
-	return driveTrain->GetEncoderValue() > DRIVE_ENC_20_INCHES; //Drive 20in
+	return driveTrain->GetEncoderValue() > _distanceToDrive; //Drive 20in
 }
 
 // Called once after isFinished returns true

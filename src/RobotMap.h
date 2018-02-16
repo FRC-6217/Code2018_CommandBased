@@ -47,6 +47,7 @@ constexpr int GAME_JOYSTICK_PORT  =	1;
 
 // Joystick Items
 constexpr int DRIVE_DISTANCE_BUTTON_NUMBER = 9;
+constexpr int TURN_DEGREES_BUTTON = 10;
 constexpr int DRIVE_GOVERNOR_NUMBER = 3;
 constexpr int LIFT_1_UP = 6; //Right Bumper Button
 constexpr int LIFT_1_DOWN = 3; //Right Trigger Button

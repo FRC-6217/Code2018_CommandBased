@@ -29,7 +29,7 @@ DriveTrain::DriveTrain() : frc::Subsystem("DriveTrain") {
 	_rightEncoder = new Encoder{RIGHT_ENCODER_A_CHANNEL, RIGHT_ENCODER_B_CHANNEL};
 	_rightEncoder->SetDistancePerPulse(0.01308996939);
 	_rangeFinder = new AnalogInput(6);
-	_gyro = new AnalogGyro(GYRO_PORT);
+	_gyro = new ADXRS450_Gyro();
 }
 
 void DriveTrain::InitDefaultCommand() {

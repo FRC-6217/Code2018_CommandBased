@@ -4,8 +4,10 @@
 #include "../CommandBase.h"
 
 class DriveDistance : public CommandBase {
+private:
+	float _distanceToDrive;
 public:
-	DriveDistance();
+	DriveDistance(float distanceToDrive);
 	void Initialize() override;
 	void Execute() override;
 	bool IsFinished() override;

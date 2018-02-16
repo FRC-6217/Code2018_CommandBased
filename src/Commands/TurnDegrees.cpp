@@ -6,36 +6,37 @@
 /*----------------------------------------------------------------------------*/
 
 
-#include "Turn90Degrees.h"
+#include "TurnDegrees.h"
 
 
 
-Turn90Degrees::Turn90Degrees() {
+TurnDegrees::TurnDegrees(float turnDegrees) {
 	Requires(driveTrain);
+	_turnDegrees = turnDegrees;
 }
 
 // Called just before this Command runs the first time
-void Turn90Degrees::Initialize() {
-	driveTrain->ResetEncoders();
+void TurnDegrees::Initialize() {
+	driveTrain->ResetGyro();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void Turn90Degrees::Execute() {
-	driveTrain->ArcadeDrive(0 ,0 ,.75 ,0 ,true);
+void TurnDegrees::Execute() {
+	driveTrain->ArcadeDrive(0 ,0 ,.45 ,0 ,true);
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool Turn90Degrees::IsFinished() {
-	return (driveTrain->GetGyroAngle() > -45.0);
+bool TurnDegrees::IsFinished() {
+	return (driveTrain->GetGyroAngle() > _turnDegrees);
 }
 
 // Called once after isFinished returns true
-void Turn90Degrees::End() {
+void TurnDegrees::End() {
 	driveTrain->ArcadeDrive(0 ,0 ,0 ,0 ,true);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void Turn90Degrees::Interrupted() {
+void TurnDegrees::Interrupted() {
 	End();
 }

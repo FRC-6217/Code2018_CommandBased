@@ -39,7 +39,7 @@ private:
 	frc::Encoder * _leftEncoder;
 	frc::Encoder * _rightEncoder;
 	frc::AnalogInput * _rangeFinder;
-	frc::AnalogGyro * _gyro;
+	frc::ADXRS450_Gyro * _gyro;
 
 	//Speed of last time
 	double lastSpeedOfX = 0;
