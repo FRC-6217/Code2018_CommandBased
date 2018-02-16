@@ -1,3 +1,4 @@
+#define TEST
 #define SECONDARY_ROBOT
 #ifndef ROBOTMAP_H
 #define ROBOTMAP_H
@@ -43,11 +44,12 @@ constexpr int GRABBER_RIGHT_SIDE_PORT = 46;
 
 // Joystick Ports
 constexpr int DRIVE_JOYSTICK_PORT	=	0;
-constexpr int GAME_JOYSTICK_PORT  =	1;
+constexpr int GAME_CONTROLLER_PORT  =	1;
 
 // Joystick Items
 constexpr int DRIVE_DISTANCE_BUTTON_NUMBER = 9;
 constexpr int TURN_DEGREES_BUTTON = 10;
+constexpr int RUN_GRABBER_BUTTON = 11;
 constexpr int DRIVE_GOVERNOR_NUMBER = 3;
 constexpr int LIFT_1_UP = 6; //Right Bumper Button
 constexpr int LIFT_1_DOWN = 3; //Right Trigger Button
@@ -85,3 +87,6 @@ constexpr double GYRO_PORT = 0;
 //Distance for Encoder
 constexpr double DRIVE_ENC_20_INCHES = 20;
 #endif // ROBOTMAP_H
+
+//Grabber information
+constexpr double SPIT_OUT_CUDE_TIME = 2;

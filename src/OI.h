@@ -12,17 +12,20 @@
 #include "WPILib.h"
 #include <Buttons/JoystickButton.h>
 #include <Joystick.h>
+#include "RobotMap.h"
 
 class OI {
 private:
 	Joystick * _driveStick;
+	Joystick * _gameController;
+#ifdef TEST
 	JoystickButton * _buttonDrive;
 	JoystickButton * _buttonTurn;
 	JoystickButton * _buttonGrabOut;
-	Joystick * _gameStick;
+#endif
 public:
 	OI();
-	Joystick* GetGameStick();
+	Joystick* GetGameController();
 	Joystick* GetDriveStick();
 };
 

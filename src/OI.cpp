@@ -9,25 +9,26 @@
 #include "OI.h"
 
 #include <WPILib.h>
-#include "RobotMap.h"
 #include "Commands/DriveDistance.h"
 #include "Commands/spitOutCube.h"
 
 OI::OI() {
 	_driveStick = new Joystick(DRIVE_JOYSTICK_PORT);
-	_buttonGrabOut = new JoystickButton(_driveStick, 11);
+	_gameController = new Joystick(GAME_CONTROLLER_PORT);
+#ifdef TEST
+	// Connect the buttons to commands
+	_buttonGrabOut = new JoystickButton(_driveStick, RUN_GRABBER_BUTTON);
 	_buttonDrive = new JoystickButton(_driveStick, DRIVE_DISTANCE_BUTTON_NUMBER);
 	_buttonTurn = new JoystickButton(_driveStick, TURN_DEGREES_BUTTON);
-	_gameStick = new Joystick(GAME_JOYSTICK_PORT);
-	// Connect the buttons to commands
 	_buttonDrive->WhenPressed(new DriveDistance(10));
 	_buttonTurn->WhenPressed(new TurnDegrees(45));
 	_buttonGrabOut->WhenPressed(new spitOutCube);
+#endif
 }
 
 Joystick* OI::GetDriveStick(){
 	return _driveStick;
 }
-Joystick* OI::GetGameStick(){
-	return _gameStick;
+Joystick* OI::GetGameController(){
+	return _gameController;
 }

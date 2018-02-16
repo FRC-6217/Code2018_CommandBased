@@ -11,30 +11,30 @@ void grabbingWithButtons::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void grabbingWithButtons::Execute() {
-	if (oi->GetGameStick()->GetRawButton(GRABBER_IN_BUTTON) == 1){
+	if (oi->GetGameController()->GetRawButton(GRABBER_IN_BUTTON) == 1){
 		currentDirection = GRABBER_IN;
 	}
-	else if (oi->GetGameStick()->GetRawButton(GRABBER_OUT_BUTTON) == 1){
+	else if (oi->GetGameController()->GetRawButton(GRABBER_OUT_BUTTON) == 1){
 		currentDirection = GRABBER_OUT;
 	}
-	else if(oi->GetGameStick()->GetRawButton(GRABBER_STOP_BUTTON) == 1){
+	else if(oi->GetGameController()->GetRawButton(GRABBER_STOP_BUTTON) == 1){
 		currentDirection = GRABBER_STOP;
 	}
 	if (currentDirection == GRABBER_STOP){
-		if (oi->GetGameStick()->GetRawAxis(GRABBER_LEFT_SIDE_AXIS) >= .25){
+		if (oi->GetGameController()->GetRawAxis(GRABBER_LEFT_SIDE_AXIS) >= .25){
 			grabber->RunLeftGrabber(-GRABBER_OUT);
 		}
-		else if (oi->GetGameStick()->GetRawAxis(GRABBER_LEFT_SIDE_AXIS) <= -.25){
+		else if (oi->GetGameController()->GetRawAxis(GRABBER_LEFT_SIDE_AXIS) <= -.25){
 			grabber->RunLeftGrabber(-GRABBER_IN);
 		}
 		else{
 			grabber->RunLeftGrabber(GRABBER_STOP);
 		}
 
-		if (oi->GetGameStick()->GetRawAxis(GRABBER_RIGHT_SIDE_AXIS) >= .25){
+		if (oi->GetGameController()->GetRawAxis(GRABBER_RIGHT_SIDE_AXIS) >= .25){
 			grabber->RunRightGrabber(-GRABBER_OUT);
 		}
-		else if (oi->GetGameStick()->GetRawAxis(GRABBER_RIGHT_SIDE_AXIS) <= -.25){
+		else if (oi->GetGameController()->GetRawAxis(GRABBER_RIGHT_SIDE_AXIS) <= -.25){
 			grabber->RunRightGrabber(-GRABBER_IN);
 		}
 		else{

@@ -2,7 +2,7 @@
 
 spitOutCube::spitOutCube() {
 	Requires(grabber);
-	SetTimeout(2);
+	SetTimeout(SPIT_OUT_CUDE_TIME);
 }
 
 // Called just before this Command runs the first time
