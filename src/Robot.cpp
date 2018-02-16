@@ -45,6 +45,8 @@ public:
 		_chooserCrossField.AddObject("Yes", "Y");
 		frc::SmartDashboard::PutData("Cross field for Goal", &_chooserCrossField);
 
+		// Add Command Based Scheduler Status to dashboard
+		frc::SmartDashboard::PutData(frc::Scheduler::GetInstance());
 		// Add test commands on Smart Dashboard
 		frc::SmartDashboard::PutData("Test Auto 1", new Auto1());
 		frc::SmartDashboard::PutData("Drive 20 inches", new DriveDistance(10));
