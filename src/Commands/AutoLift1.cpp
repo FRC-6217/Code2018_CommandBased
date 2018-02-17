@@ -5,35 +5,36 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "AutoLift.h"
+#include "AutoLift1.h"
 
-AutoLift::AutoLift() {
-	// Use Requires() here to declare subsystem dependencies
-	// eg. Requires(Robot::chassis.get());
+AutoLift1::AutoLift1(float heightToRaiseLift1, int screwDirection1) {
+	Requires(lift);
+	_heightToRaiseLift1 = heightToRaiseLift1;
+	_direction = direction;
 }
 
 // Called just before this Command runs the first time
-void AutoLift::Initialize() {
-
+void AutoLift1::Initialize() {
+	lift->ResetEncoder1();
 }
 
 // Called repeatedly when this Command is scheduled to run
-void AutoLift::Execute() {
-
+void AutoLift1::Execute() {
+	lift->Lift1Operate(_direction);
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool AutoLift::IsFinished() {
-	return false;
+bool AutoLift1::IsFinished() {
+	return lift->GetEncoder1() >= _heightToRaiseLift1;
 }
 
 // Called once after isFinished returns true
-void AutoLift::End() {
-
+void AutoLift1::End() {
+	lift->Lift1Operate(0);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void AutoLift::Interrupted() {
-
+void AutoLift1::Interrupted() {
+	End();
 }

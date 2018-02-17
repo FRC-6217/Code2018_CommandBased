@@ -10,11 +10,20 @@ private:
 	Spark* _acmeScrew1;
 	Spark* _acmeScrew2;
 
+	frc::Encoder* _screw1Encoder;
+	frc::Encoder* _screw2Encoder;
+
 public:
 	Lift();
 	void InitDefaultCommand();
 	void Lift1Operate(int direction);
 	void Lift2Operate(int direction);
+
+	void ResetEncoder2();
+	void ResetEncoder1();
+
+	double GetEncoder2();
+	double GetEncoder1();
 };
 
 #endif  // Lift_H

@@ -9,9 +9,12 @@
 
 #include <Commands/Command.h>
 
-class AutoLift : public frc::Command {
+class AutoLift2 : public frc::Command {
+private:
+	float _heightToRaiseLift2;
+	int _direction;
 public:
-	AutoLift();
+	AutoLift2(float heightToRaiseLift2, int screwDirection2);
 	void Initialize() override;
 	void Execute() override;
 	bool IsFinished() override;

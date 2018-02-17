@@ -96,7 +96,10 @@ constexpr double SPIT_OUT_CUDE_TIME = 2;
 
 //Auto distances
 //Lift factor
-constexpr int LIFTING_TO_SCALE = 30;
+constexpr float LIFTING_TO_SCALE = 30;
+
+//Lift Directions
+constexpr int UP_TO_SCALE_DIRECTION = 1;
 
 //Angle values
 constexpr int L_TURN_RIGHT_DEGREES = 90;
