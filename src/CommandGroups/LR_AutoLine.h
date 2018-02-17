@@ -4,9 +4,9 @@
 #include <WPILib.h>
 #include "..\RobotMap.h"
 
-#include "DriveDistance.h"
-#include "TurnDegrees.h"
-#include "spitOutCube.h"
+#include <Commands/DriveDistance.h>
+#include <Commands/TurnDegrees.h>
+#include <Commands/spitOutCube.h>
 
 #include <Commands/CommandGroup.h>
 

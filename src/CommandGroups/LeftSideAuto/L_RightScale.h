@@ -3,10 +3,10 @@
 
 #include <WPILib.h>
 
-#include "DriveDistance.h"
-#include "TurnDegrees.h"
-#include "spitOutCube.h"
-#include "AutoLift.h"
+#include <Commands/DriveDistance.h>
+#include <Commands/TurnDegrees.h>
+#include <Commands/spitOutCube.h>
+#include <Commands/AutoLift.h>
 
 #include <Commands/CommandGroup.h>
 

@@ -15,7 +15,7 @@
 
 #include "Commands/DriveDistance.h"
 #include "Commands/DriveWithJoystick.h"
-#include "Commands/Auto1.h"
+#include <CommandGroups/Auto1.h>
 #include "CommandBase.h"
 #include "ctre\Phoenix.h"
 
