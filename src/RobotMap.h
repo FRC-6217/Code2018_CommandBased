@@ -97,6 +97,7 @@ constexpr double SPIT_OUT_CUDE_TIME = 2;
 //Auto distances
 //Lift factor
 constexpr int LIFTING_TO_SCALE = 30;
+
 //Angle values
 constexpr int L_TURN_RIGHT_DEGREES = 90;
 constexpr int L_TURN_LEFT_DEGREES = -90;
@@ -104,23 +105,29 @@ constexpr int R_TURN_RIGHT_DEGREES = 90;
 constexpr int R_TURN_LEFT_DEGREES = -90;
 constexpr int M_TURN_RIGHT_DEGREES = 90;
 constexpr int M_TURN_LEFT_DEGREES = -90;
+
 //LR_AutoLine
 constexpr int LR_AUTOLINE_DISTANCE = 120;
+
 //L_LeftSwitch and R_RightSwitch
 constexpr int LR_FIRST_DISTANCE_SWITCH = 168;
 constexpr int LR_SECOND_DISTANCE_SWITCH = 35;
+
 //L_LeftScale and R_RightScale
 constexpr int LR_SCALE_FIRST_DISTANCE = 310;
 constexpr int LR_SCALE_SECOND_DISTANCE = 17;
+
 //L_RightScale and R_LeftScale
 constexpr int LR_OPPOSITE_SCALE_FIRST_DISTANCE = 223.5;
 constexpr int LR_OPPOSITE_SCALE_SECOND_DISTANCE = 242;
 constexpr int LR_OPPOSITE_SCALE_THIRD_DISTANCE = 86.5;
 constexpr int LR_OPPOSITE_SCALE_FOURTH_DISTANCE = 17;
+
 //L_RightSwitch and R_LeftSwitch
 constexpr int LR_OPPOSITE_SWITCH_FIRST_DISTANCE = 223.5;
 constexpr int LR_OPPOSITE_SWITCH_SECOND_DISTANCE = 161;
 constexpr int LR_OPPOSITE_SWITCH_THIRD_DISTANCE = 47;
+
 //M_RightAutoLine
 constexpr int M_AUTO_LINE_DISTANCE = 132;
 constexpr int M_AUTO_LINE_ANGLE_R = 45;
