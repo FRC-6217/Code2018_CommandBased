@@ -29,6 +29,10 @@ private:
 	frc::SendableChooser<std::string> _chooserStartingPosition;
 	frc::SendableChooser<std::string> _chooserPriorityGoal;
 	frc::SendableChooser<std::string> _chooserCrossField;
+
+	//Variables
+	//Makes sure that if Scale and Switch don't work, the robot crosses base line
+	int checker;
 public:
 
 	void RobotInit() override {
@@ -91,19 +95,96 @@ public:
 	        autoModeOptions == "LLLWY" ||
 	        autoModeOptions == "LRLWN" ||
 	        autoModeOptions == "LRLWY") {
-			_autoCommandGroup = new Auto1();
+			_autoCommandGroup = new L_LeftSwitch();
 		}
 		// Right Switch, Scale does not matter, Right Starting, Switch Priority, cross field does not matter
-		else if (autoModeOptions == "RRLWN" ||
-                 autoModeOptions == "RRLWY" ||
-                 autoModeOptions == "RLLWY" ||
-                 autoModeOptions == "RLLWY") {
-			_autoCommandGroup = new Auto1();
+		else if (autoModeOptions == "RRRWN" ||
+                 autoModeOptions == "RRRWY" ||
+                 autoModeOptions == "RLRWY" ||
+                 autoModeOptions == "RLRWY") {
+			_autoCommandGroup = new R_RightSwitch();
 		}
 		else {
-			_autoCommandGroup = new Auto1();
+			autoModeOptions[4] = 'C';
+			checker++;
 		}
 
+
+		// Switch does not matter, Left Scale, Left Starting, Scale Priority, cross field does not matter
+		if (autoModeOptions == "LLLCN" ||
+	        autoModeOptions == "LLLCY" ||
+	        autoModeOptions == "RLLCN" ||
+	        autoModeOptions == "RLLCY") {
+			_autoCommandGroup = L_LeftScale();
+		}
+		// Switch Does not matter, Right Scale, Right Starting, Scale Priority, cross field does not matter
+		else if (autoModeOptions == "RRRCN" ||
+                 autoModeOptions == "RRRCY" ||
+                 autoModeOptions == "LRRCY" ||
+                 autoModeOptions == "LRRCY") {
+			_autoCommandGroup = new R_RightScale();
+		}
+		else {
+			autoModeOptions[4] = 'W';
+			checker++;
+		}
+
+
+		// Switch does not matter, Scale does not matter, Left Starting, AutoLine Priority, cross field does not matter
+		if (autoModeOptions == "RRLAN" ||
+	        autoModeOptions == "RLLAN" ||
+	        autoModeOptions == "RRLAY" ||
+			autoModeOptions == "RLLAY" ||
+			autoModeOptions == "LRLAN" ||
+			autoModeOptions == "LLLAN" ||
+			autoModeOptions == "LRLAY" ||
+	        autoModeOptions == "LLLAY") {
+			_autoCommandGroup = LR_AutoLine();
+		}
+		// Switch Does not matter, Scale does not matter, Right Starting, AutoLine Priority, cross field does not matter
+		else if (autoModeOptions == "RRRAN" ||
+		         autoModeOptions == "RLRAN" ||
+		         autoModeOptions == "RRRAY" ||
+				 autoModeOptions == "RLRAY" ||
+				 autoModeOptions == "LRRAN" ||
+				 autoModeOptions == "LLRAN" ||
+				 autoModeOptions == "LRRAY" ||
+		         autoModeOptions == "LLRAY") {
+			_autoCommandGroup = new LR_AutoLine();
+		}
+		// Switch Does not matter, Scale does not matter, Middle Starting, AutoLine Priority, cross field does not matter
+		else if (autoModeOptions == "RRMAN" ||
+		         autoModeOptions == "RLMAN" ||
+		         autoModeOptions == "RRMAY" ||
+				 autoModeOptions == "RLMAY" ||
+				 autoModeOptions == "LRMAN" ||
+				 autoModeOptions == "LLMAN" ||
+				 autoModeOptions == "LRMAY" ||
+		         autoModeOptions == "LLMAY") {
+			_autoCommandGroup = new M_LeftAutoLine();
+		}
+		//If Scale and Switch fail for Left or right position, cross AutoLine
+		else if (autoModeOptions == "XXRXX" ||
+				 autoModeOptions == "XXLXX") {
+			_autoCommandGroup = new LR_AutoLine();
+		}
+
+		//Nothing works, Nuclear Apocalypse/Coding Error, Call No Command Groups
+		else {
+
+		}
+
+
+		if (checker == 2) {
+			if (autoModeOptions[3] == 'L') {
+				autoModeOptions = "XXLXX";
+				checker++;
+			}
+			else if (autoModeOptions[3] == 'R') {
+				autoModeOptions = "XXRXX";
+				checker++;
+			}
+		}
 
 		if (_autoCommandGroup != nullptr) {
 			_autoCommandGroup->Start();
