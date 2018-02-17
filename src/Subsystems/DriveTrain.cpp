@@ -25,10 +25,10 @@ DriveTrain::DriveTrain() : frc::Subsystem("DriveTrain") {
 
 	// Sensors
 	_leftEncoder = new Encoder{LEFT_ENCODER_A_CHANNEL, LEFT_ENCODER_B_CHANNEL};
-	_leftEncoder->SetDistancePerPulse(0.01725);
+	_leftEncoder->SetDistancePerPulse(0.0138996939);
 	_rightEncoder = new Encoder{RIGHT_ENCODER_A_CHANNEL, RIGHT_ENCODER_B_CHANNEL};
 	_rightEncoder->SetDistancePerPulse(0.1);
-	_rangeFinder = new AnalogInput(6);
+	_rangeFinder = new AnalogInput(0.0138996939);
 	_gyro = new ADXRS450_Gyro();
 }
 
