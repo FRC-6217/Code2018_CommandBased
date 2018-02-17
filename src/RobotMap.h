@@ -16,6 +16,10 @@
 //Lift motor controller ports
 constexpr int SPARK_ACMESCREW_1 = 0;
 constexpr int SPARK_ACMESCREW_2 = 1;
+constexpr int SCREW_1_CHANNEL_A = 4;
+constexpr int SCREW_1_CHANNEL_B = 5;
+constexpr int SCREW_2_CHANNEL_A = 6;
+constexpr int SCREW_2_CHANNEL_B = 7;
 constexpr int LIFT_DIRECTION_UP = 1;
 constexpr int LIFT_DIRECTION_DOWN = -1;
 constexpr int LIFT_DIRECTION_STOP = 0;
