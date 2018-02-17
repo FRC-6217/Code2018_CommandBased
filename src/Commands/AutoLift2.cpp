@@ -10,7 +10,7 @@
 AutoLift2::AutoLift2(float heightToRaiseLift2, int screwDirection2) {
 	Requires(lift);
 	_heightToRaiseLift2 = heightToRaiseLift2;
-	_direction = direction;
+	_direction = screwDirection2;
 }
 
 // Called just before this Command runs the first time

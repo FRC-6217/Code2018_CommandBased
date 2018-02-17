@@ -7,7 +7,9 @@ Lift::Lift() : frc::Subsystem("Lift") {
 	_acmeScrew2 = new Spark(SPARK_ACMESCREW_2);
 
 	_screw1Encoder = new frc::Encoder(SCREW_1_CHANNEL_A, SCREW_1_CHANNEL_B);
+	_screw1Encoder->SetDistancePerPulse(SCREW_1_ENCODER_VERTICAL_DPP);
 	_screw2Encoder  = new frc::Encoder(SCREW_2_CHANNEL_A, SCREW_2_CHANNEL_B);
+	_screw2Encoder->SetDistancePerPulse(SCREW_2_ENCODER_VERTICAL_DPP);
 }
 
 void Lift::InitDefaultCommand() {
