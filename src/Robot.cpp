@@ -19,6 +19,8 @@
 #include "CommandBase.h"
 #include "ctre\Phoenix.h"
 
+#include "WeekZero.h"
+
 class Robot : public frc::TimedRobot {
 private:
 	// Have it null by default so that if testing teleop it
@@ -71,11 +73,12 @@ public:
 		crossField = _chooserCrossField.GetSelected();
 
 		// Game data - for 2018 three characters indicating position of switch and scale (e.g. LRL)
-		gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
+		//gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
+		gameData = WeekZero::getGameSpecificMessage();
 		// Default game data
-		if(gameData.length() < 2) {
-			gameData = "LRL";
-		}
+		//if(gameData.length() < 2) {
+		//	gameData = "LRL";
+		//}
 		// Decide on autonomous command group
 		autoModeOptions = gameData[0];
 		autoModeOptions += gameData[1];
