@@ -7,7 +7,7 @@
 
 #include "AutoLift.h"
 
-AutoLift::AutoLift() {
+AutoLift::AutoLift(int liftFactor, int parm2) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 }

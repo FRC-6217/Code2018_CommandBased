@@ -11,7 +11,7 @@
 
 class AutoLift : public frc::Command {
 public:
-	AutoLift();
+	AutoLift(int liftFactor, int parm2);
 	void Initialize() override;
 	void Execute() override;
 	bool IsFinished() override;

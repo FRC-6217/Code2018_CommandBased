@@ -15,7 +15,18 @@
 
 #include "Commands/DriveDistance.h"
 #include "Commands/DriveWithJoystick.h"
-#include <CommandGroups/Auto1.h>
+#include <CommandGroups\Auto1.h>
+#include "CommandGroups\LR_AutoLine.h"
+#include "CommandGroups\LeftSideAuto\L_LeftScale.h"
+#include "CommandGroups\LeftSideAuto\L_LeftSwitch.h"
+#include "CommandGroups\LeftSideAuto\L_RightScale.h"
+#include "CommandGroups\LeftSideAuto\L_RightSwitch.h"
+#include "CommandGroups\RightSideAuto\R_RightScale.h"
+#include "CommandGroups\RightSideAuto\R_RightSwitch.h"
+#include "CommandGroups\RightSideAuto\R_LeftScale.h"
+#include "CommandGroups\RightSideAuto\R_LeftSwitch.h"
+#include "CommandGroups\MiddleAuto\M_LeftAutoLine.h"
+#include "CommandGroups\MiddleAuto\M_RightAutoLine.h"
 #include "CommandBase.h"
 #include "ctre\Phoenix.h"
 
@@ -91,17 +102,50 @@ public:
 	        autoModeOptions == "LLLWY" ||
 	        autoModeOptions == "LRLWN" ||
 	        autoModeOptions == "LRLWY") {
-			_autoCommandGroup = new Auto1();
+			_autoCommandGroup = new L_LeftSwitch();
+		}
+		// Switch does not matter, Left Scale, Left Starting, Scale Priority, cross field does not matter
+		else if (autoModeOptions == "LLLCN" ||
+                 autoModeOptions == "LLLCY" ||
+                 autoModeOptions == "RLLCN" ||
+                 autoModeOptions == "RLLCY") {
+			_autoCommandGroup = new L_LeftScale();
 		}
 		// Right Switch, Scale does not matter, Right Starting, Switch Priority, cross field does not matter
 		else if (autoModeOptions == "RRLWN" ||
                  autoModeOptions == "RRLWY" ||
-                 autoModeOptions == "RLLWY" ||
+                 autoModeOptions == "RLLWN" ||
                  autoModeOptions == "RLLWY") {
-			_autoCommandGroup = new Auto1();
+			_autoCommandGroup = new R_RightSwitch();
+		}
+		// Switch does not matter, Right Scale, Right Starting, Scale Priority, cross field does not matter
+		else if (autoModeOptions == "LRRCN" ||
+                 autoModeOptions == "LRRCY" ||
+                 autoModeOptions == "RRRCN" ||
+                 autoModeOptions == "RRRCY") {
+			_autoCommandGroup = new R_RightScale();
+		}
+		// Switch does not matter, Scale does not matter, Right or Left Starting, Auto Priority, cross field does not matter
+		else if (autoModeOptions == "LLLAN" ||
+				 autoModeOptions == "LLLAY" ||
+				 autoModeOptions == "LRLAN" ||
+				 autoModeOptions == "LRLAY" ||
+				 autoModeOptions == "RLLAN" ||
+				 autoModeOptions == "RLLAY" ||
+				 autoModeOptions == "RRLAN" ||
+				 autoModeOptions == "RRLAY" ||
+				 autoModeOptions == "LLLAN" ||
+				 autoModeOptions == "LLRAY" ||
+				 autoModeOptions == "LRRAN" ||
+				 autoModeOptions == "LRRAY" ||
+				 autoModeOptions == "RLRAN" ||
+				 autoModeOptions == "RLRAY" ||
+				 autoModeOptions == "RRRAN" ||
+				 autoModeOptions == "RRRAY") {
+			_autoCommandGroup = new LR_AutoLine();
 		}
 		else {
-			_autoCommandGroup = new Auto1();
+			_autoCommandGroup = new LR_AutoLine();
 		}
 
 
