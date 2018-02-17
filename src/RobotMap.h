@@ -96,4 +96,5 @@ constexpr int LR_FIRST_DISTANCE_SWITCH = 168;
 constexpr int LR_SECOND_DISTANCE_SWITCH = 35;
 constexpr int LR_DEGREES_SWITCH = 90;//in commandgroups may need the switch the sign
 constexpr int LR_SCALE_FIRST_DISTANCE = 310;
+constexpr int L_SCALE_DEGREES = 90;
 #endif // ROBOTMAP_H
