@@ -20,7 +20,7 @@ OI::OI() {
 	_buttonGrabOut = new JoystickButton(_driveStick, RUN_GRABBER_BUTTON);
 	_buttonDrive = new JoystickButton(_driveStick, DRIVE_DISTANCE_BUTTON_NUMBER);
 	_buttonTurn = new JoystickButton(_driveStick, TURN_DEGREES_BUTTON);
-	_buttonDrive->WhenPressed(new DriveDistance(10));
+	_buttonDrive->WhenPressed(new DriveDistance(80));
 	_buttonTurn->WhenPressed(new TurnDegrees(45));
 	_buttonGrabOut->WhenPressed(new spitOutCube);
 #endif

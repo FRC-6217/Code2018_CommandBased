@@ -23,10 +23,10 @@ constexpr float ACME_SCREW_SPEED = 0.5;
 
 // Drive Train Motor Controller Ports
 #ifdef SECONDARY_ROBOT
-constexpr int VICTOR_SP_DRIVE_LEFT1		=	0; /* DeviceID matches the PWM Port */
-constexpr int VICTOR_SP_DRIVE_LEFT2		=	1; /* DeviceID matches the PWM Port */
-constexpr int VICTOR_SP_DRIVE_RIGHT1	=	2; /* DeviceID matches the PWM Port */
-constexpr int VICTOR_SP_DRIVE_RIGHT2	=	3; /* DeviceID matches the PWM Port */
+constexpr int VICTOR_SP_DRIVE_LEFT1		=	6; /* DeviceID matches the PWM Port */
+constexpr int VICTOR_SP_DRIVE_LEFT2		=	7; /* DeviceID matches the PWM Port */
+constexpr int VICTOR_SP_DRIVE_RIGHT1	=	8; /* DeviceID matches the PWM Port */
+constexpr int VICTOR_SP_DRIVE_RIGHT2	=	9; /* DeviceID matches the PWM Port */
 constexpr int VICTOR_SP_GRABBER_LEFT	=	4; /* DeviceID matches the PWM Port */
 constexpr int VICTOR_SP_GRABBER_RIGHT	=	5; /* DeviceID matches the PWM Port */
 #endif
@@ -90,4 +90,10 @@ constexpr double DRIVE_ENC_20_INCHES = 20;
 //Grabber information
 constexpr double SPIT_OUT_CUDE_TIME = 2;
 
+//Auto distances
+constexpr int LR_AUTOLINE_DISTANCE = 120;
+constexpr int LR_FIRST_DISTANCE_SWITCH = 168;
+constexpr int LR_SECOND_DISTANCE_SWITCH = 35;
+constexpr int LR_DEGREES_SWITCH = 90;//in commandgroups may need the switch the sign
+constexpr int LR_SCALE_FIRST_DISTANCE = 310;
 #endif // ROBOTMAP_H
