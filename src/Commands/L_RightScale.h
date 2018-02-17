@@ -1,5 +1,5 @@
-#ifndef L_LeftScale_H
-#define L_LeftScale_H
+#ifndef L_RightScale_H
+#define L_RightScale_H
 
 #include <WPILib.h>
 
@@ -10,10 +10,10 @@
 
 #include <Commands/CommandGroup.h>
 
-class L_LeftScale : public CommandGroup {
+class L_RightScale : public CommandGroup {
 public:
-	L_LeftScale();
+	L_RightScale();
 };
 
-#endif  // L_LeftScale_H
+#endif  // L_RightScale_H
 

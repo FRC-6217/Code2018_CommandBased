@@ -94,8 +94,22 @@ constexpr double SPIT_OUT_CUDE_TIME = 2;
 constexpr int LR_AUTOLINE_DISTANCE = 120;
 constexpr int LR_FIRST_DISTANCE_SWITCH = 168;
 constexpr int LR_SECOND_DISTANCE_SWITCH = 35;
-constexpr int LR_DEGREES_SWITCH = 90;//in commandgroups may need the switch the sign
+constexpr int L_DEGREES_SWITCH = 90;
+constexpr int R_DEGREES_SWITCH = -90;
+
 constexpr int LR_SCALE_FIRST_DISTANCE = 310;
 constexpr int L_SCALE_DEGREES = 90;
 constexpr int LR_SCALE_SECOND_DISTANCE = 17;
+
+constexpr int LR_OPPOSITE_SCALE_FIRST_DISTANCE = 223.5;
+constexpr int LR_OPPOSITE_SCALE_SECOND_DISTANCE = 242;
+constexpr int LR_OPPOSITE_SCALE_THIRD_DISTANCE = 86.5;
+constexpr int LR_OPPOSITE_SCALE_FOURTH_DISTANCE = 17;
+constexpr int L_OPPOSITE_SCALE_FIRST_DEGREES = 90;
+constexpr int L_OPPOSITE_SCALE_SECOND_DEGREES = -90;
+constexpr int L_OPPOSITE_SCALE_THIRD_DEGREES = -90;
+constexpr int R_OPPOSITE_SCALE_FIRST_DEGREES = -90;
+constexpr int R_OPPOSITE_SCALE_SECOND_DEGREES = 90;
+constexpr int R_OPPOSITE_SCALE_THIRD_DEGREES = 90;
+
 #endif // ROBOTMAP_H
