@@ -1,11 +1,11 @@
-#include "L_RightSwitch.h"
+#include "R_LeftSwitch.h"
 
-L_RightSwitch::L_RightSwitch() {
+R_LeftSwitch::R_LeftSwitch() {
 	AddSequential(new DriveDistance(LR_OPPOSITE_SWITCH_FIRST_DISTANCE));
-	AddSequential(new TurnDegrees(L_TURN_RIGHT_DEGREES));
+	AddSequential(new TurnDegrees(R_TURN_LEFT_DEGREES));
 
 	AddSequential(new DriveDistance(LR_OPPOSITE_SWITCH_SECOND_DISTANCE));
-	AddSequential(new TurnDegrees(L_TURN_RIGHT_DEGREES));
+	AddSequential(new TurnDegrees(R_TURN_RIGHT_DEGREES));
 
 	AddSequential(new DriveDistance(LR_OPPOSITE_SWITCH_THIRD_DISTANCE));
 	AddSequential(new spitOutCube());
