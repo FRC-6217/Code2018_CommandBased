@@ -40,6 +40,10 @@ private:
 	frc::SendableChooser<std::string> _chooserStartingPosition;
 	frc::SendableChooser<std::string> _chooserPriorityGoal;
 	frc::SendableChooser<std::string> _chooserCrossField;
+
+	//Variables
+	//Makes sure that if Scale and Switch don't work, the robot crosses base line
+	int checker;
 public:
 
 	void RobotInit() override {
@@ -87,9 +91,10 @@ public:
 		//gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
 		gameData = WeekZero::getGameSpecificMessage();
 		// Default game data
-		//if(gameData.length() < 2) {
-		//	gameData = "LRL";
-		//}
+		if(gameData.length() < 2) {
+			gameData = "LRL";
+		}
+
 		// Decide on autonomous command group
 		autoModeOptions = gameData[0];
 		autoModeOptions += gameData[1];
@@ -143,6 +148,12 @@ public:
 				 autoModeOptions == "RRRAN" ||
 				 autoModeOptions == "RRRAY") {
 			_autoCommandGroup = new LR_AutoLine();
+		}
+		else if (autoModeOptions == "RRRWN" ||
+                 autoModeOptions == "RRRWY" ||
+                 autoModeOptions == "RLRWY" ||
+                 autoModeOptions == "RLRWY") {
+			_autoCommandGroup = new R_RightSwitch();
 		}
 		else {
 			_autoCommandGroup = new LR_AutoLine();

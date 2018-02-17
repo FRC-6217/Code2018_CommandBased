@@ -7,11 +7,17 @@
 
 #pragma once
 
+#include "../CommandBase.h"
 #include <Commands/Command.h>
+#include <SmartDashboard/SmartDashboard.h>
 
-class AutoLift : public frc::Command {
+class AutoLift1 : public frc::Command {
+private:
+	float _heightToRaiseLift1;
+	int _direction;
+
 public:
-	AutoLift(int liftFactor, int parm2);
+	AutoLift1(float heightToRaiseLift1, int screwDirection1);
 	void Initialize() override;
 	void Execute() override;
 	bool IsFinished() override;
