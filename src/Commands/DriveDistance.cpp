@@ -14,7 +14,7 @@ void DriveDistance::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void DriveDistance::Execute() {
-	driveTrain->ArcadeDrive(0.0, -0.5, driveTrain->GetGyroAngle() * KP_GYRO, 0, true);
+	driveTrain->ArcadeDrive(0.0, -0.50, driveTrain->GetGyroAngle() * KP_GYRO, 0, true);
 }
 
 // Make this return true when this Command no longer needs to run execute()
