@@ -88,12 +88,11 @@ public:
 		crossField = _chooserCrossField.GetSelected();
 
 		// Game data - for 2018 three characters indicating position of switch and scale (e.g. LRL)
-		//gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
-		gameData = WeekZero::getGameSpecificMessage();
+		gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
 		// Default game data
-		//if(gameData.length() < 2) {
-			//gameData = "LRL";
-		//}
+		if(gameData.length() < 2) {
+			gameData = "LRL";
+		}
 
 		// Decide on autonomous command group
 		autoModeOptions = gameData[0];
@@ -103,62 +102,50 @@ public:
 		autoModeOptions += crossField;
 
 		// Left Switch, Scale does not matter, Left Starting, Switch Priority, cross field does not matter
-		if (autoModeOptions == "LLLWN" ||
-	        autoModeOptions == "LLLWY" ||
-	        autoModeOptions == "LRLWN" ||
-	        autoModeOptions == "LRLWY") {
+		if (gameData[0] == "L" &&
+			startingPosition == "L" &&
+			priorityGoal == "W") {
 			_autoCommandGroup = new L_LeftSwitch();
 		}
 		// Switch does not matter, Left Scale, Left Starting, Scale Priority, cross field does not matter
-		else if (autoModeOptions == "LLLCN" ||
-                 autoModeOptions == "LLLCY" ||
-                 autoModeOptions == "RLLCN" ||
-                 autoModeOptions == "RLLCY") {
+		else if (gameData[1] == "L" &&
+				startingPosition == "L" &&
+				priorityGoal == "C") {
 			_autoCommandGroup = new L_LeftScale();
 		}
 		// Right Switch, Scale does not matter, Right Starting, Switch Priority, cross field does not matter
-		else if (autoModeOptions == "RRRWN" ||
-                 autoModeOptions == "RRRWY" ||
-                 autoModeOptions == "RLRWN" ||
-                 autoModeOptions == "RLRWY") {
+		else if (gameData[0] == "R" &&
+				startingPosition == "R" &&
+				priorityGoal == "W") {
 			_autoCommandGroup = new R_RightSwitch();
 		}
 		// Switch does not matter, Right Scale, Right Starting, Scale Priority, cross field does not matter
-		else if (autoModeOptions == "LRRCN" ||
-                 autoModeOptions == "LRRCY" ||
-                 autoModeOptions == "RRRCN" ||
-                 autoModeOptions == "RRRCY") {
+		else if (gameData[1] == "R" &&
+				startingPosition == "R" &&
+				priorityGoal == "C") {
 			_autoCommandGroup = new R_RightScale();
 		}
 		// Switch does not matter, Scale does not matter, Right or Left Starting, Auto Priority, cross field does not matter
-		else if (autoModeOptions == "LLLAN" ||
-				 autoModeOptions == "LLLAY" ||
-				 autoModeOptions == "LRLAN" ||
-				 autoModeOptions == "LRLAY" ||
-				 autoModeOptions == "RLLAN" ||
-				 autoModeOptions == "RLLAY" ||
-				 autoModeOptions == "RRLAN" ||
-				 autoModeOptions == "RRLAY" ||
-				 autoModeOptions == "LLLAN" ||
-				 autoModeOptions == "LLRAY" ||
-				 autoModeOptions == "LRRAN" ||
-				 autoModeOptions == "LRRAY" ||
-				 autoModeOptions == "RLRAN" ||
-				 autoModeOptions == "RLRAY" ||
-				 autoModeOptions == "RRRAN" ||
-				 autoModeOptions == "RRRAY") {
+		else if (startingPosition != "M" &&
+				priorityGoal == "A") {
 			_autoCommandGroup = new LR_AutoLine();
 		}
-		else if (autoModeOptions == "RRRWN" ||
-                 autoModeOptions == "RRRWY" ||
-                 autoModeOptions == "RLRWN" ||
-                 autoModeOptions == "RLRWY") {
-			_autoCommandGroup = new R_RightSwitch();
+		// Switch matter To get out of the way, Scale does not matter, Middle Starting, Auto Priority, cross field does not matter
+		else if (startingPosition == "M" &&
+				priorityGoal == "A" &&
+				gameData[0] != "L"){
+			_autoCommandGroup = new M_LeftAutoLine();
 		}
-		else {
+		// Switch matter to get out of the way, Scale does not matter, Middle Starting, Auto Priority, cross field does not matter
+		else if (startingPosition == "M" &&
+				priorityGoal == "A" &&
+				gameData[0] != "R"){
+			_autoCommandGroup = new M_RightAutoLine();
+		}
+		//default command
+		else{
 			_autoCommandGroup = new LR_AutoLine();
 		}
-
 
 		if (_autoCommandGroup != nullptr) {
 			_autoCommandGroup->Start();
