@@ -16,6 +16,12 @@ DriveTrain::DriveTrain() : frc::Subsystem("DriveTrain") {
 	_victorR1 = new WPI_VictorSPX(VICTOR_SPX_DRIVE_RIGHT1);
 	_victorR2 = new WPI_VictorSPX(VICTOR_SPX_DRIVE_RIGHT2);
 #endif
+#ifdef SECONDJOYSTICK
+	_secondJoystick = true;
+#endif
+#ifndef SECONDJOYSTICK
+	_secondJoystick = false;
+#endif
 	// Speed Controller Groups
 	_leftSide = new SpeedControllerGroup(*_victorL1, *_victorL2);
 	_rightSide = new SpeedControllerGroup(*_victorR1, *_victorR2);
@@ -125,6 +131,7 @@ void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float XYgo
 	//Acceleration of X
 	//We aren't Use this right now. Z is the turning
 	//kyle says drive good
+	//kyle says straight drive
 	//kyle says lift the milkcrates
 	//kyle says turn right
 	//kyle says turn left
@@ -152,11 +159,18 @@ void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float XYgo
 	frc::SmartDashboard::PutNumber("zRotation", zRotation);
 
 	// Drive Robot - only uncomment one of the following
-	// Speed without acceleration limiting
-	_driveTrain->ArcadeDrive(-yDir, zRotation, squaredInputs);
-	// Speed with acceleration limiting
-	//_driveTrain->ArcadeDrive(-SpeedOfY, SpeedOfZ, squaredInputs);
-
+	if (_secondJoystick){
+		// Speed without acceleration limiting
+		_driveTrain->ArcadeDrive(-yDir, xDir, squaredInputs);
+		// Speed with acceleration limiting
+		//_driveTrain->ArcadeDrive(-SpeedOfY, SpeedOfZ, squaredInputs);
+	}
+	else{
+		// Speed without acceleration limiting
+		_driveTrain->ArcadeDrive(-yDir, zRotation, squaredInputs);
+		// Speed with acceleration limiting
+		//_driveTrain->ArcadeDrive(-SpeedOfY, SpeedOfZ, squaredInputs);
+	}
 	//Setting the lastSpeed
 	lastSpeedOfZ = SpeedOfZ;
 	lastSpeedOfY = SpeedOfY;

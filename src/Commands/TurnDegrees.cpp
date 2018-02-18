@@ -22,12 +22,17 @@ void TurnDegrees::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void TurnDegrees::Execute() {
-	driveTrain->ArcadeDrive(0, 0, .45, 0, true);
+	if (driveTrain->signbit(_turnDegrees)){
+		driveTrain->ArcadeDrive(0.45, 0, 0.45, 0, true);
+	}
+	else {
+		driveTrain->ArcadeDrive(-0.45, 0, -0.45, 0, true);
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool TurnDegrees::IsFinished() {
-	return (driveTrain->GetGyroAngle() > _turnDegrees);
+	return (fabs(driveTrain->GetGyroAngle()) > fabs(_turnDegrees));
 }
 
 // Called once after isFinished returns true

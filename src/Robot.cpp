@@ -30,7 +30,7 @@
 #include "CommandBase.h"
 #include "ctre\Phoenix.h"
 
-#include "WeekZero.h"
+
 
 class Robot : public frc::TimedRobot {
 private:
@@ -78,6 +78,8 @@ public:
 
 	void AutonomousInit() override {
 		std::string gameData;
+		std::string switchPosition;
+		std::string scalePosition;
 		std::string startingPosition;
 		std::string priorityGoal;
 		std::string crossField;
@@ -88,12 +90,11 @@ public:
 		crossField = _chooserCrossField.GetSelected();
 
 		// Game data - for 2018 three characters indicating position of switch and scale (e.g. LRL)
-		gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
+		//gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
 		// Default game data
-		if(gameData.length() < 2) {
-			gameData = "LRL";
-		}
-
+		gameData = "LRL";
+		switchPosition = gameData[0];
+		scalePosition = gameData[1];
 		// Decide on autonomous command group
 		autoModeOptions = gameData[0];
 		autoModeOptions += gameData[1];
@@ -102,25 +103,25 @@ public:
 		autoModeOptions += crossField;
 
 		// Left Switch, Scale does not matter, Left Starting, Switch Priority, cross field does not matter
-		if (gameData[0] == "L" &&
+		if (switchPosition == "L" &&
 			startingPosition == "L" &&
 			priorityGoal == "W") {
 			_autoCommandGroup = new L_LeftSwitch();
 		}
 		// Switch does not matter, Left Scale, Left Starting, Scale Priority, cross field does not matter
-		else if (gameData[1] == "L" &&
+		else if (scalePosition == "L" &&
 				startingPosition == "L" &&
 				priorityGoal == "C") {
 			_autoCommandGroup = new L_LeftScale();
 		}
 		// Right Switch, Scale does not matter, Right Starting, Switch Priority, cross field does not matter
-		else if (gameData[0] == "R" &&
+		else if (switchPosition == "R" &&
 				startingPosition == "R" &&
 				priorityGoal == "W") {
 			_autoCommandGroup = new R_RightSwitch();
 		}
 		// Switch does not matter, Right Scale, Right Starting, Scale Priority, cross field does not matter
-		else if (gameData[1] == "R" &&
+		else if (scalePosition == "R" &&
 				startingPosition == "R" &&
 				priorityGoal == "C") {
 			_autoCommandGroup = new R_RightScale();
@@ -133,13 +134,13 @@ public:
 		// Switch matter To get out of the way, Scale does not matter, Middle Starting, Auto Priority, cross field does not matter
 		else if (startingPosition == "M" &&
 				priorityGoal == "A" &&
-				gameData[0] != "L"){
+				switchPosition == "R"){
 			_autoCommandGroup = new M_LeftAutoLine();
 		}
 		// Switch matter to get out of the way, Scale does not matter, Middle Starting, Auto Priority, cross field does not matter
 		else if (startingPosition == "M" &&
 				priorityGoal == "A" &&
-				gameData[0] != "R"){
+				switchPosition == "L"){
 			_autoCommandGroup = new M_RightAutoLine();
 		}
 		//default command

@@ -1,5 +1,6 @@
 //#define TEST
 //#define SECONDARY_ROBOT
+//#define SECONDJOYSTICK
 #ifndef ROBOTMAP_H
 #define ROBOTMAP_H
 
@@ -107,18 +108,18 @@ constexpr float LIFTING_TO_SCALE = 30;
 constexpr int UP_TO_SCALE_DIRECTION = 1;
 
 //Angle values
-constexpr int L_TURN_RIGHT_DEGREES = 90;
-constexpr int L_TURN_LEFT_DEGREES = -90;
-constexpr int R_TURN_RIGHT_DEGREES = 90;
-constexpr int R_TURN_LEFT_DEGREES = -90;
-constexpr int M_TURN_RIGHT_DEGREES = 90;
-constexpr int M_TURN_LEFT_DEGREES = -90;
+constexpr int L_TURN_RIGHT_DEGREES = -90;
+constexpr int L_TURN_LEFT_DEGREES = 90;
+constexpr int R_TURN_RIGHT_DEGREES = -90;
+constexpr int R_TURN_LEFT_DEGREES = 90;
+constexpr int M_TURN_RIGHT_DEGREES = -90;
+constexpr int M_TURN_LEFT_DEGREES = 90;
 
 //LR_AutoLine
 constexpr int LR_AUTOLINE_DISTANCE = 120;
 
 //L_LeftSwitch and R_RightSwitch
-constexpr int LR_FIRST_DISTANCE_SWITCH = 168;
+constexpr int LR_FIRST_DISTANCE_SWITCH = 20;
 constexpr int LR_SECOND_DISTANCE_SWITCH = 35;
 
 //L_LeftScale and R_RightScale

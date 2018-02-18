@@ -27,7 +27,8 @@ private:
 	WPI_VictorSPX* _victorR1;
 	WPI_VictorSPX* _victorR2;
 #endif
-
+	//Define which joystick We are using
+	bool _secondJoystick;
 	// Speed Controller Groups
 	SpeedControllerGroup * _leftSide;
 	SpeedControllerGroup * _rightSide;
