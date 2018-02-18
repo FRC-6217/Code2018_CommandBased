@@ -11,6 +11,7 @@ R_LeftScale::R_LeftScale() {
 		AddSequential(new TurnDegrees(R_TURN_RIGHT_DEGREES));
 
 		AddParallel(new AutoLift1(LIFTING_TO_SCALE, UP_TO_SCALE_DIRECTION));
+		AddParallel(new LiftTime());
 		AddSequential(new DriveDistance(LR_OPPOSITE_SCALE_FOURTH_DISTANCE));
 		AddSequential(new spitOutCube());
 }

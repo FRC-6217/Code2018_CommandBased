@@ -7,6 +7,7 @@
 #include <Commands/TurnDegrees.h>
 #include <Commands/spitOutCube.h>
 #include <Commands/AutoLift1.h>
+#include <Commands/LiftTime.h>;
 
 #include <Commands/CommandGroup.h>
 

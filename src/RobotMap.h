@@ -25,7 +25,8 @@ constexpr double SCREW_2_ENCODER_VERTICAL_DPP = 0.00048828125;
 constexpr int LIFT_DIRECTION_UP = 1;
 constexpr int LIFT_DIRECTION_DOWN = -1;
 constexpr int LIFT_DIRECTION_STOP = 0;
-constexpr float ACME_SCREW_SPEED = 0.5;
+constexpr float ACME_SCREW_SPEED_UP = 1;
+constexpr float ACME_SCREW_SPEED_DOWN =.8;
 
 // Drive Train Motor Controller Ports
 #ifdef SECONDARY_ROBOT
@@ -56,7 +57,8 @@ constexpr int GAME_CONTROLLER_PORT  =	1;
 constexpr int DRIVE_DISTANCE_BUTTON_NUMBER = 9;
 constexpr int TURN_DEGREES_BUTTON = 10;
 constexpr int RUN_GRABBER_BUTTON = 11;
-constexpr int DRIVE_GOVERNOR_NUMBER = 3;
+constexpr int XY_DRIVE_GOVERNOR_NUMBER = 3;
+constexpr int ROT_DRIVE_GOVERNOR_NUMBER = 4;
 constexpr int LIFT_1_UP = 6; //Right Bumper Button
 constexpr int LIFT_1_DOWN = 3; //Right Trigger Button
 constexpr int LIFT_2_UP = 5; //Left Bumper Up
@@ -89,6 +91,7 @@ constexpr double PERCENT_ACCEL = 1.01;
 
 //Gyro Channel
 constexpr double GYRO_PORT = 0;
+constexpr double KP_GYRO = -0.1;
 
 //Distance for Encoder
 constexpr double DRIVE_ENC_20_INCHES = 20;

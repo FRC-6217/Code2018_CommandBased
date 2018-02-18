@@ -22,20 +22,20 @@ void grabbingWithButtons::Execute() {
 	}
 	if (currentDirection == GRABBER_STOP){
 		if (oi->GetGameController()->GetRawAxis(GRABBER_LEFT_SIDE_AXIS) >= .25){
-			grabber->RunLeftGrabber(-GRABBER_OUT);
+			grabber->RunLeftGrabber(GRABBER_OUT);
 		}
 		else if (oi->GetGameController()->GetRawAxis(GRABBER_LEFT_SIDE_AXIS) <= -.25){
-			grabber->RunLeftGrabber(-GRABBER_IN);
+			grabber->RunLeftGrabber(GRABBER_IN);
 		}
 		else{
 			grabber->RunLeftGrabber(GRABBER_STOP);
 		}
 
 		if (oi->GetGameController()->GetRawAxis(GRABBER_RIGHT_SIDE_AXIS) >= .25){
-			grabber->RunRightGrabber(-GRABBER_OUT);
+			grabber->RunRightGrabber(GRABBER_OUT);
 		}
 		else if (oi->GetGameController()->GetRawAxis(GRABBER_RIGHT_SIDE_AXIS) <= -.25){
-			grabber->RunRightGrabber(-GRABBER_IN);
+			grabber->RunRightGrabber(GRABBER_IN);
 		}
 		else{
 			grabber->RunRightGrabber(GRABBER_STOP);

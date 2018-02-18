@@ -9,15 +9,10 @@
 
 #include "../CommandBase.h"
 #include <Commands/Command.h>
-#include <SmartDashboard/SmartDashboard.h>
 
-class AutoLift1 : public CommandBase {
-private:
-	float _heightToRaiseLift1;
-	int _direction;
-
+class LiftTime : public CommandBase {
 public:
-	AutoLift1(float heightToRaiseLift1, int screwDirection1);
+	LiftTime();
 	void Initialize() override;
 	void Execute() override;
 	bool IsFinished() override;

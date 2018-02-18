@@ -54,7 +54,7 @@ public:
 
 	bool signbit(double xSignbit);
 
-	void ArcadeDrive(float xDir, float yDir, float zRotation, float governor, bool squaredInputs);
+	void ArcadeDrive(float xDir, float yDir, float zRotation, float XYgovernor, bool squaredInputs);
 
 	void Log();
 	void ResetSensors();

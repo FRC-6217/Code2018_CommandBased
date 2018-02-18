@@ -6,7 +6,7 @@
 #include <Commands/DriveDistance.h>
 #include <Commands/TurnDegrees.h>
 #include <Commands/spitOutCube.h>
-#include <Commands/AutoLift.h>
+#include <Commands/AutoLift1.h>
 
 #include <Commands/CommandGroup.h>
 

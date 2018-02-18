@@ -5,38 +5,37 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
+#include "LiftTime.h"
 
-#include "TurnDegrees.h"
-
-
-
-TurnDegrees::TurnDegrees(float turnDegrees) {
-	Requires(driveTrain);
-	_turnDegrees = turnDegrees;
+LiftTime::LiftTime() {
+	Requires(lift);
+	SetTimeout(1);
+	// Use Requires() here to declare subsystem dependencies
+	// eg. Requires(Robot::chassis.get());
 }
 
 // Called just before this Command runs the first time
-void TurnDegrees::Initialize() {
-	driveTrain->ResetGyro();
+void LiftTime::Initialize() {
+
 }
 
 // Called repeatedly when this Command is scheduled to run
-void TurnDegrees::Execute() {
-	driveTrain->ArcadeDrive(0, 0, .45, 0, true);
+void LiftTime::Execute() {
+	lift->Lift2Operate(LIFT_DIRECTION_UP);
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool TurnDegrees::IsFinished() {
-	return (driveTrain->GetGyroAngle() > _turnDegrees);
+bool LiftTime::IsFinished() {
+	return IsTimedOut();
 }
 
 // Called once after isFinished returns true
-void TurnDegrees::End() {
-	driveTrain->ArcadeDrive(0, 0, 0, 0, true);
+void LiftTime::End() {
+	lift->Lift2Operate(LIFT_DIRECTION_STOP);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void TurnDegrees::Interrupted() {
+void LiftTime::Interrupted() {
 	End();
 }

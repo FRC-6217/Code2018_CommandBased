@@ -4,7 +4,7 @@
 #include "../CommandBase.h"
 #include <SmartDashboard/SmartDashboard.h>
 
-class AutoLift2 : public Command {
+class AutoLift2 : public CommandBase {
 private:
 	float _heightToRaiseLift2;
 	int _direction;

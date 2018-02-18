@@ -51,8 +51,8 @@ public:
 
 		// Build Autonomous Mode Choices on Smart Dashboard
 		_chooserStartingPosition.AddObject("Left", "L");
-		_chooserStartingPosition.AddDefault("Middle", "M");
-		_chooserStartingPosition.AddObject("Right", "R");
+		_chooserStartingPosition.AddObject("Middle", "M");
+		_chooserStartingPosition.AddDefault("Right", "R");
 		frc::SmartDashboard::PutData("Starting Position", &_chooserStartingPosition);
 		_chooserPriorityGoal.AddDefault("Switch", "W");
 		_chooserPriorityGoal.AddObject("Scale", "C");
@@ -91,9 +91,9 @@ public:
 		//gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
 		gameData = WeekZero::getGameSpecificMessage();
 		// Default game data
-		if(gameData.length() < 2) {
-			gameData = "LRL";
-		}
+		//if(gameData.length() < 2) {
+			//gameData = "LRL";
+		//}
 
 		// Decide on autonomous command group
 		autoModeOptions = gameData[0];
@@ -117,10 +117,10 @@ public:
 			_autoCommandGroup = new L_LeftScale();
 		}
 		// Right Switch, Scale does not matter, Right Starting, Switch Priority, cross field does not matter
-		else if (autoModeOptions == "RRLWN" ||
-                 autoModeOptions == "RRLWY" ||
-                 autoModeOptions == "RLLWN" ||
-                 autoModeOptions == "RLLWY") {
+		else if (autoModeOptions == "RRRWN" ||
+                 autoModeOptions == "RRRWY" ||
+                 autoModeOptions == "RLRWN" ||
+                 autoModeOptions == "RLRWY") {
 			_autoCommandGroup = new R_RightSwitch();
 		}
 		// Switch does not matter, Right Scale, Right Starting, Scale Priority, cross field does not matter
@@ -151,7 +151,7 @@ public:
 		}
 		else if (autoModeOptions == "RRRWN" ||
                  autoModeOptions == "RRRWY" ||
-                 autoModeOptions == "RLRWY" ||
+                 autoModeOptions == "RLRWN" ||
                  autoModeOptions == "RLRWY") {
 			_autoCommandGroup = new R_RightSwitch();
 		}

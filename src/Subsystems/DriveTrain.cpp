@@ -71,7 +71,7 @@ double DriveTrain::GetREncoderValue() {
 	return _rightEncoder->Get();
 }
 
-void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float governor, bool squaredInputs){
+void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float XYgovernor, bool squaredInputs){
 	//Speed To Use in The arcade drive
 
 	double SpeedOfX = 0;
@@ -84,9 +84,9 @@ void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float gove
 	zRotation = fabs(zRotation) > 0.15 ? zRotation : 0.0;
 
 	//Use governor to limit speed, governor paddle on joystick - down is 0%, up is 100%
-	xDir *= (1 - governor);
-	yDir *= (1 - governor);
-	zRotation *= (1 - governor);
+	xDir *= (1 - XYgovernor);
+	yDir *= (1 - XYgovernor);
+	zRotation *= ( 1- XYgovernor);
 	//
 	//Acceleration section of the code
 

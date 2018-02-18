@@ -18,10 +18,10 @@ void Lift::InitDefaultCommand() {
 
 void Lift::Lift1Operate(int direction) {
 	if(direction == LIFT_DIRECTION_UP) {
-		_acmeScrew1->Set(-ACME_SCREW_SPEED);
+		_acmeScrew1->Set(-ACME_SCREW_SPEED_UP);
 	}
 	else if(direction == LIFT_DIRECTION_DOWN) {
-		_acmeScrew1->Set(ACME_SCREW_SPEED);
+		_acmeScrew1->Set(ACME_SCREW_SPEED_DOWN);
 	}
 	else {
 		_acmeScrew1->Set(0);
@@ -29,10 +29,10 @@ void Lift::Lift1Operate(int direction) {
 }
 void Lift::Lift2Operate(int direction) {
 	if(direction == LIFT_DIRECTION_UP) {
-		_acmeScrew2->Set(-ACME_SCREW_SPEED);
+		_acmeScrew2->Set(ACME_SCREW_SPEED_UP);
 	}
 	else if(direction == LIFT_DIRECTION_DOWN) {
-		_acmeScrew2->Set(ACME_SCREW_SPEED);
+		_acmeScrew2->Set(-ACME_SCREW_SPEED_DOWN);
 	}
 	else {
 		_acmeScrew2->Set(0);
