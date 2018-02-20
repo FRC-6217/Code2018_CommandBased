@@ -1,6 +1,6 @@
 #include "LR_SideSwitch.h"
 
-LR_SideSwitch::LR_SideSwitch(char scoreSide) {
+LR_SideSwitch::LR_SideSwitch(std::string scoreSide) {
 	//Tells whether to turn Left or Right
 	if (scoreSide == 'L') {
 		turnDirection = -1;

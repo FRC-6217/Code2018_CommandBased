@@ -14,7 +14,7 @@ class LR_SideSwitch : public CommandGroup {
 private:
 	int turnDirection;
 public:
-	LR_SideSwitch(char scoreSide);
+	LR_SideSwitch(std::string scoreSide);
 };
 
 #endif  // LR_SideSwitch_H

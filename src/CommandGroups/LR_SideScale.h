@@ -16,7 +16,7 @@ class LR_SideScale : public CommandGroup {
 private:
 	int turnDirection;
 public:
-	LR_SideScale(char scoreSide);
+	LR_SideScale(std::string scoreSide);
 };
 
 #endif  // LR_SideScale_H

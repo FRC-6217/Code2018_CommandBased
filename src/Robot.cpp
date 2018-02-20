@@ -36,6 +36,9 @@
 #include "CommandGroups\RightSideAuto\R_LeftSwitch.h"
 #include "CommandGroups\MiddleAuto\M_LeftAutoLine.h"
 #include "CommandGroups\MiddleAuto\M_RightAutoLine.h"
+#include "CommandGroups\LR_SideScale.h"
+#include "CommandGroups\LR_SideSwitch.h"
+#include "CommandGroups\LR_AutoLine.h"
 #include "CommandBase.h"
 #include "ctre\Phoenix.h"
 
@@ -141,11 +144,11 @@ public:
 	void AutonomousInit() override {
 		//variables for use in auto Chooser
 		std::string gameData;
-		char switchPosition;
-		char scalePosition;
-		char startingPosition;
+		std::string switchPosition;
+		std::string scalePosition;
+		std::string startingPosition;
 		int priorityGoal[5];
-		char crossField;
+		std::string crossField;
 
 		//Set Starting Position
 		startingPosition = _chooserStartingPosition.GetSelected();

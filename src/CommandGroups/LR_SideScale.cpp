@@ -1,6 +1,6 @@
 #include "LR_SideScale.h"
 
-LR_SideScale::LR_SideScale(char scoreSide) {
+LR_SideScale::LR_SideScale(std::string scoreSide) {
 	//Tells whether to turn Left or Right
 	if (scoreSide == 'L') {
 		turnDirection = -1;
