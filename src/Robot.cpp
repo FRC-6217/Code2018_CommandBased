@@ -4,7 +4,7 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-//Assigns words to numbers for easier use in Autonomous Priority Array
+//Assigns words to numbers for easier use in Autonomous Priority Arrays
 #define SWITCH 0
 #define SCALE 1
 #define OPPOSITE_SWITCH 2
