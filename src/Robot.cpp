@@ -34,6 +34,7 @@
 #include "CommandGroups\RightSideAuto\R_RightSwitch.h"
 #include "CommandGroups\RightSideAuto\R_LeftScale.h"
 #include "CommandGroups\RightSideAuto\R_LeftSwitch.h"
+#include "CommandGroups\MiddleAuto\M_Switch.h"
 #include "CommandGroups\MiddleAuto\M_LeftAutoLine.h"
 #include "CommandGroups\MiddleAuto\M_RightAutoLine.h"
 #include "CommandGroups\LR_SideScale.h"
@@ -41,8 +42,6 @@
 #include "CommandGroups\LR_AutoLine.h"
 #include "CommandBase.h"
 #include "ctre\Phoenix.h"
-
-
 
 class Robot : public frc::TimedRobot {
 private:
@@ -154,11 +153,11 @@ public:
 		startingPosition = _chooserStartingPosition.GetSelected();
 
 		//Set Priority Order
-		priorityGoal[0] = _chooserPrioritySwitch.GetSelected();
-		priorityGoal[1] = _chooserPriorityScale.GetSelected();
-		priorityGoal[2] = _chooserPriorityOppositeSwitch.GetSelected();
-		priorityGoal[3] = _chooserPriorityOppositeScale.GetSelected();
-		priorityGoal[4] = _chooserPriorityAutoLine.GetSelected();
+		priorityGoal[SWITCH] = _chooserPrioritySwitch.GetSelected();
+		priorityGoal[SCALE] = _chooserPriorityScale.GetSelected();
+		priorityGoal[OPPOSITE_SWITCH] = _chooserPriorityOppositeSwitch.GetSelected();
+		priorityGoal[OPPOSITE_SCALE] = _chooserPriorityOppositeScale.GetSelected();
+		priorityGoal[AUTO_LINE] = _chooserPriorityAutoLine.GetSelected();
 
 		//Set if want to Cross field for scoring
 		crossField = _chooserCrossField.GetSelected();
@@ -186,12 +185,22 @@ public:
 			}
 			//Runs if Opposite side Switch is current priority and if that switch is not on the same side as the starting position
 			else if (currentPri == priorityGoal[OPPOSITE_SWITCH] && switchPosition != startingPosition && crossField == "Y") {
-				_autoCommandGroup = new LR_OppositeSwitch(switchPosition);
+				if (startingPosition == "L") {
+					_autoCommandGroup = new L_RightSwitch();
+				}
+				else {
+					_autoCommandGroup = new R_LeftSwitch();
+				}
 				found = true;
 			}
 			//Runs if Opposite side Scale is current priority and if that scale is not on the same side as the starting position
 			else if (currentPri == priorityGoal[OPPOSITE_SCALE] && scalePosition != startingPosition && crossField == "Y") {
-				_autoCommandGroup = new LR_OppositeScale(startingPostion);
+				if (startingPosition == "L") {
+					_autoCommandGroup = new L_RightScale();
+				}
+				else {
+					_autoCommandGroup = new R_LeftScale();
+				}
 				found = true;
 			}
 			//Runs if Auto Line is current priority and the starting position is not the middle
@@ -201,17 +210,25 @@ public:
 			}
 			//Runs if Switch is current priority and the starting position is the middle
 			else if (currentPri == priorityGoal[SWITCH] && startingPosition == "M") {
-				_autoCommandGroup = M_Switch(switchPosition);
+				_autoCommandGroup = new M_Switch(switchPosition);
 				found = true;
 			}
 			//Runs if Auto line is current priority and the starting position is the middle
 			else if (currentPri == priorityGoal[AUTO_LINE] && startingPosition == "M") {
-				_autoCommandGroup = M_AutoLine(switchPosition); //Under Consideration- cross auto line on side opposite our team's switch side
+				if (switchPosition == "L") {
+					_autoCommandGroup = new M_RightAutoLine(); // Go Right to avoid other robots
+				}
+				else {
+					_autoCommandGroup = new M_LeftAutoLine(); // Go Left to avoid other robots
+				}
 				found = true;
 			}
 		}
 
-
+		// Default Auto Command
+		if (!found) {
+			_autoCommandGroup = new LR_AutoLine();
+		}
 
 		if (_autoCommandGroup != nullptr) {
 			_autoCommandGroup->Start();

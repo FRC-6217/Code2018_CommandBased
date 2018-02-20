@@ -1,5 +1,5 @@
-#ifndef LR_SideSwitch_H
-#define LR_SideSwitch_H
+#ifndef M_Switch_H
+#define M_Switch_H
 
 #include <WPILib.h>
 
@@ -10,11 +10,11 @@
 
 #include <Commands/CommandGroup.h>
 
-class LR_SideSwitch : public CommandGroup {
+class M_Switch : public CommandGroup {
 private:
 	int turnDirection;
 public:
-	LR_SideSwitch(std::string scoreSide);
+	M_Switch(std::string scoreSide);
 };
 
-#endif  // LR_SideSwitch_H
+#endif  // M_Switch_H

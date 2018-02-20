@@ -145,4 +145,9 @@ constexpr int M_AUTO_LINE_DISTANCE = 132;
 constexpr int M_AUTO_LINE_ANGLE_R = 45;
 constexpr int M_AUTO_LINE_ANGLE_L = -45;
 
+//M_Switch
+constexpr int M_SWITCH_DISTANCE_1 = 132;
+constexpr int M_SWITCH_ANGLE = 38;
+constexpr int M_SWITCH_DISTANCE_2 = 36;
+
 #endif // ROBOTMAP_H

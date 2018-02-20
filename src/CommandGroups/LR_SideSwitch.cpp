@@ -2,10 +2,10 @@
 
 LR_SideSwitch::LR_SideSwitch(std::string scoreSide) {
 	//Tells whether to turn Left or Right
-	if (scoreSide == 'L') {
+	if (scoreSide == "L") {
 		turnDirection = -1;
 	}
-	else if (scoreSide == 'R') {
+	else if (scoreSide == "R") {
 		turnDirection = 1;
 	}
 

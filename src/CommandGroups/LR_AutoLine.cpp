@@ -1,4 +1,3 @@
-
 #include "LR_AutoLine.h"
 
 LR_AutoLine::LR_AutoLine() {
