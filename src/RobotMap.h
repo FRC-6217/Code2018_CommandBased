@@ -111,12 +111,12 @@ constexpr int LIFT_DOWN_DIRECTION = -1;
 
 //Angle values
 constexpr int TURN_90_DEGREES = 90;
-//constexpr int L_TURN_RIGHT_DEGREES = -90;
-//constexpr int L_TURN_LEFT_DEGREES = 90;
-//constexpr int R_TURN_RIGHT_DEGREES = -90;
-//constexpr int R_TURN_LEFT_DEGREES = 90;
-//constexpr int M_TURN_RIGHT_DEGREES = -90;
-//constexpr int M_TURN_LEFT_DEGREES = 90;
+constexpr int L_TURN_RIGHT_DEGREES = -90;
+constexpr int L_TURN_LEFT_DEGREES = 90;
+constexpr int R_TURN_RIGHT_DEGREES = -90;
+constexpr int R_TURN_LEFT_DEGREES = 90;
+constexpr int M_TURN_RIGHT_DEGREES = -90;
+constexpr int M_TURN_LEFT_DEGREES = 90;
 
 //LR_AutoLine
 constexpr int LR_AUTOLINE_DISTANCE = 120;
