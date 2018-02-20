@@ -4,6 +4,13 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
+//Assigns words to numbers for easier use in Autonomous Priority Array
+#define SWITCH 0
+#define SCALE 1
+#define OPPOSITE_SWITCH 2
+#define OPPOSITE_SCALE 3
+#define AUTO_LINE 4
+
 #include <memory>
 
 #include <Commands/Command.h>
@@ -15,8 +22,10 @@
 
 #include "Commands/DriveDistance.h"
 #include "Commands/DriveWithJoystick.h"
-#include <CommandGroups\Auto1.h>
-#include "CommandGroups\LR_AutoLine.h"
+#include <CommandGroups/Auto1.h>
+#include "CommandGroups/LR_AutoLine.h"
+#include "CommandGroups/LR_SideSwitch.h"
+
 #include "CommandGroups\LeftSideAuto\L_LeftScale.h"
 #include "CommandGroups\LeftSideAuto\L_LeftSwitch.h"
 #include "CommandGroups\LeftSideAuto\L_RightScale.h"
@@ -37,27 +46,80 @@ private:
 	// Have it null by default so that if testing teleop it
 	// doesn't have undefined behavior and potentially crash.
 	frc::CommandGroup* _autoCommandGroup = nullptr;
+
+	//Choose Starting Position variable
 	frc::SendableChooser<std::string> _chooserStartingPosition;
-	frc::SendableChooser<std::string> _chooserPriorityGoal;
+
+	//Choose Priority Variables
+	frc::SendableChooser<int> _chooserPrioritySwitch;
+	frc::SendableChooser<int> _chooserPriorityScale;
+	frc::SendableChooser<int> _chooserPriorityOppositeSwitch;
+	frc::SendableChooser<int> _chooserPriorityOppositeScale;
+	frc::SendableChooser<int> _chooserPriorityAutoLine;
+
+	//Choose if want to Cross to opposite side of field variable
 	frc::SendableChooser<std::string> _chooserCrossField;
 
 	//Variables
-	//Makes sure that if Scale and Switch don't work, the robot crosses base line
-	int checker;
+
 public:
 
 	void RobotInit() override {
 		CommandBase::init();
 
 		// Build Autonomous Mode Choices on Smart Dashboard
+
+		//Choose Starting Position
 		_chooserStartingPosition.AddObject("Left", "L");
 		_chooserStartingPosition.AddObject("Middle", "M");
 		_chooserStartingPosition.AddDefault("Right", "R");
 		frc::SmartDashboard::PutData("Starting Position", &_chooserStartingPosition);
-		_chooserPriorityGoal.AddDefault("Switch", "W");
-		_chooserPriorityGoal.AddObject("Scale", "C");
-		_chooserPriorityGoal.AddObject("Auto Line", "A");
-		frc::SmartDashboard::PutData("Goal Priority", &_chooserPriorityGoal);
+
+
+		//Choose Priority Switch
+		_chooserPrioritySwitch.AddDefault("1", 1);
+		_chooserPrioritySwitch.AddObject("2", 2);
+		_chooserPrioritySwitch.AddObject("3", 3);
+		_chooserPrioritySwitch.AddObject("4", 4);
+		_chooserPrioritySwitch.AddObject("5", 5);
+		frc::SmartDashboard::PutData("Switch Priority", &_chooserPrioritySwitch);
+
+		//Choose Priority Scale
+		_chooserPriorityScale.AddObject("1", 1);
+		_chooserPriorityScale.AddDefault("2", 2);
+		_chooserPriorityScale.AddObject("3", 3);
+		_chooserPriorityScale.AddObject("4", 4);
+		_chooserPriorityScale.AddObject("5", 5);
+		frc::SmartDashboard::PutData("Scale Priority", &_chooserPriorityScale);
+
+		//Choose Priority Opposite Switch
+		_chooserPriorityOppositeSwitch.AddObject("1", 1);
+		_chooserPriorityOppositeSwitch.AddObject("2", 2);
+		_chooserPriorityOppositeSwitch.AddDefault("3", 3);
+		_chooserPriorityOppositeSwitch.AddObject("4", 4);
+		_chooserPriorityOppositeSwitch.AddObject("5", 5);
+		frc::SmartDashboard::PutData("Opposite Switch Priority", &_chooserPriorityOppositeSwitch);
+
+		//Choose Priority Opposite Scale
+		_chooserPriorityOppositeScale.AddObject("1", 1);
+		_chooserPriorityOppositeScale.AddObject("2", 2);
+		_chooserPriorityOppositeScale.AddObject("3", 3);
+		_chooserPriorityOppositeScale.AddDefault("4", 4);
+		_chooserPriorityOppositeScale.AddObject("5", 5);
+		frc::SmartDashboard::PutData("Opposite Scale Priority", &_chooserPriorityOppositeScale);
+
+		//Choose Priority AutoLine
+		_chooserPriorityAutoLine.AddObject("1", 1);
+		_chooserPriorityAutoLine.AddObject("2", 2);
+		_chooserPriorityAutoLine.AddObject("3", 3);
+		_chooserPriorityAutoLine.AddObject("4", 4);
+		_chooserPriorityAutoLine.AddDefault("5", 5);
+		frc::SmartDashboard::PutData("AutoLine Priority", &_chooserPriorityAutoLine);
+
+		//Put Priority Order
+
+
+		//Choose if want to Cross field for scoring
 		_chooserCrossField.AddDefault("No", "N");
 		_chooserCrossField.AddObject("Yes", "Y");
 		frc::SmartDashboard::PutData("Cross field for Goal", &_chooserCrossField);
@@ -77,17 +139,27 @@ public:
 	}
 
 	void AutonomousInit() override {
+		//variables for use in auto Chooser
 		std::string gameData;
-		std::string switchPosition;
-		std::string scalePosition;
-		std::string startingPosition;
-		std::string priorityGoal;
-		std::string crossField;
-		std::string autoModeOptions;
+		char switchPosition;
+		char scalePosition;
+		char startingPosition;
+		int priorityGoal[5];
+		char crossField;
 
+		//Set Starting Position
 		startingPosition = _chooserStartingPosition.GetSelected();
-		priorityGoal = _chooserPriorityGoal.GetSelected();
+
+		//Set Priority Order
+		priorityGoal[0] = _chooserPrioritySwitch.GetSelected();
+		priorityGoal[1] = _chooserPriorityScale.GetSelected();
+		priorityGoal[2] = _chooserPriorityOppositeSwitch.GetSelected();
+		priorityGoal[3] = _chooserPriorityOppositeScale.GetSelected();
+		priorityGoal[4] = _chooserPriorityAutoLine.GetSelected();
+
+		//Set if want to Cross field for scoring
 		crossField = _chooserCrossField.GetSelected();
+
 
 		// Game data - for 2018 three characters indicating position of switch and scale (e.g. LRL)
 		//gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
@@ -95,58 +167,48 @@ public:
 		gameData = "LRL";
 		switchPosition = gameData[0];
 		scalePosition = gameData[1];
-		// Decide on autonomous command group
-		autoModeOptions = gameData[0];
-		autoModeOptions += gameData[1];
-		autoModeOptions += startingPosition;
-		autoModeOptions += priorityGoal;
-		autoModeOptions += crossField;
 
-		// Left Switch, Scale does not matter, Left Starting, Switch Priority, cross field does not matter
-		if (switchPosition == "L" &&
-			startingPosition == "L" &&
-			priorityGoal == "W") {
-			_autoCommandGroup = new L_LeftSwitch();
+		//Choose which Autonomous CommandGroup to run based on Inputs from SmartDashboard and Field Management System
+		bool found = false;
+		for (int currentPri = 0; currentPri <= 4 && found != true; currentPri++) {
+			//Runs if Switch is current priority and if the switch is on the same side as the starting position
+			if (currentPri == priorityGoal[SWITCH] && switchPosition == startingPosition) {
+				_autoCommandGroup = new LR_SideSwitch(switchPosition);
+				found = true;
+			}
+			//Runs if Scale is current priority and if the scale is on the same side as the starting position
+			else if (currentPri == priorityGoal[SCALE] && scalePosition == startingPosition) {
+				_autoCommandGroup = new LR_SideScale(scalePosition);
+				found = true;
+			}
+			//Runs if Opposite side Switch is current priority and if that switch is not on the same side as the starting position
+			else if (currentPri == priorityGoal[OPPOSITE_SWITCH] && switchPosition != startingPosition && crossField == "Y") {
+				_autoCommandGroup = new LR_OppositeSwitch(switchPosition);
+				found = true;
+			}
+			//Runs if Opposite side Scale is current priority and if that scale is not on the same side as the starting position
+			else if (currentPri == priorityGoal[OPPOSITE_SCALE] && scalePosition != startingPosition && crossField == "Y") {
+				_autoCommandGroup = new LR_OppositeScale(startingPostion);
+				found = true;
+			}
+			//Runs if Auto Line is current priority and the starting position is not the middle
+			else if (currentPri == priorityGoal[AUTO_LINE] && startingPosition != "M") {
+				_autoCommandGroup = new LR_AutoLine();
+				found = true;
+			}
+			//Runs if Switch is current priority and the starting position is the middle
+			else if (currentPri == priorityGoal[SWITCH] && startingPosition == "M") {
+				_autoCommandGroup = M_Switch(switchPosition);
+				found = true;
+			}
+			//Runs if Auto line is current priority and the starting position is the middle
+			else if (currentPri == priorityGoal[AUTO_LINE] && startingPosition == "M") {
+				_autoCommandGroup = M_AutoLine(switchPosition); //Under Consideration- cross auto line on side opposite our team's switch side
+				found = true;
+			}
 		}
-		// Switch does not matter, Left Scale, Left Starting, Scale Priority, cross field does not matter
-		else if (scalePosition == "L" &&
-				startingPosition == "L" &&
-				priorityGoal == "C") {
-			_autoCommandGroup = new L_LeftScale();
-		}
-		// Right Switch, Scale does not matter, Right Starting, Switch Priority, cross field does not matter
-		else if (switchPosition == "R" &&
-				startingPosition == "R" &&
-				priorityGoal == "W") {
-			_autoCommandGroup = new R_RightSwitch();
-		}
-		// Switch does not matter, Right Scale, Right Starting, Scale Priority, cross field does not matter
-		else if (scalePosition == "R" &&
-				startingPosition == "R" &&
-				priorityGoal == "C") {
-			_autoCommandGroup = new R_RightScale();
-		}
-		// Switch does not matter, Scale does not matter, Right or Left Starting, Auto Priority, cross field does not matter
-		else if (startingPosition != "M" &&
-				priorityGoal == "A") {
-			_autoCommandGroup = new LR_AutoLine();
-		}
-		// Switch matter To get out of the way, Scale does not matter, Middle Starting, Auto Priority, cross field does not matter
-		else if (startingPosition == "M" &&
-				priorityGoal == "A" &&
-				switchPosition == "R"){
-			_autoCommandGroup = new M_LeftAutoLine();
-		}
-		// Switch matter to get out of the way, Scale does not matter, Middle Starting, Auto Priority, cross field does not matter
-		else if (startingPosition == "M" &&
-				priorityGoal == "A" &&
-				switchPosition == "L"){
-			_autoCommandGroup = new M_RightAutoLine();
-		}
-		//default command
-		else{
-			_autoCommandGroup = new LR_AutoLine();
-		}
+
+
 
 		if (_autoCommandGroup != nullptr) {
 			_autoCommandGroup->Start();
