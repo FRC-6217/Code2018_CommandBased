@@ -20,7 +20,7 @@ void DriveDistance::Execute() {
 // Make this return true when this Command no longer needs to run execute()
 bool DriveDistance::IsFinished() {
 	//return IsTimedOut();
-	return driveTrain->GetEncoderValue() > _distanceToDrive; //Drive 10in
+	return driveTrain->GetEncoderValue() > _distanceToDrive;
 }
 
 // Called once after isFinished returns true
