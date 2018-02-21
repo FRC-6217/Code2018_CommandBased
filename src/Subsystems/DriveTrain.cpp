@@ -31,9 +31,9 @@ DriveTrain::DriveTrain() : frc::Subsystem("DriveTrain") {
 
 	// Sensors
 	_leftEncoder = new Encoder{LEFT_ENCODER_A_CHANNEL, LEFT_ENCODER_B_CHANNEL};
-	_leftEncoder->SetDistancePerPulse(0.0138996939);
+	_leftEncoder->SetDistancePerPulse(0.0476220776);
 	_rightEncoder = new Encoder{RIGHT_ENCODER_A_CHANNEL, RIGHT_ENCODER_B_CHANNEL};
-	_rightEncoder->SetDistancePerPulse(0.1);
+	_rightEncoder->SetDistancePerPulse(0.0476220776);
 	_rangeFinder = new AnalogInput(0.0138996939);
 	_gyro = new ADXRS450_Gyro();
 }
@@ -67,14 +67,19 @@ void DriveTrain::ResetEncoders(){
 	_rightEncoder->Reset();
 }
 
-double DriveTrain::GetEncoderValue() {
-	frc::SmartDashboard::PutNumber("Left Encoder Value", _leftEncoder->GetDistance());
-	return _leftEncoder->GetDistance();
+/*double DriveTrain::GetEncoderValue() {
+	frc::SmartDashboard::PutNumber("Average Encoder Value", ((GetREncoderValue() + GetLEncoderValue())/2));
+	return ((GetREncoderValue() + GetLEncoderValue())/2);
 }
 
 double DriveTrain::GetREncoderValue() {
 	frc::SmartDashboard::PutNumber("Right Encoder Value", _rightEncoder->Get());
 	return _rightEncoder->Get();
+}*/
+
+double DriveTrain::GetEncoderValue() {
+	frc::SmartDashboard::PutNumber("Left Encoder Value", _leftEncoder->GetDistance());
+	return _leftEncoder->GetDistance();
 }
 
 void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float XYgovernor, bool squaredInputs){

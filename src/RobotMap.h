@@ -1,5 +1,5 @@
 //#define TEST
-//#define SECONDARY_ROBOT
+#define SECONDARY_ROBOT
 //#define SECONDJOYSTICK
 #ifndef ROBOTMAP_H
 #define ROBOTMAP_H

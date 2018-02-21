@@ -62,6 +62,7 @@ public:
 	void ResetEncoders();
 	double GetEncoderValue();
 	double GetREncoderValue();
+	double GetLEncoderValue();
 	void ResetGyro();
 	double GetGyroAngle();
 	double GetDistance();

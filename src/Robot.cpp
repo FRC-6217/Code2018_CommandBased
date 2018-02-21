@@ -130,7 +130,7 @@ public:
 		frc::SmartDashboard::PutData(frc::Scheduler::GetInstance());
 		// Add test commands on Smart Dashboard
 		frc::SmartDashboard::PutData("Test Auto 1", new Auto1());
-		frc::SmartDashboard::PutData("Drive 20 inches", new DriveDistance(10));
+		frc::SmartDashboard::PutData("Drive 20 inches", new DriveDistance(20));
 		frc::SmartDashboard::PutData("Turn 90 degrees", new TurnDegrees(90));
 	}
 
