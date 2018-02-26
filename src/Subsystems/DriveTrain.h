@@ -6,8 +6,6 @@
 #include <Encoder.h>
 #include <SpeedControllerGroup.h>
 #include <Drive/DifferentialDrive.h>
-#include <Commands/Subsystem.h>
-#include "WPILib.h"
 #include "ctre\Phoenix.h"
 #include "..\RobotMap.h"
 #include <SmartDashboard/SmartDashboard.h>
@@ -58,16 +56,12 @@ public:
 	void ArcadeDrive(float xDir, float yDir, float zRotation, float XYgovernor, bool squaredInputs);
 
 	void Log();
-	void ResetSensors();
 	void ResetEncoders();
 	double GetEncoderValue();
 	double GetREncoderValue();
 	double GetLEncoderValue();
 	void ResetGyro();
 	double GetGyroAngle();
-	double GetDistance();
-	double GetDistanceToObstacle();
-	double GetHeading();
 
 };
 

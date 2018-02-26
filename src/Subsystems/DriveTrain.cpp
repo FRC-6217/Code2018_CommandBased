@@ -55,8 +55,6 @@ void DriveTrain::ResetGyro(){
 	_gyro->Reset();
 }
 
-
-
 double DriveTrain::GetGyroAngle(){
 	frc::SmartDashboard::PutNumber("Gyro angle", _gyro->GetAngle());
 	return _gyro->GetAngle();
@@ -67,17 +65,25 @@ void DriveTrain::ResetEncoders(){
 	_rightEncoder->Reset();
 }
 
-/*double DriveTrain::GetEncoderValue() {
-	frc::SmartDashboard::PutNumber("Average Encoder Value", ((GetREncoderValue() + GetLEncoderValue())/2));
-	return ((GetREncoderValue() + GetLEncoderValue())/2);
+double DriveTrain::GetEncoderValue() {
+	double encoderValue;
+
+	// Average value from both encoders
+//	encoderValue = (GetREncoderValue() + GetLEncoderValue()) / 2.0;
+
+	// Until both encoders work, just return the value from the working one
+	encoderValue = GetLEncoderValue();
+
+	frc::SmartDashboard::PutNumber("Average Encoder Value", encoderValue);
+	return encoderValue;
 }
 
 double DriveTrain::GetREncoderValue() {
 	frc::SmartDashboard::PutNumber("Right Encoder Value", _rightEncoder->Get());
-	return _rightEncoder->Get();
-}*/
+	return _rightEncoder->GetDistance();
+}
 
-double DriveTrain::GetEncoderValue() {
+double DriveTrain::GetLEncoderValue() {
 	frc::SmartDashboard::PutNumber("Left Encoder Value", _leftEncoder->GetDistance());
 	return _leftEncoder->GetDistance();
 }
