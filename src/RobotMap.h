@@ -1,4 +1,4 @@
-//#define TEST
+#define TEST
 #define SECONDARY_ROBOT
 //#define SECONDJOYSTICK
 #ifndef ROBOTMAP_H
@@ -12,7 +12,6 @@
 /*----------------------------------------------------------------------------*/
 
 #include <WPILib.h>
-#pragma once
 
 //Lift motor controller ports
 constexpr int SPARK_ACMESCREW_1 = 0;

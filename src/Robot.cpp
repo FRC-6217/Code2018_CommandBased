@@ -13,33 +13,25 @@
 
 #include <memory>
 
-#include <Commands/Command.h>
-#include <Commands/Scheduler.h>
 #include <TimedRobot.h>
-#include <LiveWindow/LiveWindow.h>
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
 
-#include "Commands/DriveDistance.h"
-#include "Commands/DriveWithJoystick.h"
-#include <CommandGroups/Auto1.h>
-#include "CommandGroups/LR_AutoLine.h"
-#include "CommandGroups/LR_SideSwitch.h"
-
+#include <CommandGroups\Auto1.h>
+#include "CommandGroups\LR_AutoLine.h"
+#include "CommandGroups\LR_SideScale.h"
+#include "CommandGroups\LR_SideSwitch.h"
 #include "CommandGroups\LeftSideAuto\L_LeftScale.h"
 #include "CommandGroups\LeftSideAuto\L_LeftSwitch.h"
 #include "CommandGroups\LeftSideAuto\L_RightScale.h"
 #include "CommandGroups\LeftSideAuto\L_RightSwitch.h"
-#include "CommandGroups\RightSideAuto\R_RightScale.h"
-#include "CommandGroups\RightSideAuto\R_RightSwitch.h"
-#include "CommandGroups\RightSideAuto\R_LeftScale.h"
-#include "CommandGroups\RightSideAuto\R_LeftSwitch.h"
-#include "CommandGroups\MiddleAuto\M_Switch.h"
 #include "CommandGroups\MiddleAuto\M_LeftAutoLine.h"
 #include "CommandGroups\MiddleAuto\M_RightAutoLine.h"
-#include "CommandGroups\LR_SideScale.h"
-#include "CommandGroups\LR_SideSwitch.h"
-#include "CommandGroups\LR_AutoLine.h"
+#include "CommandGroups\MiddleAuto\M_Switch.h"
+#include "CommandGroups\RightSideAuto\R_LeftScale.h"
+#include "CommandGroups\RightSideAuto\R_LeftSwitch.h"
+#include "CommandGroups\RightSideAuto\R_RightScale.h"
+#include "CommandGroups\RightSideAuto\R_RightSwitch.h"
 #include "CommandBase.h"
 #include "ctre\Phoenix.h"
 
@@ -146,13 +138,13 @@ public:
 		std::string switchPosition;
 		std::string scalePosition;
 		std::string startingPosition;
-		int priorityGoal[5];
 		std::string crossField;
 
 		//Set Starting Position
 		startingPosition = _chooserStartingPosition.GetSelected();
 
 		//Set Priority Order
+		int priorityGoal[5];
 		priorityGoal[SWITCH] = _chooserPrioritySwitch.GetSelected();
 		priorityGoal[SCALE] = _chooserPriorityScale.GetSelected();
 		priorityGoal[OPPOSITE_SWITCH] = _chooserPriorityOppositeSwitch.GetSelected();
@@ -163,15 +155,19 @@ public:
 		crossField = _chooserCrossField.GetSelected();
 
 
+#ifndef TEST
 		// Game data - for 2018 three characters indicating position of switch and scale (e.g. LRL)
-		//gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
+		gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
+#endif
+#ifdef TEST
 		// Default game data
 		gameData = "LRL";
+#endif
 		switchPosition = gameData[0];
 		scalePosition = gameData[1];
 
-		//Choose which Autonomous CommandGroup to run based on Inputs from SmartDashboard and Field Management System
 		bool found = false;
+		//Choose which Autonomous CommandGroup to run based on Inputs from SmartDashboard and Field Management System
 		for (int currentPri = 0; currentPri <= 4 && found != true; currentPri++) {
 			//Runs if Switch is current priority and if the switch is on the same side as the starting position
 			if (currentPri == priorityGoal[SWITCH] && switchPosition == startingPosition) {
@@ -227,7 +223,7 @@ public:
 
 		// Default Auto Command
 		if (!found) {
-			_autoCommandGroup = new LR_AutoLine();
+			_autoCommandGroup = new M_LeftAutoLine();
 		}
 
 		if (_autoCommandGroup != nullptr) {
@@ -246,10 +242,12 @@ public:
 		}
 	}
 
-	void TeleopPeriodic() override { frc::Scheduler::GetInstance()->Run(); }
+	void TeleopPeriodic() override {
+		frc::Scheduler::GetInstance()->Run();
+	}
 
 	void TestPeriodic() override {
-}
+	}
 
 };
 

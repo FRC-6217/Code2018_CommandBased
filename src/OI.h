@@ -9,7 +9,6 @@
 /*----------------------------------------------------------------------------*/
 
 #pragma once
-#include "WPILib.h"
 #include <Buttons/JoystickButton.h>
 #include <Joystick.h>
 #include "RobotMap.h"

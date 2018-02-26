@@ -8,7 +8,6 @@
 #pragma once
 
 #include "../CommandBase.h"
-#include <Commands/Command.h>
 
 class LiftTime : public CommandBase {
 public:

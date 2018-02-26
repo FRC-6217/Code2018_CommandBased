@@ -5,10 +5,8 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include <Commands/TurnDegrees.h>
 #include "OI.h"
-
-#include <WPILib.h>
+#include <Commands/TurnDegrees.h>
 #include "Commands/DriveDistance.h"
 #include "Commands/spitOutCube.h"
 

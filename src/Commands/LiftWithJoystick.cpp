@@ -15,8 +15,6 @@ void LiftWithJoystick::Execute() {
 	int lift2Direction = LIFT_DIRECTION_STOP;
 	double lift1Down = oi->GetGameController()->GetRawAxis(LIFT_1_DOWN);
 	double lift2Down = oi->GetGameController()->GetRawAxis(LIFT_2_DOWN);
-	frc::SmartDashboard::PutNumber("Lift 1 down percent", lift1Down);
-	frc::SmartDashboard::PutNumber("Lift 2 down percent", lift2Down);
 	//Determine Lift1 Direction based off buttons
 	if(oi->GetGameController()->GetRawButton(LIFT_1_UP) == 1) {
 		lift1Direction = LIFT_DIRECTION_UP;

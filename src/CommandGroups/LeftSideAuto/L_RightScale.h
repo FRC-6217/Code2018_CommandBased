@@ -1,14 +1,10 @@
 #ifndef L_RightScale_H
 #define L_RightScale_H
 
-#include <WPILib.h>
-
 #include <Commands/DriveDistance.h>
 #include <Commands/TurnDegrees.h>
 #include <Commands/spitOutCube.h>
 #include <Commands/AutoLift1.h>
-
-#include <Commands/CommandGroup.h>
 
 class L_RightScale : public CommandGroup {
 public:

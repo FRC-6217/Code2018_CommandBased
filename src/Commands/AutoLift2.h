@@ -2,7 +2,6 @@
 #define AutoLift2_H
 
 #include "../CommandBase.h"
-#include <SmartDashboard/SmartDashboard.h>
 
 class AutoLift2 : public CommandBase {
 private:

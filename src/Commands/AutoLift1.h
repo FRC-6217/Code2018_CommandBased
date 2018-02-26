@@ -8,8 +8,6 @@
 #pragma once
 
 #include "../CommandBase.h"
-#include <Commands/Command.h>
-#include <SmartDashboard/SmartDashboard.h>
 
 class AutoLift1 : public CommandBase {
 private:

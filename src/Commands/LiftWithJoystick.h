@@ -2,7 +2,6 @@
 #define LiftWithJoystick_H
 
 #include "../CommandBase.h"
-#include <SmartDashboard/SmartDashboard.h>
 
 class LiftWithJoystick : public CommandBase {
 public:

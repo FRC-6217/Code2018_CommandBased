@@ -1,16 +1,12 @@
 #ifndef LR_SideScale_H
 #define LR_SideScale_H
 
-#include <WPILib.h>
-
 //Include needed commands
 #include "Commands/DriveDistance.h"
 #include "Commands/TurnDegrees.h"
 #include "Commands/AutoLift1.h"
 #include "Commands/AutoLift2.h"
 #include "Commands/spitOutCube.h"
-
-#include <Commands/CommandGroup.h>
 
 class LR_SideScale : public CommandGroup {
 private:
