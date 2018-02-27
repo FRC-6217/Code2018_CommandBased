@@ -11,6 +11,7 @@ AutoLift1::AutoLift1(float heightToRaiseLift1, int screwDirection1) {
 	Requires(lift);
 	_heightToRaiseLift1 = heightToRaiseLift1;
 	_direction = screwDirection1;
+	SetTimeout(_heightToRaiseLift1/40);
 }
 
 // Called just before this Command runs the first time
@@ -25,7 +26,7 @@ void AutoLift1::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool AutoLift1::IsFinished() {
-	return lift->GetEncoder1() >= _heightToRaiseLift1;
+	return (lift->GetEncoder1() >= _heightToRaiseLift1 || IsTimedOut());
 }
 
 // Called once after isFinished returns true

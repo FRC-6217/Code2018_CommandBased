@@ -139,6 +139,7 @@ public:
 		std::string scalePosition;
 		std::string startingPosition;
 		std::string crossField;
+		std::string chosenAuto;
 
 		//Set Starting Position
 		startingPosition = _chooserStartingPosition.GetSelected();
@@ -172,20 +173,24 @@ public:
 			//Runs if Switch is current priority and if the switch is on the same side as the starting position
 			if (currentPri == priorityGoal[SWITCH] && switchPosition == startingPosition) {
 				_autoCommandGroup = new LR_SideSwitch(switchPosition);
+				chosenAuto = "LR_SideSwitch";
 				found = true;
 			}
 			//Runs if Scale is current priority and if the scale is on the same side as the starting position
 			else if (currentPri == priorityGoal[SCALE] && scalePosition == startingPosition) {
 				_autoCommandGroup = new LR_SideScale(scalePosition);
+				chosenAuto = "LR_SideScale";
 				found = true;
 			}
 			//Runs if Opposite side Switch is current priority and if that switch is not on the same side as the starting position
 			else if (currentPri == priorityGoal[OPPOSITE_SWITCH] && switchPosition != startingPosition && crossField == "Y") {
 				if (startingPosition == "L") {
 					_autoCommandGroup = new L_RightSwitch();
+					chosenAuto = "L_RightSwitch";
 				}
 				else {
 					_autoCommandGroup = new R_LeftSwitch();
+					chosenAuto = "R_LeftSwitch";
 				}
 				found = true;
 			}
@@ -193,29 +198,35 @@ public:
 			else if (currentPri == priorityGoal[OPPOSITE_SCALE] && scalePosition != startingPosition && crossField == "Y") {
 				if (startingPosition == "L") {
 					_autoCommandGroup = new L_RightScale();
+					chosenAuto = "L_RightScale";
 				}
 				else {
 					_autoCommandGroup = new R_LeftScale();
+					chosenAuto = "R_LeftScale";
 				}
 				found = true;
 			}
 			//Runs if Auto Line is current priority and the starting position is not the middle
 			else if (currentPri == priorityGoal[AUTO_LINE] && startingPosition != "M") {
 				_autoCommandGroup = new LR_AutoLine();
+				chosenAuto = "LR_AutoLine";
 				found = true;
 			}
 			//Runs if Switch is current priority and the starting position is the middle
 			else if (currentPri == priorityGoal[SWITCH] && startingPosition == "M") {
 				_autoCommandGroup = new M_Switch(switchPosition);
+				chosenAuto = "M_Switch";
 				found = true;
 			}
 			//Runs if Auto line is current priority and the starting position is the middle
 			else if (currentPri == priorityGoal[AUTO_LINE] && startingPosition == "M") {
 				if (switchPosition == "L") {
 					_autoCommandGroup = new M_RightAutoLine(); // Go Right to avoid other robots
+					chosenAuto = "M_RightAutoLine";
 				}
 				else {
 					_autoCommandGroup = new M_LeftAutoLine(); // Go Left to avoid other robots
+					chosenAuto = "M_LeftAutoLine";
 				}
 				found = true;
 			}
@@ -223,12 +234,14 @@ public:
 
 		// Default Auto Command
 		if (!found) {
-			_autoCommandGroup = new M_LeftAutoLine();
+			_autoCommandGroup = new LR_AutoLine();
+			chosenAuto = "LR_AutoLine";
 		}
 
 		if (_autoCommandGroup != nullptr) {
 			_autoCommandGroup->Start();
 		}
+		frc::SmartDashboard::PutString("Auto Mode", chosenAuto);
 	}
 
 	void AutonomousPeriodic() override {
