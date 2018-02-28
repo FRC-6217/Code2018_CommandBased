@@ -3,7 +3,7 @@
 DriveDistance::DriveDistance(float distanceToDrive) {
 	Requires(driveTrain);
 	_distanceToDrive = distanceToDrive;
-	//SetTimeout(2);
+	SetTimeout(_distanceToDrive/2);
 }
 
 // Called just before this Command runs the first time
@@ -20,7 +20,7 @@ void DriveDistance::Execute() {
 // Make this return true when this Command no longer needs to run execute()
 bool DriveDistance::IsFinished() {
 	//return IsTimedOut();
-	return driveTrain->GetEncoderValue() > _distanceToDrive;
+	return driveTrain->GetEncoderValue() > _distanceToDrive || IsTimedOut();
 }
 
 // Called once after isFinished returns true
