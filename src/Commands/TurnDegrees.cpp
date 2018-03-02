@@ -14,7 +14,7 @@ TurnDegrees::TurnDegrees(float turnDegrees) {
 	Requires(driveTrain);
 	_turnDegrees = turnDegrees;
 	//Will stop the robot even if the gyro isn't working
-	SetTimeout(_turnDegrees/72);
+	//SetTimeout(_turnDegrees/72);
 }
 
 // Called just before this Command runs the first time
@@ -26,16 +26,16 @@ void TurnDegrees::Initialize() {
 void TurnDegrees::Execute() {
 	//If power is changed then you must recalute the time.
 	if (driveTrain->signbit(_turnDegrees)){
-		driveTrain->ArcadeDrive(0.6, 0, 0.6, 0, true);
+		driveTrain->ArcadeDrive(-0.6, 0, -0.6, 0, true);
 	}
 	else {
-		driveTrain->ArcadeDrive(-0.6, 0, -0.6, 0, true);
+		driveTrain->ArcadeDrive(0.6, 0, 0.6, 0, true);
 	}
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool TurnDegrees::IsFinished() {
-	return (fabs(driveTrain->GetGyroAngle()) > fabs(_turnDegrees) || IsTimedOut());
+	return (fabs(driveTrain->GetGyroAngle()) > fabs(_turnDegrees)); // || IsTimedOut());
 }
 
 // Called once after isFinished returns true

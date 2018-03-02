@@ -31,9 +31,9 @@ DriveTrain::DriveTrain() : frc::Subsystem("DriveTrain") {
 
 	// Sensors
 	_leftEncoder = new Encoder{LEFT_ENCODER_A_CHANNEL, LEFT_ENCODER_B_CHANNEL};
-	_leftEncoder->SetDistancePerPulse(0.0476220776);
+	_leftEncoder->SetDistancePerPulse(0.05235987755);
 	_rightEncoder = new Encoder{RIGHT_ENCODER_A_CHANNEL, RIGHT_ENCODER_B_CHANNEL};
-	_rightEncoder->SetDistancePerPulse(0.0476220776);
+	_rightEncoder->SetDistancePerPulse(0.05235987755);
 	_rangeFinder = new AnalogInput(0.0138996939);
 	_gyro = new ADXRS450_Gyro();
 }
@@ -68,12 +68,11 @@ void DriveTrain::ResetEncoders(){
 double DriveTrain::GetEncoderValue() {
 	double encoderValue;
 
-	// Average value from both encoders
-//	encoderValue = (GetREncoderValue() + GetLEncoderValue()) / 2.0;
+	//Average value from both encoders
+	//encoderValue = (GetREncoderValue() + GetLEncoderValue()) / 2.0;
 
 	// Until both encoders work, just return the value from the working one
-	encoderValue = GetLEncoderValue();
-
+	encoderValue = GetREncoderValue();
 	frc::SmartDashboard::PutNumber("Average Encoder Value", encoderValue);
 	return encoderValue;
 }
@@ -103,7 +102,7 @@ void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float gove
 	//Use governor to limit speed, governor paddle on joystick - down is 0%, up is 100%
 	xDir *= (1 - governor);
 	yDir *= (1 - governor);
-	zRotation *= ( (1 - governor)/2);
+	zRotation *= (1 - governor);
 	//
 	//Acceleration section of the code
 

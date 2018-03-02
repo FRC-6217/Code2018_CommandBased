@@ -1,4 +1,4 @@
-#include <pathfinder.h>
+/*#include <pathfinder.h>
 
 int Create3PointTrajectory(double X1, double Y1, double exitAngle1,
 							double X2, double Y2, double exitAngle2,
@@ -47,4 +47,4 @@ int Create3PointTrajectory(double X1, double Y1, double exitAngle1,
 
 	 free(trajectory);
 	 return 0;
-}
+}*/
