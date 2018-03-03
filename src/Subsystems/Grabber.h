@@ -23,11 +23,11 @@ public:
 	Grabber();
 	void InitDefaultCommand();
 
-	void RunLeftGrabber(int direction);
+	void RunLeftGrabber(int direction, float speed);
 
-	void RunRightGrabber(int direction);
+	void RunRightGrabber(int direction, float speed);
 
-	void RunGrabber(int direction);
+	void RunGrabber(int direction, float speed);
 };
 
 #endif  // Grabber_H

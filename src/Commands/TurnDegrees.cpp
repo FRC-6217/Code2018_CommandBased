@@ -20,16 +20,17 @@ TurnDegrees::TurnDegrees(float turnDegrees) {
 // Called just before this Command runs the first time
 void TurnDegrees::Initialize() {
 	driveTrain->ResetGyro();
+	frc::SmartDashboard::PutString("Command Message", "Turn Degrees Start");
 }
 
 // Called repeatedly when this Command is scheduled to run
 void TurnDegrees::Execute() {
 	//If power is changed then you must recalute the time.
 	if (driveTrain->signbit(_turnDegrees)){
-		driveTrain->ArcadeDrive(-0.6, 0, -0.6, 0, true);
+		driveTrain->ArcadeDrive(-TURN_DEGREES_SPEED, 0, -TURN_DEGREES_SPEED, 0, true);
 	}
 	else {
-		driveTrain->ArcadeDrive(0.6, 0, 0.6, 0, true);
+		driveTrain->ArcadeDrive(TURN_DEGREES_SPEED, 0, TURN_DEGREES_SPEED, 0, true);
 	}
 }
 
@@ -41,6 +42,7 @@ bool TurnDegrees::IsFinished() {
 // Called once after isFinished returns true
 void TurnDegrees::End() {
 	driveTrain->ArcadeDrive(0, 0, 0, 0, true);
+	frc::SmartDashboard::PutString("Command Message", "Turn Degrees Stop");
 }
 
 // Called when another command which requires one or more of the same

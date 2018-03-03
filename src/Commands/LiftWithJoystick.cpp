@@ -13,6 +13,7 @@ void LiftWithJoystick::Initialize() {
 void LiftWithJoystick::Execute() {
 	int lift1Direction = LIFT_DIRECTION_STOP;
 	int lift2Direction = LIFT_DIRECTION_STOP;
+#ifndef SECONDJOYSTICK_GAME_REPLACE
 	double lift1Down = oi->GetGameController()->GetRawAxis(LIFT_1_DOWN);
 	double lift2Down = oi->GetGameController()->GetRawAxis(LIFT_2_DOWN);
 	//Determine Lift1 Direction based off buttons
@@ -34,7 +35,26 @@ void LiftWithJoystick::Execute() {
 	}
 	lift->Lift2Operate(lift2Direction);
 }
+#endif
+#ifdef SECONDJOYSTICK_GAME_REPLACE
+	if(oi->GetGameController()->GetRawAxis(1) < -.25) {
+		lift2Direction = LIFT_DIRECTION_UP;
+	}
+	else if(oi->GetGameController()->GetRawAxis(1) > .25) {
+		lift2Direction = LIFT_DIRECTION_DOWN;
+	}
+		lift->Lift2Operate(lift2Direction);
 
+	//Determine Lift2 Direction based off buttons
+	if(oi->GetGameController()->GetRawAxis(0) < -.25) {
+		lift1Direction = LIFT_DIRECTION_UP;
+	}
+	else if(oi->GetGameController()->GetRawAxis(0) > .25) {
+		lift1Direction = LIFT_DIRECTION_DOWN;
+	}
+	lift->Lift1Operate(lift1Direction);
+}
+#endif
 // Make this return true when this Command no longer needs to run execute()
 bool LiftWithJoystick::IsFinished() {
 	return false;

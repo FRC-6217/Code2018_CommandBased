@@ -1,6 +1,8 @@
 #define TEST
 #define SECONDARY_ROBOT
+//Only one or the other or both of the Second joystick has to be commented out
 //#define SECONDJOYSTICK
+#define SECONDJOYSTICK_GAME_REPLACE
 #ifndef ROBOTMAP_H
 #define ROBOTMAP_H
 
@@ -12,6 +14,10 @@
 /*----------------------------------------------------------------------------*/
 
 #include <WPILib.h>
+
+// Speed of Auto Programs
+constexpr float DRIVE_DISTANCE_SPEED = -.6;
+constexpr float TURN_DEGREES_SPEED = .6; //If this is changed then you must go and change Timer.
 
 //Lift motor controller ports
 constexpr int SPARK_ACMESCREW_1 = 0;
@@ -75,8 +81,8 @@ constexpr int COMPRESSOR_PCM_ID = 0;
 constexpr int PRESSURE_SENSOR_CHANNEL = 3;
 
 //Grabber direction and speed
-constexpr int GRABBER_IN = 1;
-constexpr int GRABBER_OUT = -1;
+constexpr int GRABBER_IN = -1;
+constexpr int GRABBER_OUT = 1;
 constexpr int GRABBER_STOP = 0;
 constexpr float GRABBER_SPEED = 1.0;
 
@@ -121,8 +127,11 @@ constexpr int M_TURN_LEFT_DEGREES = 90;
 constexpr int LR_AUTOLINE_DISTANCE = 120;
 
 //L_LeftSwitch and R_RightSwitch
-constexpr int LR_FIRST_DISTANCE_SWITCH = 20;
-constexpr int LR_SECOND_DISTANCE_SWITCH = 35;
+//line up directly with switch fence
+constexpr int LR_FIRST_DISTANCE_SWITCH_FENCE = 109;
+//line Outside the switch fence
+constexpr int LR_FIRST_DISTANCE_SWITCH_OFF_FENCE = 130;
+constexpr int LR_SECOND_DISTANCE_SWITCH_OFF_FENCE = 20;
 
 //L_LeftScale and R_RightScale
 constexpr int LR_SCALE_FIRST_DISTANCE = 310;
@@ -140,11 +149,13 @@ constexpr int LR_OPPOSITE_SWITCH_SECOND_DISTANCE = 161;
 constexpr int LR_OPPOSITE_SWITCH_THIRD_DISTANCE = 47;
 
 //M_RightAutoLine
-constexpr int M_AUTO_LINE_DISTANCE = 132;
-constexpr int M_AUTO_LINE_ANGLE_R = 45;
-constexpr int M_AUTO_LINE_ANGLE_L = -45;
+constexpr int M_SECOND_AUTO_LINE_DISTANCE = 120;
+constexpr int M_FIRST_AUTO_LINE_DISTANCE = 22;
+constexpr int M_AUTO_LINE_ANGLE_R = 55;
+constexpr int M_AUTO_LINE_ANGLE_L = -35;
 
 //M_Switch
+constexpr int M_DRIVE_OFF_WALL = 22;
 constexpr int M_SWITCH_DISTANCE_1 = 132;
 constexpr int M_SWITCH_ANGLE = 38;
 constexpr int M_SWITCH_DISTANCE_2 = 36;

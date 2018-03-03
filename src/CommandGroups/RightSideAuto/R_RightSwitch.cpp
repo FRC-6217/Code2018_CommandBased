@@ -8,8 +8,12 @@
 #include "R_RightSwitch.h"
 
 R_RightSwitch::R_RightSwitch() {
-	AddSequential(new DriveDistance(LR_FIRST_DISTANCE_SWITCH));//in inches
-	AddSequential(new TurnDegrees(R_TURN_LEFT_DEGREES));//in degrees
-	AddSequential(new DriveDistance(LR_SECOND_DISTANCE_SWITCH));//in inches
+	//line up directly with switch fence
+	AddSequential(new DriveDistance(LR_FIRST_DISTANCE_SWITCH_FENCE));//in inches
 	AddSequential(new spitOutCube());
+	//line Outside the switch fence
+	//AddSequential(new DriveDistance(LR_FIRST_DISTANCE_SWITCH_OFF_FENCE));//in inches
+	//AddSequential(new TurnDegrees(R_TURN_LEFT_DEGREES));//in degrees
+	//AddSequential(new DriveDistance(LR_SECOND_DISTANCE_SWITCH_OFF_FENCE));//in inches
+	//AddSequential(new spitOutCube());
 }

@@ -11,6 +11,49 @@ void grabbingWithButtons::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void grabbingWithButtons::Execute() {
+#ifdef SECONDJOYSTICK_GAME_REPLACE
+	if (oi->GetGameController()->GetRawButton(4) == 1){
+		currentDirection = GRABBER_IN;
+		currentSpeed = .8;
+	}
+	else if (oi->GetGameController()->GetRawButton(5) == 1){
+		currentDirection = GRABBER_OUT;
+		currentSpeed = .8;
+	}
+	else if(oi->GetGameController()->GetRawButton(3) == 1){
+		currentDirection = GRABBER_STOP;
+		currentSpeed = 0;
+	}
+	else if(oi->GetGameController()->GetRawButton(2) == 1){
+		currentDirection = GRABBER_IN;
+		currentSpeed = .3;
+	}
+	if (currentDirection == GRABBER_STOP){
+		if (oi->GetGameController()->GetRawButton(6) == 1){
+			grabber->RunLeftGrabber(GRABBER_OUT, .8);
+		}
+		else if (oi->GetGameController()->GetRawButton(7) == 1){
+			grabber->RunLeftGrabber(GRABBER_IN, .8);
+		}
+		else{
+			grabber->RunLeftGrabber(GRABBER_STOP, .0);
+		}
+
+		if (oi->GetGameController()->GetRawButton(11) == 1){
+			grabber->RunRightGrabber(GRABBER_OUT, .8);
+		}
+		else if (oi->GetGameController()->GetRawButton(10) == 1){
+			grabber->RunRightGrabber(GRABBER_IN, .8);
+		}
+		else{
+			grabber->RunRightGrabber(GRABBER_STOP, .0);
+		}
+	}
+	else{
+		grabber->RunGrabber(currentDirection, currentSpeed);
+	}
+#endif
+	#ifndef SECONDJOYSTICK_GAME_REPLACE
 	if (oi->GetGameController()->GetRawButton(GRABBER_IN_BUTTON) == 1){
 		currentDirection = GRABBER_IN;
 	}
@@ -44,6 +87,7 @@ void grabbingWithButtons::Execute() {
 	else{
 		grabber->RunGrabber(currentDirection);
 	}
+#endif
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -53,7 +97,7 @@ bool grabbingWithButtons::IsFinished() {
 
 // Called once after isFinished returns true
 void grabbingWithButtons::End() {
-	grabber->RunGrabber(0);
+	grabber->RunGrabber(0, 0);
 }
 
 // Called when another command which requires one or more of the same

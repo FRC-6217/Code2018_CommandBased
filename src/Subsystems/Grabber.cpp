@@ -19,33 +19,33 @@ Grabber::Grabber() : frc::Subsystem("Grabber") {
 void Grabber::InitDefaultCommand() {
 	SetDefaultCommand(new grabbingWithButtons());
 }
-void Grabber::RunLeftGrabber(int direction){
+void Grabber::RunLeftGrabber(int direction, float speed){
 	if (direction == GRABBER_IN){
-		_leftGrabber->Set(-GRABBER_SPEED);
+		_leftGrabber->Set(-speed);
 	}
 	else if (direction == GRABBER_OUT){
-		_leftGrabber->Set(GRABBER_SPEED);
+		_leftGrabber->Set(speed);
 	}
 	else{
 		_leftGrabber->Set(0);
 	}
 }
 
-void Grabber::RunRightGrabber(int direction){
+void Grabber::RunRightGrabber(int direction, float speed){
 	if (direction == GRABBER_IN){
-		_rightGrabber->Set(GRABBER_SPEED);
+		_rightGrabber->Set(speed);
 	}
 	else if (direction == GRABBER_OUT){
-		_rightGrabber->Set(-GRABBER_SPEED);
+		_rightGrabber->Set(-speed);
 	}
 	else{
 		_rightGrabber->Set(0);
 	}
 }
 
-void Grabber::RunGrabber(int direction){
-	Grabber::RunLeftGrabber(direction);
-	Grabber::RunRightGrabber(direction);
+void Grabber::RunGrabber(int direction, float speed){
+	Grabber::RunLeftGrabber(direction, speed);
+	Grabber::RunRightGrabber(direction, speed);
 }
 // Put methods for controlling this subsystem
 // here. Call these from Commands.

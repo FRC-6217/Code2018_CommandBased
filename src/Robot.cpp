@@ -69,10 +69,17 @@ public:
 		_chooserStartingPosition.AddDefault("Right", "R");
 		frc::SmartDashboard::PutData("Starting Position", &_chooserStartingPosition);
 
+		//Choose Priority AutoLine
+		_chooserPriorityAutoLine.AddDefault("1", 1);
+		_chooserPriorityAutoLine.AddObject("2", 2);
+		_chooserPriorityAutoLine.AddObject("3", 3);
+		_chooserPriorityAutoLine.AddObject("4", 4);
+		_chooserPriorityAutoLine.AddObject("5", 5);
+		frc::SmartDashboard::PutData("AutoLine Priority", &_chooserPriorityAutoLine);
 
 		//Choose Priority Switch
-		_chooserPrioritySwitch.AddDefault("1", 1);
-		_chooserPrioritySwitch.AddObject("2", 2);
+		_chooserPrioritySwitch.AddObject("1", 1);
+		_chooserPrioritySwitch.AddDefault("2", 2);
 		_chooserPrioritySwitch.AddObject("3", 3);
 		_chooserPrioritySwitch.AddObject("4", 4);
 		_chooserPrioritySwitch.AddObject("5", 5);
@@ -80,8 +87,8 @@ public:
 
 		//Choose Priority Scale
 		_chooserPriorityScale.AddObject("1", 1);
-		_chooserPriorityScale.AddDefault("2", 2);
-		_chooserPriorityScale.AddObject("3", 3);
+		_chooserPriorityScale.AddObject("2", 2);
+		_chooserPriorityScale.AddDefault("3", 3);
 		_chooserPriorityScale.AddObject("4", 4);
 		_chooserPriorityScale.AddObject("5", 5);
 		frc::SmartDashboard::PutData("Scale Priority", &_chooserPriorityScale);
@@ -89,8 +96,8 @@ public:
 		//Choose Priority Opposite Switch
 		_chooserPriorityOppositeSwitch.AddObject("1", 1);
 		_chooserPriorityOppositeSwitch.AddObject("2", 2);
-		_chooserPriorityOppositeSwitch.AddDefault("3", 3);
-		_chooserPriorityOppositeSwitch.AddObject("4", 4);
+		_chooserPriorityOppositeSwitch.AddObject("3", 3);
+		_chooserPriorityOppositeSwitch.AddDefault("4", 4);
 		_chooserPriorityOppositeSwitch.AddObject("5", 5);
 		frc::SmartDashboard::PutData("Opposite Switch Priority", &_chooserPriorityOppositeSwitch);
 
@@ -98,17 +105,9 @@ public:
 		_chooserPriorityOppositeScale.AddObject("1", 1);
 		_chooserPriorityOppositeScale.AddObject("2", 2);
 		_chooserPriorityOppositeScale.AddObject("3", 3);
-		_chooserPriorityOppositeScale.AddDefault("4", 4);
-		_chooserPriorityOppositeScale.AddObject("5", 5);
+		_chooserPriorityOppositeScale.AddObject("4", 4);
+		_chooserPriorityOppositeScale.AddDefault("5", 5);
 		frc::SmartDashboard::PutData("Opposite Scale Priority", &_chooserPriorityOppositeScale);
-
-		//Choose Priority AutoLine
-		_chooserPriorityAutoLine.AddObject("1", 1);
-		_chooserPriorityAutoLine.AddObject("2", 2);
-		_chooserPriorityAutoLine.AddObject("3", 3);
-		_chooserPriorityAutoLine.AddObject("4", 4);
-		_chooserPriorityAutoLine.AddDefault("5", 5);
-		frc::SmartDashboard::PutData("AutoLine Priority", &_chooserPriorityAutoLine);
 
 		//Put Priority Order
 
@@ -122,6 +121,10 @@ public:
 		frc::SmartDashboard::PutData(frc::Scheduler::GetInstance());
 		// Add test commands on Smart Dashboard
 		frc::SmartDashboard::PutData("Test Auto 1", new Auto1());
+		frc::SmartDashboard::PutData("Test Middle Left Auto Line", new M_LeftAutoLine());
+		frc::SmartDashboard::PutData("Test Middle Right Auto Line", new M_RightAutoLine());
+		frc::SmartDashboard::PutData("Test Right side Right Switch", new R_RightSwitch());
+		frc::SmartDashboard::PutData("Test Left side Left Switch", new L_LeftSwitch());
 		frc::SmartDashboard::PutData("Drive 20 inches", new DriveDistance(20));
 		frc::SmartDashboard::PutData("Turn 90 degrees", new TurnDegrees(90));
 	}
@@ -164,6 +167,7 @@ public:
 		// Default game data
 		gameData = "LRL";
 #endif
+		frc::SmartDashboard::PutString("Game data", gameData);
 		switchPosition = gameData[0];
 		scalePosition = gameData[1];
 
