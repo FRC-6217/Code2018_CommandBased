@@ -160,4 +160,17 @@ constexpr int M_SWITCH_DISTANCE_1 = 132;
 constexpr int M_SWITCH_ANGLE = 38;
 constexpr int M_SWITCH_DISTANCE_2 = 36;
 
+//pathfinder constants
+constexpr double WHEEL_BASE_WIDTH = 0.6; //distance between left and right wheels in meters
+
+constexpr int INITIAL_POSITION = 0;
+constexpr int TICKS_PER_REVOLUTION = 360;
+constexpr double WHEEL_CIRCUMFRENCE = 0.4787787204060999; //meters
+constexpr int MAX_VELOCITY = 15; //meters/sec
+constexpr double KP = 1.0; //0.8-1.2 is common
+constexpr double KI = 0.0; //unused
+constexpr double KD = 0.0; //adjust if unhappy with tracking
+constexpr double KV = 1/MAX_VELOCITY; // motor controller accepted max velocity
+constexpr double KA = 0.0; //adjust to change acceleration rate
+
 #endif // ROBOTMAP_H
