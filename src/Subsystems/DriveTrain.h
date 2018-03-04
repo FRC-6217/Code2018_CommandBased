@@ -6,9 +6,11 @@
 #include <Encoder.h>
 #include <SpeedControllerGroup.h>
 #include <Drive/DifferentialDrive.h>
-#include "ctre\Phoenix.h"
-#include "..\RobotMap.h"
+#include <Path_Finder.cpp>
 #include <SmartDashboard/SmartDashboard.h>
+#include "ctre\Phoenix.h"
+
+#include "..\RobotMap.h"
 
 class DriveTrain : public frc::Subsystem {
 private:
@@ -54,6 +56,7 @@ public:
 	bool signbit(double xSignbit);
 
 	void ArcadeDrive(float xDir, float yDir, float zRotation, float governor, bool squaredInputs);
+	void TankDrive(double lPower, double rPower);
 
 	void Log();
 	void ResetEncoders();

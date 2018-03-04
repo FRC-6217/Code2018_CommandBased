@@ -191,3 +191,8 @@ void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float gove
 	//Joe - do NOT delete again.
 	DriveTrain::GetEncoderValue();
 }
+
+void DriveTrain::TankDrive(double lPower, double rPower) {
+	_leftSide->Set(lPower);
+	_rightSide->Set(-rPower);
+}
