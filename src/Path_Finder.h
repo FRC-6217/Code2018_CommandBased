@@ -18,25 +18,22 @@ private:
 	EncoderConfig rightConfig;
 };
 
-
-Pathfinder::Pathfinder() {
+Pathfinder::Pathfinder() : leftConfig(), rightConfig() {
 	length = 0;
-	leftTrajectory = new Segment; //which one?
-	rightTrajectory = 0;
-	leftConfig = { 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-	rightConfig = { 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+	leftTrajectory = new Segment;
+	rightTrajectory = new Segment;
 }
 
 void Pathfinder::Gen3PointTrajectory(double X1, double Y1, double exitAngle1,
-		 	 	 	 	 	 	 	 double X2, double Y2, double exitAngle2,
+									 double X2, double Y2, double exitAngle2,
 									 double X3, double Y3, double exitAngle3) {
 	int POINT_LENGTH = 3;
 
 	Waypoint *points = (Waypoint*)malloc(sizeof(Waypoint) * POINT_LENGTH);
 
-	Waypoint p1 = {X1, Y1, exitAngle1};
-	Waypoint p2 = {X2, Y2, exitAngle2};
-	Waypoint p3 = {X3, Y3, exitAngle3};
+	Waypoint p1 = {X1, Y1, d2r(exitAngle1)};
+	Waypoint p2 = {X2, Y2, d2r(exitAngle2)};
+	Waypoint p3 = {X3, Y3, d2r(exitAngle3)};
 
 	points[0] = p1;
 	points[1] = p2;
