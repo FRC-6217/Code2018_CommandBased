@@ -6,7 +6,6 @@
 #include <Encoder.h>
 #include <SpeedControllerGroup.h>
 #include <Drive/DifferentialDrive.h>
-#include <Path_Finder.cpp>
 #include <SmartDashboard/SmartDashboard.h>
 #include "ctre\Phoenix.h"
 
