@@ -1,3 +1,6 @@
+#ifndef PATH_FINDER_H
+#define PATH_FINDER_H
+
 #include <pathfinder.h>
 #include "RobotMap.h"
 
@@ -111,3 +114,5 @@ void Pathfinder::FollowTrajectory(double lEncoder, double rEncoder, double gyro,
 	free(leftFollower);
 	free(rightFollower);
 }
+
+#endif //PATH_FINDER_H
