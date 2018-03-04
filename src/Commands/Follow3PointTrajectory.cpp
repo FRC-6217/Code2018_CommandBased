@@ -3,7 +3,8 @@
 Follow3PointTrajectory::Follow3PointTrajectory(double X1, double Y1, double exitAngle1,
 		 	 	 	 	 	 	 	 	 	   double X2, double Y2, double exitAngle2,
 											   double X3, double Y3, double exitAngle3)
-	:path() {
+	:path() //Initialize Pathfinder Class Object
+	{
 	Requires(driveTrain);
 	SetTimeout(15);
 	_X1 = X1;
