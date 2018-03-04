@@ -1,10 +1,10 @@
+#ifndef ROBOTMAP_H
+#define ROBOTMAP_H
 #define TEST
 #define SECONDARY_ROBOT
 //Only one or the other or both of the Second joystick has to be commented out
 //#define SECONDJOYSTICK
-#define SECONDJOYSTICK_GAME_REPLACE
-#ifndef ROBOTMAP_H
-#define ROBOTMAP_H
+//#define SECONDJOYSTICK_GAME_REPLACE
 
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */

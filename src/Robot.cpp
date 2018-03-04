@@ -167,7 +167,7 @@ public:
 		// Default game data
 		gameData = "LRL";
 #endif
-		frc::SmartDashboard::PutString("Game data", gameData);
+		frc::SmartDashboard::PutString("Game Data", gameData);
 		switchPosition = gameData[0];
 		scalePosition = gameData[1];
 
