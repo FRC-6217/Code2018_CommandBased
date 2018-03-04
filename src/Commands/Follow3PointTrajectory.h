@@ -1,12 +1,12 @@
 #ifndef Follow3PointTrajectory_H
 #define Follow3PointTrajectory_H
 
-#include <Path_Finder.cpp>
+#include "Path_Finder.h"
 #include "../CommandBase.h"
 
 class Follow3PointTrajectory : public CommandBase {
 private:
-	Pathfinder* pf;
+	Pathfinder path;
 	double _X1, _Y1, _exitAngle1, _X2, _Y2, _exitAngle2, _X3, _Y3, _exitAngle3;
 	double lPower;
 	double rPower;
