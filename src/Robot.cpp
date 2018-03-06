@@ -127,6 +127,9 @@ public:
 		frc::SmartDashboard::PutData("Test Left side Left Switch", new L_LeftSwitch());
 		frc::SmartDashboard::PutData("Drive 20 inches", new DriveDistance(20));
 		frc::SmartDashboard::PutData("Turn 90 degrees", new TurnDegrees(90));
+
+		//test Pathfinder from SmartDashboard
+		frc::SmartDashboard::PutData("Test Pathfinder", new Follow3PointTrajectory(2, 2, 315, -2, 4, 45, 2, 6, 0));
 	}
 
 	void DisabledInit() override {}

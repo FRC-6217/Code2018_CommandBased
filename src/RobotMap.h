@@ -2,6 +2,7 @@
 #define ROBOTMAP_H
 #define TEST
 #define SECONDARY_ROBOT
+#define TEST_ACCER
 //Only one or the other or both of the Second joystick has to be commented out
 //#define SECONDJOYSTICK
 //#define SECONDJOYSTICK_GAME_REPLACE
@@ -93,7 +94,9 @@ constexpr int RIGHT_ENCODER_A_CHANNEL = 2;
 constexpr int RIGHT_ENCODER_B_CHANNEL = 3;
 
 //Acceleration percent
-constexpr double PERCENT_ACCEL = 1.01;
+constexpr double PERCENT_ACCEL = 0.01;
+//Max Turning speed
+constexpr double MAXTURNINGSPEED = .6;
 
 //Gyro Channel
 constexpr double GYRO_PORT = 0;

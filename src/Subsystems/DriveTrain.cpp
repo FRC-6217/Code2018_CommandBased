@@ -103,7 +103,21 @@ void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float gove
 	xDir *= (1 - governor);
 	yDir *= (1 - governor);
 	zRotation *= (1 - governor);
-	//
+	//Limiting the turning speed to 50%
+	if (zRotation > MAXTURNINGSPEED){
+		zRotation = MAXTURNINGSPEED;
+	}
+	else if (zRotation < -MAXTURNINGSPEED){
+		zRotation = -MAXTURNINGSPEED;
+	}
+
+	if (yDir > MAXTURNINGSPEED){
+		yDir = MAXTURNINGSPEED;
+	}
+	else if (yDir < -MAXTURNINGSPEED){
+		yDir = -MAXTURNINGSPEED;
+	}
+
 	//Acceleration section of the code
 
 	//Acceleration of z
@@ -171,13 +185,23 @@ void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float gove
 	// Drive Robot - only uncomment one of the following
 	if (_secondJoystick){
 		// Speed without acceleration limiting
+#ifdef TEST_ACCER
+		_driveTrain->ArcadeDrive(-SpeedOfX, SpeedOfZ, squaredInputs);
+#endif
+#ifndef TEST_ACCER
 		_driveTrain->ArcadeDrive(-yDir, xDir, squaredInputs);
+#endif
 		// Speed with acceleration limiting
 		//_driveTrain->ArcadeDrive(-SpeedOfY, SpeedOfZ, squaredInputs);
 	}
 	else{
 		// Speed without acceleration limiting
+#ifdef TEST_ACCER
+		_driveTrain->ArcadeDrive(-SpeedOfY, SpeedOfZ, squaredInputs);
+#endif
+#ifndef TEST_ACCER
 		_driveTrain->ArcadeDrive(-yDir, zRotation, squaredInputs);
+#endif
 		// Speed with acceleration limiting
 		//_driveTrain->ArcadeDrive(-SpeedOfY, SpeedOfZ, squaredInputs);
 	}
