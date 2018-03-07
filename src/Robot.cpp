@@ -129,7 +129,7 @@ public:
 		frc::SmartDashboard::PutData("Turn 90 degrees", new TurnDegrees(90));
 
 		//test Pathfinder from SmartDashboard
-		frc::SmartDashboard::PutData("Test Pathfinder", new Follow3PointTrajectory(2, 2, 315, -2, 4, 45, 2, 6, 0));
+		//frc::SmartDashboard::PutData("Test Pathfinder", new Follow3PointTrajectory(2, 2, 315, -2, 4, 45, 2, 6, 0));
 	}
 
 	void DisabledInit() override {}

@@ -1,4 +1,4 @@
-#include <pathfinder.h>
+/*#include <Path_Finder.h>
 #include "RobotMap.h"
 
 class Pathfinder {
@@ -115,3 +115,4 @@ void Pathfinder::FollowTrajectory(double lEncoder, double rEncoder, double gyro,
 	free(rightFollower);
 }
 
+*/

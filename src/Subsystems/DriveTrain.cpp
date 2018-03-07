@@ -111,11 +111,11 @@ void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float gove
 		zRotation = -MAXTURNINGSPEED;
 	}
 
-	if (yDir > MAXTURNINGSPEED){
-		yDir = MAXTURNINGSPEED;
+	if (xDir > MAXTURNINGSPEED){
+		xDir = MAXTURNINGSPEED;
 	}
-	else if (yDir < -MAXTURNINGSPEED){
-		yDir = -MAXTURNINGSPEED;
+	else if (xDir < -MAXTURNINGSPEED){
+		xDir = -MAXTURNINGSPEED;
 	}
 
 	//Acceleration section of the code
