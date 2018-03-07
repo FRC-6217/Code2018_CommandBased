@@ -1,7 +1,7 @@
 #include "DriveTrain.h"
 #include "..\CommandBase.h"
 #include "../Commands/DriveWithJoystick.h"
-
+#include <algorithm>
 DriveTrain::DriveTrain() : frc::Subsystem("DriveTrain") {
 	// Drive Train Motor Controllers
 #ifdef SECONDARY_ROBOT
@@ -133,7 +133,7 @@ void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float gove
 		SpeedOfZ = zRotation;
 	}
 	else if (fabs(zRotation) > fabs(lastSpeedOfZ)){
-		SpeedOfZ += (zRotation * PERCENT_ACCEL);
+		SpeedOfZ = lastSpeedOfZ + (zRotation * PERCENT_ACCEL);
 	}
 
 	//Acceleration of Y
@@ -149,7 +149,14 @@ void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float gove
 		SpeedOfY = yDir;
 	}
 	else if (fabs(yDir) > fabs(lastSpeedOfY)){
-		SpeedOfY += (yDir * PERCENT_ACCEL);
+		SpeedOfY =  lastSpeedOfY + (yDir * PERCENT_ACCEL);
+		if (!signbit(SpeedOfY) && SpeedOfY < 0.3){
+			SpeedOfY = 0.3;
+		}
+
+		else if (signbit(SpeedOfY) && SpeedOfY > -0.3){
+			SpeedOfY = -0.3;
+		}
 	}
 
 	//Acceleration of X
@@ -173,8 +180,9 @@ void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float gove
 		SpeedOfX = xDir;
 	}
 	else if (fabs(xDir) > fabs(lastSpeedOfX)){
-		SpeedOfX += (xDir * PERCENT_ACCEL);
+		SpeedOfX = lastSpeedOfX + (xDir * PERCENT_ACCEL);
 	}
+
 
 	frc::SmartDashboard::PutNumber("Speed Y", SpeedOfY);
 	frc::SmartDashboard::PutNumber("Speed Z", SpeedOfZ);
@@ -186,7 +194,7 @@ void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float gove
 	if (_secondJoystick){
 		// Speed without acceleration limiting
 #ifdef TEST_ACCER
-		_driveTrain->ArcadeDrive(-SpeedOfX, SpeedOfZ, squaredInputs);
+		_driveTrain->ArcadeDrive(-SpeedOfY, xDir, squaredInputs);
 #endif
 #ifndef TEST_ACCER
 		_driveTrain->ArcadeDrive(-yDir, xDir, squaredInputs);
@@ -197,7 +205,7 @@ void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float gove
 	else{
 		// Speed without acceleration limiting
 #ifdef TEST_ACCER
-		_driveTrain->ArcadeDrive(-SpeedOfY, SpeedOfZ, squaredInputs);
+		_driveTrain->ArcadeDrive(-SpeedOfY, zRotation, squaredInputs);
 #endif
 #ifndef TEST_ACCER
 		_driveTrain->ArcadeDrive(-yDir, zRotation, squaredInputs);
