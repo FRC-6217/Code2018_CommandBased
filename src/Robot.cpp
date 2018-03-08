@@ -175,6 +175,7 @@ public:
 #ifndef TEST
 		// Game data - for 2018 three characters indicating position of switch and scale (e.g. LRL)
 		gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
+
 #endif
 #ifdef TEST
 		// Default game data
@@ -193,7 +194,7 @@ public:
 					_autoCommandGroup = new LR_SideSwitch(switchPosition);
 					chosenAuto = "LR_SideSwitch";
 				}
-				else{
+				else {
 					if (switchPosition == left){
 						_autoCommandGroup = new L_LeftSwitch();
 						chosenAuto = "L_LeftSwitch";

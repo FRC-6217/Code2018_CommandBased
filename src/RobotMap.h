@@ -1,7 +1,7 @@
 #ifndef ROBOTMAP_H
 #define ROBOTMAP_H
-#define TEST
-#define SECONDARY_ROBOT
+//#define TEST
+//#define SECONDARY_ROBOT
 #define TEST_ACCER
 //Only one or the other or both of the Second joystick has to be commented out
 //#define SECONDJOYSTICK
@@ -14,8 +14,8 @@ constexpr float DRIVE_DISTANCE_SPEED = -.6;
 constexpr float TURN_DEGREES_SPEED = .6; //If this is changed then you must go and change Timer.
 
 //Lift motor controller ports
-constexpr int SPARK_ACMESCREW_1 = 0;
-constexpr int SPARK_ACMESCREW_2 = 1;
+constexpr int SPARK_ACMESCREW_1 = 8;
+constexpr int SPARK_ACMESCREW_2 = 9;
 constexpr int SCREW_1_CHANNEL_A = 4;
 constexpr int SCREW_1_CHANNEL_B = 5;
 constexpr double SCREW_1_ENCODER_VERTICAL_DPP = 0.00048828125;
