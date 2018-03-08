@@ -150,11 +150,15 @@ public:
 		std::string chosenAuto;
 		std::string leftOrRightStart;
 		std::string insideOrOutside;
-
+		std::string outside;
+		std::string left;
 		//Set Starting Position
 		startingPosition = _chooserStartingPosition.GetSelected();
 		leftOrRightStart = startingPosition[0];
 		insideOrOutside = startingPosition[1];
+		outside = 'O';
+		left =
+
 		//Set Priority Order
 		int priorityGoal[5];
 		priorityGoal[SWITCH] = _chooserPrioritySwitch.GetSelected();
@@ -189,7 +193,7 @@ public:
 					chosenAuto = "LR_SideSwitch";
 				}
 				else{
-					if (switchPosition == std::string('L')){
+					if (switchPosition == ){
 						_autoCommandGroup = new L_LeftSwitch();
 						chosenAuto = "L_LeftSwitch";
 					}
