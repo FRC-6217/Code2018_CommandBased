@@ -133,7 +133,7 @@ public:
 		frc::SmartDashboard::PutData("Lift1 20 inches", new AutoLift1(20));
 		frc::SmartDashboard::PutData("Lift2 15 inches", new AutoLift2(15));
 
-		//test Pathfinder from SmartDashboard
+		//test Pathfinder from SmartDashboard//
 		//frc::SmartDashboard::PutData("Test Pathfinder", new Follow3PointTrajectory(2, 2, 315, -2, 4, 45, 2, 6, 0));
 	}
 
