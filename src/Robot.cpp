@@ -157,7 +157,7 @@ public:
 		leftOrRightStart = startingPosition[0];
 		insideOrOutside = startingPosition[1];
 		outside = 'O';
-		left =
+		left = "L";
 
 		//Set Priority Order
 		int priorityGoal[5];
@@ -188,12 +188,12 @@ public:
 		for (int currentPri = 0; currentPri <= 4 && found != true; currentPri++) {
 			//Runs if Switch is current priority and if the switch is on the same side as the starting position
 			if (currentPri == priorityGoal[SWITCH] && switchPosition == leftOrRightStart) {
-				if(insideOrOutside == 'O'){
+				if(insideOrOutside == outside){
 					_autoCommandGroup = new LR_SideSwitch(switchPosition);
 					chosenAuto = "LR_SideSwitch";
 				}
 				else{
-					if (switchPosition == ){
+					if (switchPosition == left){
 						_autoCommandGroup = new L_LeftSwitch();
 						chosenAuto = "L_LeftSwitch";
 					}

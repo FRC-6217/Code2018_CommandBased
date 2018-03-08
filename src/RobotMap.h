@@ -88,6 +88,7 @@ constexpr int RIGHT_ENCODER_B_CHANNEL = 3;
 
 //Acceleration percent
 constexpr double PERCENT_ACCEL = 0.01;
+
 //Max Turning speed
 constexpr double MAXTURNINGSPEED = .6;
 

@@ -1,7 +1,6 @@
 #ifndef Follow3PointTrajectory_H
 #define Follow3PointTrajectory_H
 
-#include <Pathfinder.cpp>
 #include "Path_Finder.h"
 #include "../CommandBase.h"
 
