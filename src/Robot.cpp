@@ -54,7 +54,7 @@ private:
 	//Choose if want to Cross to opposite side of field variable
 	frc::SendableChooser<std::string> _chooserCrossField;
 
-	//Variables
+	//Variable
 
 public:
 
