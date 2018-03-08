@@ -52,7 +52,7 @@ private:
 	frc::SendableChooser<int> _chooserPriorityOppositeSwitch;
 	frc::SendableChooser<int> _chooserPriorityOppositeScale;
 
-	//Variable
+	//Variables
 
 public:
 
