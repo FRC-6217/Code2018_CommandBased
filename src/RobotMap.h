@@ -156,6 +156,104 @@ constexpr int M_SWITCH_DISTANCE_1 = 132;
 constexpr int M_SWITCH_ANGLE = 38;
 constexpr int M_SWITCH_DISTANCE_2 = 36;
 
+
+//Pathfinder CommandGroups
+
+//Pathfinder L_RightScale and R_LeftScale
+ //designate points and exit angles for pathfinder
+constexpr float P_L_RIGHT_SCALE_X1 = 0;
+constexpr float P_L_RIGHT_SCALE_Y1 = 223.5;
+constexpr float P_L_RIGHT_SCALE_EA1 = 90;
+constexpr float P_L_RIGHT_SCALE_X2 = 242;
+constexpr float P_L_RIGHT_SCALE_Y2 = 223.5;
+constexpr float P_L_RIGHT_SCALE_EA2 = 0;
+constexpr float P_L_RIGHT_SCALE_X3 = 242;
+constexpr float P_L_RIGHT_SCALE_Y3 = 310;
+constexpr float P_L_RIGHT_SCALE_EA3 = 270;
+
+constexpr float P_R_LEFT_SCALE_X1 = 0;
+constexpr float P_R_LEFT_SCALE_Y1 = 223.5;
+constexpr float P_R_LEFT_SCALE_EA1 = 270;
+constexpr float P_R_LEFT_SCALE_X2 = -242;
+constexpr float P_R_LEFT_SCALE_Y2 = 223.5;
+constexpr float P_R_LEFT_SCALE_EA2 = 0;
+constexpr float P_R_LEFT_SCALE_X3 = -242;
+constexpr float P_R_LEFT_SCALE_Y3 = 310;
+constexpr float P_R_LEFT_SCALE_EA3 = 90;
+
+constexpr int P_LR_OPPOSITE_SCALE_FINAL_DRIVE = 17;
+
+//Pathfinder L_RightSwitch and R_LeftSwitch
+ //designate points and exit angles for pathfinder
+constexpr float P_L_RIGHT_SWITCH_X1 = 0;
+constexpr float P_L_RIGHT_SWITCH_Y1 = 223.5;
+constexpr float P_L_RIGHT_SWITCH_EA1 = 45;
+constexpr float P_L_RIGHT_SWITCH_X2 = 80.5;
+constexpr float P_L_RIGHT_SWITCH_Y2 = 242.5;
+constexpr float P_L_RIGHT_SWITCH_EA2 = 90;
+constexpr float P_L_RIGHT_SWITCH_X3 = 161;
+constexpr float P_L_RIGHT_SWITCH_Y3 = 223.5;
+constexpr float P_L_RIGHT_SWITCH_EA3 = 180;
+
+constexpr float P_R_LEFT_SWITCH_X1 = 0;
+constexpr float P_R_LEFT_SWITCH_Y1 = 223.5;
+constexpr float P_R_LEFT_SWITCH_EA1 = 315;
+constexpr float P_R_LEFT_SWITCH_X2 = -80.5;
+constexpr float P_R_LEFT_SWITCH_Y2 = 242.5;
+constexpr float P_R_LEFT_SWITCH_EA2 = 270;
+constexpr float P_R_LEFT_SWITCH_X3 = -161;
+constexpr float P_R_LEFT_SWITCH_Y3 = 223.5;
+constexpr float P_R_LEFT_SWITCH_EA3 = 180;
+
+constexpr int P_LR_OPPOSITE_SWITCH_FINAL_DRIVE = 47;
+
+//Pathfinder M_RightAutoLine and M_LeftAutoLine !!Check this One!!-Where is starting location
+ //designate points and exit angles for pathfinder
+constexpr float P_M_RIGHT_AUTO_LINE_X1 = 0;
+constexpr float P_M_RIGHT_AUTO_LINE_Y1 = 70;
+constexpr float P_M_RIGHT_AUTO_LINE_EA1 = 45;
+constexpr float P_M_RIGHT_AUTO_LINE_X2 = 121;
+constexpr float P_M_RIGHT_AUTO_LINE_Y2 = 105;
+constexpr float P_M_RIGHT_AUTO_LINE_EA2 = 0;
+constexpr float P_M_RIGHT_AUTO_LINE_X3 = 121;
+constexpr float P_M_RIGHT_AUTO_LINE_Y3 = 223.5;
+constexpr float P_M_RIGHT_AUTO_LINE_EA3 = 0;
+
+constexpr float P_M_LEFT_AUTO_LINE_X1 = 0;
+constexpr float P_M_LEFT_AUTO_LINE_Y1 = 70;
+constexpr float P_M_LEFT_AUTO_LINE_EA1 = 315;
+constexpr float P_M_LEFT_AUTO_LINE_X2 = -121;
+constexpr float P_M_LEFT_AUTO_LINE_Y2 = 105;
+constexpr float P_M_LEFT_AUTO_LINE_EA2 = 0;
+constexpr float P_M_LEFT_AUTO_LINE_X3 = -121;
+constexpr float P_M_LEFT_AUTO_LINE_Y3 = 223.5;
+constexpr float P_M_LEFT_AUTO_LINE_EA3 = 0;
+
+//Pathfinder M_LeftSwitch and M_RightSwitch
+ //designate points and exit angles for pathfinder
+constexpr float P_M_RIGHT_SWITCH_X1 = 0;
+constexpr float P_M_RIGHT_SWITCH_Y1 = 22;
+constexpr float P_M_RIGHT_SWITCH_EA1 = 45;
+constexpr float P_M_RIGHT_SWITCH_X2 = 104;
+constexpr float P_M_RIGHT_SWITCH_Y2 = 70;
+constexpr float P_M_RIGHT_SWITCH_EA2 = 10;
+constexpr float P_M_RIGHT_SWITCH_X3 = 104;
+constexpr float P_M_RIGHT_SWITCH_Y3 = 110;
+constexpr float P_M_RIGHT_SWITCH_EA3 = 0;
+
+constexpr float P_M_LEFT_SWITCH_X1 = 0;
+constexpr float P_M_LEFT_SWITCH_Y1 = 22;
+constexpr float P_M_LEFT_SWITCH_EA1 = 315;
+constexpr float P_M_LEFT_SWITCH_X2 = -104;
+constexpr float P_M_LEFT_SWITCH_Y2 = 70;
+constexpr float P_M_LEFT_SWITCH_EA2 = 350;
+constexpr float P_M_LEFT_SWITCH_X3 = -104;
+constexpr float P_M_LEFT_SWITCH_Y3 = 110;
+constexpr float P_M_LEFT_SWITCH_EA3 = 0;
+
+constexpr int M_LR_SWITCH_FINAL_DRIVE = 36;
+
+
 //pathfinder constants
 constexpr double WHEEL_BASE_WIDTH = 0.6; //distance between left and right wheels in meters
 

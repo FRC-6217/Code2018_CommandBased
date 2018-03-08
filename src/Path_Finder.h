@@ -1,4 +1,4 @@
-/*#ifndef PATH_FINDER_H
+#ifndef PATH_FINDER_H
 #define PATH_FINDER_H
 
 #include <pathfinder.h>
@@ -116,4 +116,3 @@ void Pathfinder::FollowTrajectory(double lEncoder, double rEncoder, double gyro,
 }
 
 #endif //PATH_FINDER_H
-*/

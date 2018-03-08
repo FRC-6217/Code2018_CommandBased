@@ -3,7 +3,6 @@
 
 #include "Commands/Follow3PointTrajectory.h"
 #include "Commands/DriveDistance.h"
-#include "Commands/AutoLift1.h"
 #include "Commands/spitOutCube.h"
 
 class P_R_LeftSwitch : public CommandGroup {

@@ -1,10 +1,9 @@
-/*#ifndef P_M_LeftSwitch_H
+#ifndef P_M_LeftSwitch_H
 #define P_M_LeftSwitch_H
 
 //include Needed Commands
 #include "Commands/Follow3PointTrajectory.h"
 #include "Commands/DriveDistance.h"
-#include "AutoLift1.h"
 #include "Commands/spitOutCube.h"
 
 
@@ -14,4 +13,3 @@ public:
 };
 
 #endif  // P_M_LeftSwitch_H
-*/

@@ -1,4 +1,4 @@
-/*#ifndef Follow3PointTrajectory_H
+#ifndef Follow3PointTrajectory_H
 #define Follow3PointTrajectory_H
 
 #include <Pathfinder.cpp>
@@ -24,4 +24,3 @@ public:
 };
 
 #endif  // Follow3PointTrajectory_H
-*/

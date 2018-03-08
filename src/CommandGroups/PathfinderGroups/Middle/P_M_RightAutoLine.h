@@ -1,4 +1,4 @@
-/*#ifndef P_M_RightAutoLine_H
+#ifndef P_M_RightAutoLine_H
 #define P_M_RightAutoLine_H
 
 #include "Commands/Follow3PointTrajectory.h"
@@ -9,4 +9,3 @@ public:
 };
 
 #endif  // P_M_RightAutoLine_H
-*/
