@@ -1,4 +1,3 @@
-#include <Pathfinder.cpp>
 #include "Follow3PointTrajectory.h"
 
 Follow3PointTrajectory::Follow3PointTrajectory(double X1, double Y1, double exitAngle1,

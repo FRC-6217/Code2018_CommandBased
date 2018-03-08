@@ -4,7 +4,6 @@
 //include Needed Commands
 #include "Commands/Follow3PointTrajectory.h"
 #include "Commands/DriveDistance.h"
-#include "AutoLift1.h"
 #include "Commands/spitOutCube.h"
 
 class P_M_RightSwitch : public CommandGroup {
