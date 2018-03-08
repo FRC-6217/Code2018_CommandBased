@@ -58,7 +58,7 @@ public:
 
 	void RobotInit() override {
 
-	//Choose if want to Cross to opposite side of field variable
+	//Choose if want to Cross to opposite side of field variables
 	frc::SendableChooser<std::string> _chooserCrossField;
 		CommandBase::init();
 
