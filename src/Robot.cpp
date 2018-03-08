@@ -46,19 +46,20 @@ private:
 
 	//Choose Priority Variables
 	frc::SendableChooser<int> _chooserPrioritySwitch;
+	frc::SendableChooser<int> _chooserCrossField;
+	frc::SendableChooser<int> _chooserPriorityAutoLine;
 	frc::SendableChooser<int> _chooserPriorityScale;
 	frc::SendableChooser<int> _chooserPriorityOppositeSwitch;
 	frc::SendableChooser<int> _chooserPriorityOppositeScale;
-	frc::SendableChooser<int> _chooserPriorityAutoLine;
 
-	//Choose if want to Cross to opposite side of field variable
-	frc::SendableChooser<std::string> _chooserCrossField;
-
-	//Variables
+	//variables
 
 public:
 
 	void RobotInit() override {
+
+	//Choose if want to Cross to opposite side of field variables
+	frc::SendableChooser<std::string> _chooserCrossField;
 		CommandBase::init();
 
 		// Build Autonomous Mode Choices on Smart Dashboard
@@ -157,7 +158,7 @@ public:
 		leftOrRightStart = startingPosition[0];
 		insideOrOutside = startingPosition[1];
 		outside = 'O';
-		left =
+		left = "L";
 
 		//Set Priority Order
 		int priorityGoal[5];
@@ -188,12 +189,12 @@ public:
 		for (int currentPri = 0; currentPri <= 4 && found != true; currentPri++) {
 			//Runs if Switch is current priority and if the switch is on the same side as the starting position
 			if (currentPri == priorityGoal[SWITCH] && switchPosition == leftOrRightStart) {
-				if(insideOrOutside == 'O'){
+				if(insideOrOutside == outside){
 					_autoCommandGroup = new LR_SideSwitch(switchPosition);
 					chosenAuto = "LR_SideSwitch";
 				}
 				else{
-					if (switchPosition == ){
+					if (switchPosition == left){
 						_autoCommandGroup = new L_LeftSwitch();
 						chosenAuto = "L_LeftSwitch";
 					}
