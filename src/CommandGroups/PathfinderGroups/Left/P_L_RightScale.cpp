@@ -1,4 +1,4 @@
-#include "P_L_RightScale.h"
+/*#include "P_L_RightScale.h"
 
 P_L_RightScale::P_L_RightScale() {
 	AddSequential(new Follow3PointTrajectory(P_L_RIGHT_SCALE_X1, P_L_RIGHT_SCALE_Y1, P_L_RIGHT_SCALE_EA1,
@@ -9,3 +9,4 @@ P_L_RightScale::P_L_RightScale() {
 		AddParallel(new AutoLift2(LIFTING_TO_SCALE_LOWER_2, LIFT_UP_DIRECTION));
 		AddSequential(new spitOutCube());
 }
+*/

@@ -1,4 +1,4 @@
-#ifndef P_M_LeftSwitch_H
+/*#ifndef P_M_LeftSwitch_H
 #define P_M_LeftSwitch_H
 
 //include Needed Commands
@@ -14,3 +14,4 @@ public:
 };
 
 #endif  // P_M_LeftSwitch_H
+*/

@@ -1,4 +1,4 @@
-#include "P_R_LeftSwitch.h"
+/*#include "P_R_LeftSwitch.h"
 
 P_R_LeftSwitch::P_R_LeftSwitch() {
 	AddSequential(new Follow3PointTrajectory(P_R_LEFT_SWITCH_X1, P_R_LEFT_SWITCH_Y1, P_R_LEFT_SWITCH_EA1,
@@ -8,3 +8,4 @@ P_R_LeftSwitch::P_R_LeftSwitch() {
 	AddParallel(new AutoLift1(LIFTING_TO_SWITCH_UPPER_1, LIFT_UP_DIRECTION));
 	AddSequential(new spitOutCube());
 }
+*/

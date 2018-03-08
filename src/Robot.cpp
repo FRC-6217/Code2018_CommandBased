@@ -64,9 +64,11 @@ public:
 		// Build Autonomous Mode Choices on Smart Dashboard
 
 		//Choose Starting Position
-		_chooserStartingPosition.AddObject("Left", "L");
+		_chooserStartingPosition.AddObject("Left Outside", "LO");
+		_chooserStartingPosition.AddObject("Left Inside", "LI");
 		_chooserStartingPosition.AddObject("Middle", "M");
-		_chooserStartingPosition.AddDefault("Right", "R");
+		_chooserStartingPosition.AddDefault("Right Outside", "RO");
+		_chooserStartingPosition.AddObject("Right Inside", "RI");
 		frc::SmartDashboard::PutData("Starting Position", &_chooserStartingPosition);
 
 		//Choose Priority AutoLine
@@ -146,10 +148,13 @@ public:
 		std::string startingPosition;
 		std::string crossField;
 		std::string chosenAuto;
+		std::string leftOrRightStart;
+		std::string insideOrOutside;
 
 		//Set Starting Position
 		startingPosition = _chooserStartingPosition.GetSelected();
-
+		leftOrRightStart = startingPosition[0];
+		insideOrOutside = startingPosition[1];
 		//Set Priority Order
 		int priorityGoal[5];
 		priorityGoal[SWITCH] = _chooserPrioritySwitch.GetSelected();
@@ -178,9 +183,22 @@ public:
 		//Choose which Autonomous CommandGroup to run based on Inputs from SmartDashboard and Field Management System
 		for (int currentPri = 0; currentPri <= 4 && found != true; currentPri++) {
 			//Runs if Switch is current priority and if the switch is on the same side as the starting position
-			if (currentPri == priorityGoal[SWITCH] && switchPosition == startingPosition) {
-				_autoCommandGroup = new LR_SideSwitch(switchPosition);
-				chosenAuto = "LR_SideSwitch";
+			if (currentPri == priorityGoal[SWITCH] && switchPosition == leftOrRightStart) {
+				if(insideOrOutside == 'O'){
+					_autoCommandGroup = new LR_SideSwitch(switchPosition);
+					chosenAuto = "LR_SideSwitch";
+				}
+				else{
+					if (switchPosition == std::string('L')){
+						_autoCommandGroup = new L_LeftSwitch();
+						chosenAuto = "L_LeftSwitch";
+					}
+					else{
+						_autoCommandGroup = new L_LeftSwitch();
+						chosenAuto = "R_RightSwitch";
+					}
+
+				}
 				found = true;
 			}
 			//Runs if Scale is current priority and if the scale is on the same side as the starting position
