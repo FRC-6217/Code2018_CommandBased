@@ -46,19 +46,20 @@ private:
 
 	//Choose Priority Variables
 	frc::SendableChooser<int> _chooserPrioritySwitch;
+	frc::SendableChooser<int> _chooserCrossField;
+	frc::SendableChooser<int> _chooserPriorityAutoLine;
 	frc::SendableChooser<int> _chooserPriorityScale;
 	frc::SendableChooser<int> _chooserPriorityOppositeSwitch;
 	frc::SendableChooser<int> _chooserPriorityOppositeScale;
-	frc::SendableChooser<int> _chooserPriorityAutoLine;
-
-	//Choose if want to Cross to opposite side of field variable
-	frc::SendableChooser<std::string> _chooserCrossField;
 
 	//Variable
 
 public:
 
 	void RobotInit() override {
+
+	//Choose if want to Cross to opposite side of field variable
+	frc::SendableChooser<std::string> _chooserCrossField;
 		CommandBase::init();
 
 		// Build Autonomous Mode Choices on Smart Dashboard
