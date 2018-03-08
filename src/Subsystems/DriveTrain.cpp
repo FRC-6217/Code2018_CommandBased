@@ -167,6 +167,7 @@ void DriveTrain::ArcadeDrive(float xDir, float yDir, float zRotation, float gove
 	//kyle says turn right
 	//kyle says turn left
 	//kyle says eat eric
+	//kyle says keep warm
 
 	//Checking if the Sign of last Speed of X is a different sign of request speed or xdir
 	if (DriveTrain::signbit(xDir) != DriveTrain::signbit(lastSpeedOfX)){
