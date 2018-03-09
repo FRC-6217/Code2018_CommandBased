@@ -11,6 +11,6 @@ LR_SideSwitch::LR_SideSwitch(std::string scoreSide) {
 
 	AddSequential(new DriveDistance(LR_FIRST_DISTANCE_SWITCH_OFF_FENCE));//in inches
 	AddSequential(new TurnDegrees(turnDirection * TURN_90_DEGREES));//in degrees
-//	AddSequential(new DriveDistance(LR_SECOND_DISTANCE_SWITCH_OFF_FENCE));//in inches
+	AddSequential(new DriveDistance(LR_SECOND_DISTANCE_SWITCH_OFF_FENCE));//in inches
 	AddSequential(new spitOutCube());
 	}

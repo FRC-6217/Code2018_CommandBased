@@ -8,7 +8,7 @@ M_Switch::M_Switch(std::string scoreSide) {
 	}
 	else if (scoreSide == "R") {
 		turnDirection = 1;
-		amountOfDistanceOne = .95;
+		amountOfDistanceOne = 1;
 	}
 	AddSequential(new DriveDistance(M_DRIVE_OFF_WALL));
 	AddSequential(new TurnDegrees(turnDirection * M_SWITCH_ANGLE)); //Turn toward our switch side
