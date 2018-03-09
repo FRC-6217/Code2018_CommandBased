@@ -12,7 +12,7 @@
 #define AUTO_LINE 4
 
 #include <memory>
-
+#include <iostream>
 #include <TimedRobot.h>
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
@@ -51,15 +51,13 @@ private:
 	frc::SendableChooser<int> _chooserPriorityScale;
 	frc::SendableChooser<int> _chooserPriorityOppositeSwitch;
 	frc::SendableChooser<int> _chooserPriorityOppositeScale;
-
 	//variables
 
 public:
 
 	void RobotInit() override {
 
-	//Choose if want to Cross to opposite side of field variables
-	frc::SendableChooser<std::string> _chooserCrossField;
+		//Choose if want to Cross to opposite side of field variables
 		CommandBase::init();
 
 		// Build Autonomous Mode Choices on Smart Dashboard
@@ -116,9 +114,10 @@ public:
 
 
 		//Choose if want to Cross field for scoring
-		_chooserCrossField.AddDefault("No", "N");
-		_chooserCrossField.AddObject("Yes", "Y");
-		frc::SmartDashboard::PutData("Cross field for Goal", &_chooserCrossField);
+		//		_chooserCrossField.AddDefault("No", "N");
+		//		_chooserCrossField.AddObject("Yes", "Y");
+
+		//		frc::SmartDashboard::PutData("Cross field for Goal", &_chooserCrossField);
 
 		// Add Command Based Scheduler Status to dashboard
 		frc::SmartDashboard::PutData(frc::Scheduler::GetInstance());
@@ -130,8 +129,8 @@ public:
 		frc::SmartDashboard::PutData("Test Left side Left Switch", new L_LeftSwitch());
 		frc::SmartDashboard::PutData("Drive 20 inches", new DriveDistance(20));
 		frc::SmartDashboard::PutData("Turn 90 degrees", new TurnDegrees(90));
-		frc::SmartDashboard::PutData("Lift1 20 inches", new AutoLift1(20));
-		frc::SmartDashboard::PutData("Lift2 15 inches", new AutoLift2(15));
+		//frc::SmartDashboard::PutData("Lift1 20 inches", new AutoLift1(20, 1));
+		//frc::SmartDashboard::PutData("Lift2 15 inches", new AutoLift2(15, 1));
 
 		//test Pathfinder from SmartDashboard//
 		//frc::SmartDashboard::PutData("Test Pathfinder", new Follow3PointTrajectory(2, 2, 315, -2, 4, 45, 2, 6, 0));
@@ -156,6 +155,7 @@ public:
 		std::string outside;
 		std::string left;
 		//Set Starting Position
+		crossField = "Y";
 		startingPosition = _chooserStartingPosition.GetSelected();
 		leftOrRightStart = startingPosition[0];
 		insideOrOutside = startingPosition[1];
@@ -176,7 +176,17 @@ public:
 
 #ifndef TEST
 		// Game data - for 2018 three characters indicating position of switch and scale (e.g. LRL)
+		//SetTimeout(2);
+		int i = 0;
 		gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
+		while(gameData.empty() || (i < 50)) {
+			gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
+			WaitCommand(.02);
+			i++;
+		}
+		if (gameData.empty()){
+			gameData = "MMM";//THis will automatically go to autoLine
+		}
 
 #endif
 #ifdef TEST

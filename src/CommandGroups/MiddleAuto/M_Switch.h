@@ -9,6 +9,7 @@
 class M_Switch : public CommandGroup {
 private:
 	int turnDirection;
+	int amountOfDistanceOne;
 public:
 	M_Switch(std::string scoreSide);
 };

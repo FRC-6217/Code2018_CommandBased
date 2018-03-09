@@ -72,7 +72,7 @@ double DriveTrain::GetEncoderValue() {
 	//encoderValue = (GetREncoderValue() + GetLEncoderValue()) / 2.0;
 
 	// Until both encoders work, just return the value from the working one
-	encoderValue = GetREncoderValue();
+	encoderValue = GetLEncoderValue();
 	frc::SmartDashboard::PutNumber("Average Encoder Value", encoderValue);
 	return encoderValue;
 }

@@ -8,7 +8,7 @@ spitOutCube::spitOutCube() {
 // Called just before this Command runs the first time
 void spitOutCube::Initialize() {
 	frc::SmartDashboard::PutString("Command Message", "Spit Out Cube Start");
-	grabber->RunGrabber(-GRABBER_OUT, .8);
+	grabber->RunGrabber(GRABBER_OUT, .8);
 }
 
 // Called repeatedly when this Command is scheduled to run

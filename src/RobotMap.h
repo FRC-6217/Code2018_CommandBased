@@ -90,7 +90,7 @@ constexpr int RIGHT_ENCODER_B_CHANNEL = 3;
 constexpr double PERCENT_ACCEL = 0.01;
 
 //Max Turning speed
-constexpr double MAXTURNINGSPEED = .6;
+constexpr double MAXTURNINGSPEED = .8;
 
 //Gyro Channel
 constexpr double GYRO_PORT = 0;
@@ -125,11 +125,11 @@ constexpr int LR_AUTOLINE_DISTANCE = 120;
 
 //L_LeftSwitch and R_RightSwitch
 //line up directly with switch fence
-constexpr int LR_FIRST_DISTANCE_SWITCH_FENCE = 109;
+constexpr int LR_FIRST_DISTANCE_SWITCH_FENCE = 95;
 //line Outside the switch fence
-constexpr int LR_FIRST_DISTANCE_SWITCH_OFF_FENCE = 143;
+constexpr int LR_FIRST_DISTANCE_SWITCH_OFF_FENCE = 95;
 //star 36 inchees from wall
-constexpr int LR_SECOND_DISTANCE_SWITCH_OFF_FENCE = 20;
+constexpr int LR_SECOND_DISTANCE_SWITCH_OFF_FENCE = 40;
 
 //L_LeftScale and R_RightScale
 constexpr int LR_SCALE_FIRST_DISTANCE = 310;
@@ -156,7 +156,7 @@ constexpr int M_AUTO_LINE_ANGLE_L = -35;
 constexpr int M_DRIVE_OFF_WALL = 22;
 constexpr int M_SWITCH_DISTANCE_1 = 91;
 constexpr int M_SWITCH_ANGLE = 38;
-constexpr int M_SWITCH_DISTANCE_2 = 36;
+constexpr int M_SWITCH_DISTANCE_2 = 50;
 
 
 //Pathfinder CommandGroups
