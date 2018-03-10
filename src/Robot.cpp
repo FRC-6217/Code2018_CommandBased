@@ -13,11 +13,12 @@
 
 #include <memory>
 #include <iostream>
+//#include <cscore_oo.h>
 #include <TimedRobot.h>
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
 
-#include <CommandGroups\Auto1.h>
+#include "CommandGroups\Auto1.h"
 #include "CommandGroups\LR_AutoLine.h"
 #include "CommandGroups\LR_SideScale.h"
 #include "CommandGroups\LR_SideSwitch.h"
@@ -51,13 +52,19 @@ private:
 	frc::SendableChooser<int> _chooserPriorityScale;
 	frc::SendableChooser<int> _chooserPriorityOppositeSwitch;
 	frc::SendableChooser<int> _chooserPriorityOppositeScale;
+
 	//variables
+
+	// camera define
+//	cs::UsbCamera camera;
+//	cs::CvSink cvSink;
+//	cs::CvSource outputStreamStd;
+//	cv::Mat source;
 
 public:
 
 	void RobotInit() override {
 
-		//Choose if want to Cross to opposite side of field variables
 		CommandBase::init();
 
 		// Build Autonomous Mode Choices on Smart Dashboard
@@ -134,6 +141,23 @@ public:
 
 		//test Pathfinder from SmartDashboard//
 		//frc::SmartDashboard::PutData("Test Pathfinder", new Follow3PointTrajectory(2, 2, 315, -2, 4, 45, 2, 6, 0));
+
+		//Camera
+//		camera = cs::UsbCamera("DriveCam", 0);
+//		camera.SetBrightness(5);
+//		camera.SetExposureManual(50);
+
+		//Start Capture
+//		CameraServer::GetInstance()->StartAutomaticCapture(camera);
+//
+//		//Set resolution low- important
+//		camera.SetResolution(320, 240);
+//
+//		//Get frames from camera
+//		cvSink = CameraServer::GetInstance()->GetVideo(camera);
+//
+//		//output camera to Driver Station
+//		outputStreamStd = CameraServer::GetInstance()->PutVideo("Output", 320, 240);
 	}
 
 	void DisabledInit() override {}
@@ -288,6 +312,12 @@ public:
 	}
 
 	void AutonomousPeriodic() override {
+
+//		//getting the camera values cvSink.GrabFrame(source);
+//		cvSink.GrabFrame(source);
+//		//Send to driver station
+//		outputStreamStd.PutFrame(source);
+
 		frc::Scheduler::GetInstance()->Run();
 	}
 
@@ -299,6 +329,12 @@ public:
 	}
 
 	void TeleopPeriodic() override {
+
+//		//getting the camera values cvSink.GrabFrame(source);
+//		cvSink.GrabFrame(source);
+//		//Send to driver station
+//		outputStreamStd.PutFrame(source);
+
 		frc::Scheduler::GetInstance()->Run();
 	}
 
