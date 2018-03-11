@@ -104,12 +104,12 @@ constexpr double SPIT_OUT_CUDE_TIME = 2;
 
 //Auto distances
 //Lift factor
-constexpr float LIFTING_TO_SCALE_UPPER_1 = 30;
-constexpr float LIFTING_TO_SCALE_LOWER_2 = 10;
+constexpr float LIFTING_TO_SCALE_UPPER_1 = 50;
+constexpr float LIFTING_TO_SCALE_LOWER_2 = 50;
 
 //Lift Directions
-constexpr int LIFT_UP_DIRECTION = 1;
-constexpr int LIFT_DOWN_DIRECTION = -1;
+constexpr int LIFT_UP_DIRECTION = -1;
+constexpr int LIFT_DOWN_DIRECTION = 1;
 
 //Angle values
 constexpr int TURN_90_DEGREES = 90;
@@ -132,7 +132,7 @@ constexpr int LR_FIRST_DISTANCE_SWITCH_OFF_FENCE = 95;
 constexpr int LR_SECOND_DISTANCE_SWITCH_OFF_FENCE = 40;
 
 //L_LeftScale and R_RightScale
-constexpr int LR_SCALE_FIRST_DISTANCE = 310;
+constexpr int LR_SCALE_FIRST_DISTANCE = 185;
 constexpr int LR_SCALE_SECOND_DISTANCE = 17;
 
 //L_RightScale and R_LeftScale
@@ -155,7 +155,7 @@ constexpr int M_AUTO_LINE_ANGLE_L = -35;
 ///M_Switch//
 constexpr int M_DRIVE_OFF_WALL = 22;
 constexpr int M_SWITCH_DISTANCE_1 = 60;
-constexpr int M_SWITCH_ANGLE = 38;
+constexpr int M_SWITCH_ANGLE = 43;
 constexpr int M_SWITCH_DISTANCE_2 = 30;
 
 

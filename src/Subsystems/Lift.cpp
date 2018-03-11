@@ -3,9 +3,9 @@
 #include "..\Commands\LiftWithJoystick.h"
 
 Lift::Lift() : frc::Subsystem("Lift") {
-	_acmeScrew1 = new Spark(SPARK_ACMESCREW_1);
+	_acmeScrew1 = new Spark(SPARK_ACMESCREW_1);//Big
 	_acmeScrew1->IsSafetyEnabled();
-	_acmeScrew2 = new Spark(SPARK_ACMESCREW_2);
+	_acmeScrew2 = new Spark(SPARK_ACMESCREW_2);//Small
 	_acmeScrew2->IsSafetyEnabled();
 
 	_screw1Encoder = new frc::Encoder(SCREW_1_CHANNEL_A, SCREW_1_CHANNEL_B);

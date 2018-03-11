@@ -11,7 +11,7 @@ AutoLift1::AutoLift1(float heightToRaiseLift1, int screwDirection1) {
 	Requires(lift);
 	_heightToRaiseLift1 = heightToRaiseLift1;
 	_direction = screwDirection1;
-	SetTimeout(_heightToRaiseLift1/40);
+	SetTimeout(4.5);
 }
 
 // Called just before this Command runs the first time

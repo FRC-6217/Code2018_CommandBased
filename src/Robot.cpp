@@ -136,8 +136,8 @@ public:
 		frc::SmartDashboard::PutData("Test Left side Left Switch", new L_LeftSwitch());
 		frc::SmartDashboard::PutData("Drive 20 inches", new DriveDistance(20));
 		frc::SmartDashboard::PutData("Turn 90 degrees", new TurnDegrees(90));
-		//frc::SmartDashboard::PutData("Lift1 20 inches", new AutoLift1(20, 1));
-		//frc::SmartDashboard::PutData("Lift2 15 inches", new AutoLift2(15, 1));
+		//frc::SmartDashboard::PutData("Lift1 20 inches", new AutoLift1(20, -1));
+		frc::SmartDashboard::PutData("Lift2 15 inches", new AutoLift2(15, -1));
 
 		//test Pathfinder from SmartDashboard//
 		//frc::SmartDashboard::PutData("Test Pathfinder", new Follow3PointTrajectory(2, 2, 315, -2, 4, 45, 2, 6, 0));
@@ -201,16 +201,19 @@ public:
 #ifndef TEST
 		// Game data - for 2018 three characters indicating position of switch and scale (e.g. LRL)
 		//SetTimeout(2);
-		int i = 0;
+//		int i = 0;
+
+		WaitCommand(.2);
 		gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
-		while(gameData.empty() || (i < 50)) {
-			gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
-			WaitCommand(.02);
-			i++;
-		}
-		if (gameData.empty()){
-			gameData = "MMM";//THis will automatically go to autoLine
-		}
+
+//		while(gameData.empty() || (i < 50)) {
+//			gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
+//			WaitCommand(.02);
+//			i++;
+//		}
+//		if (gameData.empty()){
+//			gameData = "MMM";//THis will automatically go to autoLine
+//		}
 
 #endif
 #ifdef TEST
@@ -244,7 +247,7 @@ public:
 				found = true;
 			}
 			//Runs if Scale is current priority and if the scale is on the same side as the starting position
-			else if (currentPri == priorityGoal[SCALE] && scalePosition == startingPosition) {
+			else if (currentPri == priorityGoal[SCALE] && scalePosition == leftOrRightStart) {
 				_autoCommandGroup = new LR_SideScale(scalePosition);
 				chosenAuto = "LR_SideScale";
 				found = true;
