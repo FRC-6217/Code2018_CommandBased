@@ -22,8 +22,6 @@
 #include "CommandGroups\LR_AutoLine.h"
 #include "CommandGroups\LR_SideScale.h"
 #include "CommandGroups\LR_SideSwitch.h"
-#include "CommandGroups\LeftSideAuto\L_LeftScale.h"
-#include "CommandGroups\LeftSideAuto\L_LeftSwitch.h"
 #include "CommandGroups\LeftSideAuto\L_RightScale.h"
 #include "CommandGroups\LeftSideAuto\L_RightSwitch.h"
 #include "CommandGroups\MiddleAuto\M_LeftAutoLine.h"
@@ -31,8 +29,6 @@
 #include "CommandGroups\MiddleAuto\M_Switch.h"
 #include "CommandGroups\RightSideAuto\R_LeftScale.h"
 #include "CommandGroups\RightSideAuto\R_LeftSwitch.h"
-#include "CommandGroups\RightSideAuto\R_RightScale.h"
-#include "CommandGroups\RightSideAuto\R_RightSwitch.h"
 #include "CommandBase.h"
 #include "ctre\Phoenix.h"
 
@@ -70,11 +66,9 @@ public:
 		// Build Autonomous Mode Choices on Smart Dashboard
 
 		//Choose Starting Position
-		_chooserStartingPosition.AddObject("Left Outside", "LO");
-		_chooserStartingPosition.AddObject("Left Inside", "LI");
-		_chooserStartingPosition.AddObject("Middle", "M");
-		_chooserStartingPosition.AddDefault("Right Outside", "RO");
-		_chooserStartingPosition.AddObject("Right Inside", "RI");
+		_chooserStartingPosition.AddObject("Left", "L");
+		_chooserStartingPosition.AddDefault("Middle", "M");
+		_chooserStartingPosition.AddObject("Right", "R");
 		frc::SmartDashboard::PutData("Starting Position", &_chooserStartingPosition);
 
 		//Choose Priority AutoLine
@@ -117,47 +111,17 @@ public:
 		_chooserPriorityOppositeScale.AddDefault("5", 5);
 		frc::SmartDashboard::PutData("Opposite Scale Priority", &_chooserPriorityOppositeScale);
 
-		//Put Priority Order
-
-
-		//Choose if want to Cross field for scoring
-		//		_chooserCrossField.AddDefault("No", "N");
-		//		_chooserCrossField.AddObject("Yes", "Y");
-
-		//		frc::SmartDashboard::PutData("Cross field for Goal", &_chooserCrossField);
-
 		// Add Command Based Scheduler Status to dashboard
 		frc::SmartDashboard::PutData(frc::Scheduler::GetInstance());
 		// Add test commands on Smart Dashboard
 		frc::SmartDashboard::PutData("Test Auto 1", new Auto1());
 		frc::SmartDashboard::PutData("Test Middle Left Auto Line", new M_LeftAutoLine());
 		frc::SmartDashboard::PutData("Test Middle Right Auto Line", new M_RightAutoLine());
-		frc::SmartDashboard::PutData("Test Right side Right Switch", new R_RightSwitch());
-		frc::SmartDashboard::PutData("Test Left side Left Switch", new L_LeftSwitch());
 		frc::SmartDashboard::PutData("Drive 20 inches", new DriveDistance(20));
 		frc::SmartDashboard::PutData("Turn 90 degrees", new TurnDegrees(90));
 		//frc::SmartDashboard::PutData("Lift1 20 inches", new AutoLift1(20, -1));
 		frc::SmartDashboard::PutData("Lift2 15 inches", new AutoLift2(15, -1));
 
-		//test Pathfinder from SmartDashboard//
-		//frc::SmartDashboard::PutData("Test Pathfinder", new Follow3PointTrajectory(2, 2, 315, -2, 4, 45, 2, 6, 0));
-
-		//Camera
-//		camera = cs::UsbCamera("DriveCam", 0);
-//		camera.SetBrightness(5);
-//		camera.SetExposureManual(50);
-
-		//Start Capture
-//		CameraServer::GetInstance()->StartAutomaticCapture(camera);
-//
-//		//Set resolution low- important
-//		camera.SetResolution(320, 240);
-//
-//		//Get frames from camera
-//		cvSink = CameraServer::GetInstance()->GetVideo(camera);
-//
-//		//output camera to Driver Station
-//		outputStreamStd = CameraServer::GetInstance()->PutVideo("Output", 320, 240);
 	}
 
 	void DisabledInit() override {}
@@ -174,17 +138,10 @@ public:
 		std::string startingPosition;
 		std::string crossField;
 		std::string chosenAuto;
-		std::string leftOrRightStart;
-		std::string insideOrOutside;
 		std::string outside;
 		std::string left;
 		//Set Starting Position
-		crossField = "Y";
 		startingPosition = _chooserStartingPosition.GetSelected();
-		leftOrRightStart = startingPosition[0];
-		insideOrOutside = startingPosition[1];
-		outside = 'O';
-		left = "L";
 
 		//Set Priority Order
 		int priorityGoal[5];
@@ -194,11 +151,6 @@ public:
 		priorityGoal[OPPOSITE_SCALE] = _chooserPriorityOppositeScale.GetSelected();
 		priorityGoal[AUTO_LINE] = _chooserPriorityAutoLine.GetSelected();
 
-		//Set if want to Cross field for scoring
-		crossField = _chooserCrossField.GetSelected();
-
-
-#ifndef TEST
 		// Game data - for 2018 three characters indicating position of switch and scale (e.g. LRL)
 		//SetTimeout(2);
 //		int i = 0;
@@ -215,11 +167,6 @@ public:
 //			gameData = "MMM";//THis will automatically go to autoLine
 //		}
 
-#endif
-#ifdef TEST
-		// Default game data
-		gameData = "LRL";
-#endif
 		frc::SmartDashboard::PutString("Game Data", gameData);
 		switchPosition = gameData[0];
 		scalePosition = gameData[1];
@@ -228,26 +175,13 @@ public:
 		//Choose which Autonomous CommandGroup to run based on Inputs from SmartDashboard and Field Management System
 		for (int currentPri = 0; currentPri <= 4 && found != true; currentPri++) {
 			//Runs if Switch is current priority and if the switch is on the same side as the starting position
-			if (currentPri == priorityGoal[SWITCH] && switchPosition == leftOrRightStart) {
-				if(insideOrOutside == outside){
-					_autoCommandGroup = new LR_SideSwitch(switchPosition);
-					chosenAuto = "LR_SideSwitch";
-				}
-				else {
-					if (switchPosition == left){
-						_autoCommandGroup = new L_LeftSwitch();
-						chosenAuto = "L_LeftSwitch";
-					}
-					else{
-						_autoCommandGroup = new L_LeftSwitch();
-						chosenAuto = "R_RightSwitch";
-					}
-
-				}
+			if (currentPri == priorityGoal[SWITCH] && switchPosition == startingPosition) {
+				_autoCommandGroup = new LR_SideSwitch(switchPosition);
+				chosenAuto = "LR_SideSwitch";
 				found = true;
 			}
 			//Runs if Scale is current priority and if the scale is on the same side as the starting position
-			else if (currentPri == priorityGoal[SCALE] && scalePosition == leftOrRightStart) {
+			else if (currentPri == priorityGoal[SCALE] && scalePosition == startingPosition) {
 				_autoCommandGroup = new LR_SideScale(scalePosition);
 				chosenAuto = "LR_SideScale";
 				found = true;
