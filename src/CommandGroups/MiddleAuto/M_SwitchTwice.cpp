@@ -7,21 +7,27 @@
 
 #include "M_SwitchTwice.h"
 
-M_SwitchTwice::M_SwitchTwice() {
-	// Add Commands here:
-	// e.g. AddSequential(new Command1());
-	//      AddSequential(new Command2());
-	// these will run in order.
+M_SwitchTwice::M_SwitchTwice(std::string scoreSide) {
+	//Tells whether to turn Left or Right
+	if (scoreSide == "L") {
+		turnDirection = -1;
+		amountOfDistanceOne = 1;
+	}
+	else if (scoreSide == "R") {
+		turnDirection = 1;
+		amountOfDistanceOne = 1;
+	}
+	AddSequential(new DriveDistance(M_DRIVE_OFF_WALL));
+	AddSequential(new TurnDegrees(turnDirection * M_SWITCH_ANGLE)); //Turn toward our switch side
+	AddSequential(new DriveDistance(amountOfDistanceOne * M_SWITCH_DISTANCE_1)); // Drive to Switch
+	AddSequential(new TurnDegrees(-1 * turnDirection * M_SWITCH_ANGLE)); //Align back to straight
+	AddSequential(new DriveDistance(M_SWITCH_DISTANCE_2)); // Drive to Switch Wall
+	AddSequential(new spitOutCube());
 
-	// To run multiple commands at the same time,
-	// use AddParallel()
-	// e.g. AddParallel(new Command1());
-	//      AddSequential(new Command2());
-	// Command1 and Command2 will run in parallel.
+	//Going backwards to line up the the second cube
+	AddSequential(new DriveDistance(-M_SWITCH_DISTANCE_2)); // Drive to Switch Wall
+	AddSequential(new TurnDegrees(turnDirection * M_SWITCH_ANGLE)); //Align back to straight
+	AddSequential(new DriveDistance(-1 * amountOfDistanceOne * M_SWITCH_DISTANCE_1)); // Drive to Switch
 
-	// A command group will require all of the subsystems that each member
-	// would require.
-	// e.g. if Command1 requires chassis, and Command2 requires arm,
-	// a CommandGroup containing them would require both the chassis and the
-	// arm.
+	//
 }

@@ -1,16 +1,18 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
+#ifndef M_SwitchTwice_H
+#define M_SwitchTwice_H
 
-#pragma once
+//include Needed Commands
+#include "Commands/DriveDistance.h"
+#include "Commands/TurnDegrees.h"
+#include "Commands/spitOutCube.h"
 
-#include <Commands/CommandGroup.h>
-
-class M_SwitchTwice : public frc::CommandGroup {
+class M_SwitchTwice : public CommandGroup {
+private:
+	int turnDirection;
+	int amountOfDistanceOne;
 public:
-	M_SwitchTwice();
+	M_SwitchTwice(std::string scoreSide);
 };
+
+#endif  // M_Switch_H
 

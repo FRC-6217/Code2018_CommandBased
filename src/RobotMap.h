@@ -1,7 +1,7 @@
 #ifndef ROBOTMAP_H
 #define ROBOTMAP_H
 //#define TEST
-//#define SECONDARY_ROBOT
+#define SECONDARY_ROBOT
 #define TEST_ACCER
 //Only one or the other or both of the Second joystick has to be commented out
 //#define SECONDJOYSTICK
@@ -26,7 +26,7 @@ constexpr int LIFT_DIRECTION_UP = 1;
 constexpr int LIFT_DIRECTION_DOWN = -1;
 constexpr int LIFT_DIRECTION_STOP = 0;
 constexpr float ACME_SCREW_SPEED_UP = 1;
-constexpr float ACME_SCREW_SPEED_DOWN =.8;
+constexpr float ACME_SCREW_SPEED_DOWN = 1;
 
 // Drive Train Motor Controller Ports
 #ifdef SECONDARY_ROBOT

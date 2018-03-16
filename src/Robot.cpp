@@ -31,6 +31,7 @@
 #include "CommandGroups\RightSideAuto\R_LeftSwitch.h"
 #include "CommandBase.h"
 #include "ctre\Phoenix.h"
+#include <CameraServer.h>
 
 class Robot : public frc::TimedRobot {
 private:
@@ -60,8 +61,10 @@ private:
 public:
 
 	void RobotInit() override {
-
 		CommandBase::init();
+
+		//Doing the camera code
+		CameraServer::GetInstance()->StartAutomaticCapture();
 
 		// Build Autonomous Mode Choices on Smart Dashboard
 
