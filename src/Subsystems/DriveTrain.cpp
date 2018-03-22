@@ -229,3 +229,41 @@ void DriveTrain::TankDrive(double lPower, double rPower) {
 	_leftSide->Set(lPower);
 	_rightSide->Set(-rPower);
 }
+//This is for testing Do not call besides to test
+void DriveTrain::DriveRampUp(float yDir){
+	double SpeedOfY = 0;
+
+	yDir = fabs(yDir) > 0.10 ? yDir : 0.0;
+
+	//Acceleration of Y
+	//Checking if the Sign of last Speed of Y is a different sign of request speed or ydir
+	if (DriveTrain::signbit(yDir) != DriveTrain::signbit(lastSpeedOfY)){
+		lastSpeedOfY = 0;
+	}
+	//Do the Acceleration of turning
+	if (yDir == 0){
+		SpeedOfY = 0;
+	}
+	else if (fabs(yDir) <= fabs(lastSpeedOfY)){
+		SpeedOfY = yDir;
+	}
+	else if (fabs(yDir) > fabs(lastSpeedOfY)){
+		SpeedOfY =  lastSpeedOfY + (yDir * PERCENT_ACCEL);
+		if (!signbit(SpeedOfY) && SpeedOfY < 0.3){
+			SpeedOfY = 0.3;
+		}
+
+		else if (signbit(SpeedOfY) && SpeedOfY > -0.3){
+			SpeedOfY = -0.3;
+		}
+	}
+	if (SpeedOfY < .6){
+		_driveTrain->ArcadeDrive(-SpeedOfY, 0, true);
+	}
+	else{
+		_driveTrain->ArcadeDrive(0, 0, true);
+	}
+	frc::SmartDashboard::PutNumber("Speed Y", SpeedOfY);
+
+	lastSpeedOfY = SpeedOfY;
+}

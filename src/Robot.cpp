@@ -19,6 +19,7 @@
 #include <SmartDashboard/SmartDashboard.h>
 
 #include "CommandGroups\Auto1.h"
+#include "Commands\RampUp.h"
 #include "CommandGroups\LR_AutoLine.h"
 #include "CommandGroups\LR_SideScale.h"
 #include "CommandGroups\LR_SideSwitch.h"
@@ -120,7 +121,7 @@ public:
 		frc::SmartDashboard::PutData("Test Auto 1", new Auto1());
 		frc::SmartDashboard::PutData("Test Middle Left Auto Line", new M_LeftAutoLine());
 		frc::SmartDashboard::PutData("Test Middle Right Auto Line", new M_RightAutoLine());
-		frc::SmartDashboard::PutData("Drive 20 inches", new DriveDistance(20));
+		frc::SmartDashboard::PutData("Drive Ramp up.", new RampUp());
 		frc::SmartDashboard::PutData("Turn 90 degrees", new TurnDegrees(90));
 		//frc::SmartDashboard::PutData("Lift1 20 inches", new AutoLift1(20, -1));
 		frc::SmartDashboard::PutData("Lift2 15 inches", new AutoLift2(15, -1));

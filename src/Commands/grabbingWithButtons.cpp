@@ -56,12 +56,19 @@ void grabbingWithButtons::Execute() {
 #ifndef SECONDJOYSTICK_GAME_REPLACE
 	if (oi->GetGameController()->GetRawButton(GRABBER_IN_BUTTON) == 1){
 		currentDirection = GRABBER_IN;
+		currentSpeed = .8;
 	}
 	else if (oi->GetGameController()->GetRawButton(GRABBER_OUT_BUTTON) == 1){
 		currentDirection = GRABBER_OUT;
+		currentSpeed = .8;
+	}
+	else if (oi->GetGameController()->GetRawButton(GRABBER_SLOW_BUTTON) == 1){
+		currentDirection = GRABBER_SLOW;
+		currentSpeed = .5;
 	}
 	else if(oi->GetGameController()->GetRawButton(GRABBER_STOP_BUTTON) == 1){
 		currentDirection = GRABBER_STOP;
+		currentSpeed = .8;
 	}
 	if (currentDirection == GRABBER_STOP){
 		if (oi->GetGameController()->GetRawAxis(GRABBER_LEFT_SIDE_AXIS) >= .25){
@@ -85,7 +92,7 @@ void grabbingWithButtons::Execute() {
 		}
 	}
 	else {
-		grabber->RunGrabber(currentDirection, .8);
+		grabber->RunGrabber(currentDirection, currentSpeed);
 	}
 #endif
 }

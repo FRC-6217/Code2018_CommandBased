@@ -67,6 +67,7 @@ constexpr float TRIGGER_PERCENT_PRESS = .25;//trigger have a percent not a one
 constexpr int GRABBER_IN_BUTTON = 1;//a button In
 constexpr int GRABBER_OUT_BUTTON = 2;//b button Out
 constexpr int GRABBER_STOP_BUTTON = 3;//x Button Stop
+constexpr int GRABBER_SLOW_BUTTON = 4;//y Button Slow In
 constexpr int GRABBER_LEFT_SIDE_AXIS = 1;
 constexpr int GRABBER_RIGHT_SIDE_AXIS = 5;
 
@@ -77,6 +78,7 @@ constexpr int PRESSURE_SENSOR_CHANNEL = 3;
 //Grabber direction and speed
 constexpr int GRABBER_IN = -1;
 constexpr int GRABBER_OUT = 1;
+constexpr int GRABBER_SLOW = -1;
 constexpr int GRABBER_STOP = 0;
 constexpr float GRABBER_SPEED = 1.0;
 
@@ -132,7 +134,7 @@ constexpr int LR_FIRST_DISTANCE_SWITCH_OFF_FENCE = 95;
 constexpr int LR_SECOND_DISTANCE_SWITCH_OFF_FENCE = 40;
 
 //L_LeftScale and R_RightScale
-constexpr int LR_SCALE_FIRST_DISTANCE = 185;
+constexpr int LR_SCALE_FIRST_DISTANCE = 324;
 constexpr int LR_SCALE_SECOND_DISTANCE = 17;
 
 //L_RightScale and R_LeftScale
