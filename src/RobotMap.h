@@ -127,6 +127,10 @@ constexpr double TURN_39_POINT_44_DEGREES = 39.44;
 //LR_AutoLine
 constexpr int LR_AUTOLINE_DISTANCE = 120;
 
+//LR_AutoLinePush
+constexpr int LR_AUTOLINE_PUSH_DISTANCE_1 = 205;
+constexpr int LR_AUTOLINE_PUSH_DISTANCE_2 = 100;
+
 //L_LeftSwitch and R_RightSwitch
 //line up directly with switch fence
 constexpr int LR_FIRST_DISTANCE_SWITCH_FENCE = 95;

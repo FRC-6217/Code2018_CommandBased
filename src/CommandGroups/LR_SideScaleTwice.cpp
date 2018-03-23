@@ -1,4 +1,3 @@
-
 #include "LR_SideScaleTwice.h"
 
 LR_SideScaleTwice::LR_SideScaleTwice(std::string scoreSide) {
@@ -16,7 +15,7 @@ LR_SideScaleTwice::LR_SideScaleTwice(std::string scoreSide) {
 	AddSequential(new spitOutCube());
 
 	AddParallel(new AutoLift1(LIFTING_TO_SCALE_UPPER_1, LIFT_DOWN_DIRECTION));
-	AddSequential(new TurnDegrees(turnDirection * TURN_90_DEGREES));
+	AddSequential(new TurnDegrees(turnDirection * TURN_90_DEGREES * .85));
 	AddSequential(new DriveDistance(LR_SCALE_TWICE_AWAY_FROM_SCALE));
 	AddSequential(new TurnDegrees(-1 * turnDirection * TURN_39_POINT_44_DEGREES));
 	AddParallel(new SuckInCube());

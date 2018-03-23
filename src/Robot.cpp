@@ -21,7 +21,9 @@
 #include "CommandGroups\Auto1.h"
 #include "Commands\RampUp.h"
 #include "CommandGroups\LR_AutoLine.h"
+#include "CommandGroups\LR_AutoLinePush.h"
 #include "CommandGroups\LR_SideScale.h"
+#include "CommandGroups\LR_SideScaleTwice.h"
 #include "CommandGroups\LR_SideSwitch.h"
 #include "CommandGroups\LeftSideAuto\L_RightScale.h"
 #include "CommandGroups\LeftSideAuto\L_RightSwitch.h"
@@ -186,8 +188,8 @@ public:
 			}
 			//Runs if Scale is current priority and if the scale is on the same side as the starting position
 			else if (currentPri == priorityGoal[SCALE] && scalePosition == startingPosition) {
-				_autoCommandGroup = new LR_SideScale(scalePosition);
-				chosenAuto = "LR_SideScale";
+				_autoCommandGroup = new LR_SideScaleTwice(scalePosition);
+				chosenAuto = "LR_SideScaleTwice";
 				found = true;
 			}
 			//Runs if Opposite side Switch is current priority and if that switch is not on the same side as the starting position
@@ -216,8 +218,8 @@ public:
 			}
 			//Runs if Auto Line is current priority and the starting position is not the middle
 			else if (currentPri == priorityGoal[AUTO_LINE] && startingPosition != "M") {
-				_autoCommandGroup = new LR_AutoLine();
-				chosenAuto = "LR_AutoLine";
+				_autoCommandGroup = new LR_AutoLinePush(startingPosition);
+				chosenAuto = "LR_AutoLinePush";
 				found = true;
 			}
 			//Runs if Switch is current priority and the starting position is the middle

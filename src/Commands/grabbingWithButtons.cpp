@@ -63,7 +63,7 @@ void grabbingWithButtons::Execute() {
 		currentSpeed = .8;
 	}
 	else if (oi->GetGameController()->GetRawButton(GRABBER_SLOW_BUTTON) == 1){
-		currentDirection = GRABBER_SLOW;
+		currentDirection = GRABBER_OUT;
 		currentSpeed = .5;
 	}
 	else if(oi->GetGameController()->GetRawButton(GRABBER_STOP_BUTTON) == 1){
