@@ -2,18 +2,17 @@
 
 spitOutCube::spitOutCube() {
 	Requires(grabber);
-	SetTimeout(SPIT_OUT_CUDE_TIME);
+	SetTimeout(SPIT_OUT_CUBE_TIME);
 }
 
 // Called just before this Command runs the first time
 void spitOutCube::Initialize() {
 	frc::SmartDashboard::PutString("Command Message", "Spit Out Cube Start");
-	grabber->RunGrabber(GRABBER_OUT, .8);
 }
 
 // Called repeatedly when this Command is scheduled to run
 void spitOutCube::Execute() {
-
+	grabber->RunGrabber(GRABBER_OUT, .8);
 }
 
 // Make this return true when this Command no longer needs to run execute()

@@ -102,7 +102,7 @@ constexpr double KP_GYRO = -0.1;
 constexpr double DRIVE_ENC_20_INCHES = 20;
 
 //Grabber information
-constexpr double SPIT_OUT_CUDE_TIME = 2;
+constexpr double SPIT_OUT_CUBE_TIME = 2;
 
 //Auto distances
 //Lift factor
@@ -122,6 +122,8 @@ constexpr int R_TURN_LEFT_DEGREES = 90;
 constexpr int M_TURN_RIGHT_DEGREES = -90;
 constexpr int M_TURN_LEFT_DEGREES = 90;
 
+constexpr double TURN_39_POINT_44_DEGREES = 39.44;
+
 //LR_AutoLine
 constexpr int LR_AUTOLINE_DISTANCE = 120;
 
@@ -134,8 +136,12 @@ constexpr int LR_FIRST_DISTANCE_SWITCH_OFF_FENCE = 95;
 constexpr int LR_SECOND_DISTANCE_SWITCH_OFF_FENCE = 40;
 
 //L_LeftScale and R_RightScale
-constexpr int LR_SCALE_FIRST_DISTANCE = 324;
+constexpr int LR_SCALE_FIRST_DISTANCE = 307;
 constexpr int LR_SCALE_SECOND_DISTANCE = 17;
+
+//LR_SideScaleTwice
+constexpr double LR_SCALE_TWICE_AWAY_FROM_SCALE = 24.35;
+constexpr double LR_SCALE_TWICE_DRIVE_TO_CUBE = 134.2;
 
 //L_RightScale and R_LeftScale
 constexpr int LR_OPPOSITE_SCALE_FIRST_DISTANCE = 223.5;
