@@ -13,7 +13,6 @@
 
 #include <memory>
 #include <iostream>
-//#include <cscore_oo.h>
 #include <TimedRobot.h>
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
@@ -42,24 +41,18 @@ private:
 	// doesn't have undefined behavior and potentially crash.
 	frc::CommandGroup* _autoCommandGroup = nullptr;
 
-	//Choose Starting Position variable
+	//Sendable Chooser variable for choosing Starting Position
 	frc::SendableChooser<std::string> _chooserStartingPosition;
 
-	//Choose Priority Variables
-	frc::SendableChooser<int> _chooserPrioritySwitch;
-	frc::SendableChooser<int> _chooserCrossField;
+	//Sendable Chooser variable for choosing to grab a second cube
+	frc::SendableChooser<std::string> _chooserGrabSecondCube;
+
+	//Sendable Chooser variable for choosing Priority of Auto Scoring
 	frc::SendableChooser<int> _chooserPriorityAutoLine;
+	frc::SendableChooser<int> _chooserPrioritySwitch;
 	frc::SendableChooser<int> _chooserPriorityScale;
 	frc::SendableChooser<int> _chooserPriorityOppositeSwitch;
 	frc::SendableChooser<int> _chooserPriorityOppositeScale;
-
-	//variables
-
-	// camera define
-//	cs::UsbCamera camera;
-//	cs::CvSink cvSink;
-//	cs::CvSource outputStreamStd;
-//	cv::Mat source;
 
 public:
 
@@ -76,6 +69,11 @@ public:
 		_chooserStartingPosition.AddDefault("Middle", "M");
 		_chooserStartingPosition.AddObject("Right", "R");
 		frc::SmartDashboard::PutData("Starting Position", &_chooserStartingPosition);
+
+		//Choose if user wants to grab a second cube after scoring
+		_chooserGrabSecondCube.AddDefault("Yes", "Y");
+		_chooserGrabSecondCube.AddObject("No", "N");
+		frc::SmartDashboard::PutData("Grab Second Cube?", &_chooserGrabSecondCube);
 
 		//Choose Priority AutoLine
 		_chooserPriorityAutoLine.AddDefault("1", 1);
@@ -142,10 +140,34 @@ public:
 		std::string switchPosition;
 		std::string scalePosition;
 		std::string startingPosition;
-		std::string crossField;
+
 		std::string chosenAuto;
-		std::string outside;
-		std::string left;
+
+		// Game data - for 2018 three characters indicating position of switch and scale (e.g. LRL)
+		WaitCommand(.2);
+		gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
+
+		bool foundGameData = false;
+		for(int i = 0; i <50 && foundGameData != true; i++){
+			gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
+
+			if(gameData.empty()){
+				WaitCommand(.02);
+			}
+			else{
+				frc::SmartDashboard::PutString("Game Data", gameData);
+				foundGameData = true;
+			}
+		}
+
+		if (gameData.empty()){
+			gameData = "MMM";//THis will automatically go to autoLine
+		}
+
+
+		switchPosition = gameData[0];
+		scalePosition = gameData[1];
+
 		//Set Starting Position
 		startingPosition = _chooserStartingPosition.GetSelected();
 
@@ -156,26 +178,6 @@ public:
 		priorityGoal[OPPOSITE_SWITCH] = _chooserPriorityOppositeSwitch.GetSelected();
 		priorityGoal[OPPOSITE_SCALE] = _chooserPriorityOppositeScale.GetSelected();
 		priorityGoal[AUTO_LINE] = _chooserPriorityAutoLine.GetSelected();
-
-		// Game data - for 2018 three characters indicating position of switch and scale (e.g. LRL)
-		//SetTimeout(2);
-//		int i = 0;
-
-		WaitCommand(.2);
-		gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
-
-//		while(gameData.empty() || (i < 50)) {
-//			gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
-//			WaitCommand(.02);
-//			i++;
-//		}
-//		if (gameData.empty()){
-//			gameData = "MMM";//THis will automatically go to autoLine
-//		}
-
-		frc::SmartDashboard::PutString("Game Data", gameData);
-		switchPosition = gameData[0];
-		scalePosition = gameData[1];
 
 		bool found = false;
 		//Choose which Autonomous CommandGroup to run based on Inputs from SmartDashboard and Field Management System
@@ -193,7 +195,7 @@ public:
 				found = true;
 			}
 			//Runs if Opposite side Switch is current priority and if that switch is not on the same side as the starting position
-			else if (currentPri == priorityGoal[OPPOSITE_SWITCH] && switchPosition != startingPosition && crossField == "Y") {
+			else if (currentPri == priorityGoal[OPPOSITE_SWITCH] && switchPosition != startingPosition) {
 				if (startingPosition == "L") {
 					_autoCommandGroup = new L_RightSwitch();
 					chosenAuto = "L_RightSwitch";
@@ -205,7 +207,7 @@ public:
 				found = true;
 			}
 			//Runs if Opposite side Scale is current priority and if that scale is not on the same side as the starting position
-			else if (currentPri == priorityGoal[OPPOSITE_SCALE] && scalePosition != startingPosition && crossField == "Y") {
+			else if (currentPri == priorityGoal[OPPOSITE_SCALE] && scalePosition != startingPosition) {
 				if (startingPosition == "L") {
 					_autoCommandGroup = new L_RightScale();
 					chosenAuto = "L_RightScale";
