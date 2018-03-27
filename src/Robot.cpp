@@ -24,6 +24,7 @@
 #include "CommandGroups\LR_SideScale.h"
 #include "CommandGroups\LR_SideScaleTwice.h"
 #include "CommandGroups\LR_SideSwitch.h"
+#include "CommandGroups\LR_SideSwitchPush.h"
 #include "CommandGroups\LeftSideAuto\L_RightScale.h"
 #include "CommandGroups\LeftSideAuto\L_RightSwitch.h"
 #include "CommandGroups\MiddleAuto\M_LeftAutoLine.h"
@@ -117,10 +118,13 @@ public:
 
 		// Add Command Based Scheduler Status to dashboard
 		frc::SmartDashboard::PutData(frc::Scheduler::GetInstance());
+
 		// Add test commands on Smart Dashboard
 		frc::SmartDashboard::PutData("Test Auto 1", new Auto1());
 		frc::SmartDashboard::PutData("Test Middle Left Auto Line", new M_LeftAutoLine());
 		frc::SmartDashboard::PutData("Test Middle Right Auto Line", new M_RightAutoLine());
+		frc::SmartDashboard::PutData("Test Side Switch Push", new LR_SideSwitchPush("L"));
+
 		frc::SmartDashboard::PutData("Drive Ramp up.", new RampUp());
 		frc::SmartDashboard::PutData("Turn 90 degrees", new TurnDegrees(90));
 		//frc::SmartDashboard::PutData("Lift1 20 inches", new AutoLift1(20, -1));

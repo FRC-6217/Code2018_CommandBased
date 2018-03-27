@@ -30,10 +30,10 @@ constexpr float ACME_SCREW_SPEED_DOWN = 1;
 
 // Drive Train Motor Controller Ports
 #ifdef SECONDARY_ROBOT
-constexpr int VICTOR_SP_DRIVE_LEFT1		=	6; /* DeviceID matches the PWM Port */
-constexpr int VICTOR_SP_DRIVE_LEFT2		=	7; /* DeviceID matches the PWM Port */
-constexpr int VICTOR_SP_DRIVE_RIGHT1	=	8; /* DeviceID matches the PWM Port */
-constexpr int VICTOR_SP_DRIVE_RIGHT2	=	9; /* DeviceID matches the PWM Port */
+constexpr int VICTOR_SP_DRIVE_LEFT1		=	0; /* DeviceID matches the PWM Port */
+constexpr int VICTOR_SP_DRIVE_LEFT2		=	1; /* DeviceID matches the PWM Port */
+constexpr int VICTOR_SP_DRIVE_RIGHT1	=	2; /* DeviceID matches the PWM Port */
+constexpr int VICTOR_SP_DRIVE_RIGHT2	=	3; /* DeviceID matches the PWM Port */
 constexpr int VICTOR_SP_GRABBER_LEFT	=	4; /* DeviceID matches the PWM Port */
 constexpr int VICTOR_SP_GRABBER_RIGHT	=	5; /* DeviceID matches the PWM Port */
 #endif
@@ -135,9 +135,13 @@ constexpr int LR_AUTOLINE_PUSH_DISTANCE_2 = 100;
 //line up directly with switch fence
 constexpr int LR_FIRST_DISTANCE_SWITCH_FENCE = 95;
 //line Outside the switch fence
-constexpr int LR_FIRST_DISTANCE_SWITCH_OFF_FENCE = 95;
-//star 36 inchees from wall
+constexpr int LR_FIRST_DISTANCE_SWITCH_OFF_FENCE = 168;
+//star 36 inches from wall
 constexpr int LR_SECOND_DISTANCE_SWITCH_OFF_FENCE = 40;
+
+//LR_SideSwitchPush
+constexpr int LR_SIDE_SWITCH_PUSH_DISTANCE_1 = 31.5;
+constexpr int LR_SIDE_SWITCH_PUSH_DISTANCE_2 = 150; //Adjust
 
 //L_LeftScale and R_RightScale
 constexpr int LR_SCALE_FIRST_DISTANCE = 307;
