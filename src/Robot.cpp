@@ -48,6 +48,9 @@ private:
 	//Sendable Chooser variable for choosing to grab a second cube
 	frc::SendableChooser<std::string> _chooserGrabSecondCube;
 
+	//Sendable Chooser variable for choosing to push the cubes on the back of the switch to the opposite side of the arena
+	frc::SendableChooser<std::string> _chooserPushCubes;
+
 	//Sendable Chooser variable for choosing Priority of Auto Scoring
 	frc::SendableChooser<int> _chooserPriorityAutoLine;
 	frc::SendableChooser<int> _chooserPrioritySwitch;
@@ -75,6 +78,11 @@ public:
 		_chooserGrabSecondCube.AddDefault("Yes", "Y");
 		_chooserGrabSecondCube.AddObject("No", "N");
 		frc::SmartDashboard::PutData("Grab Second Cube?", &_chooserGrabSecondCube);
+
+		//Choose if user wants to push the cubes on the back wall of the switch to the opposite side of arena
+		_chooserPushCubes.AddDefault("Yes", "Y");
+		_chooserPushCubes.AddObject("No", "N");
+		frc::SmartDashboard::PutData("Push Cubes Along Switch Across Field?", &_chooserPushCubes);
 
 		//Choose Priority AutoLine
 		_chooserPriorityAutoLine.AddDefault("1", 1);
@@ -144,6 +152,8 @@ public:
 		std::string switchPosition;
 		std::string scalePosition;
 		std::string startingPosition;
+		std::string grabSecondCube;
+		std::string pushCubes;
 
 		std::string chosenAuto;
 
@@ -165,7 +175,7 @@ public:
 		}
 
 		if (gameData.empty()){
-			gameData = "MMM";//THis will automatically go to autoLine
+			gameData = "ZZZ";//THis will automatically go to autoLine
 		}
 
 
@@ -175,6 +185,12 @@ public:
 		//Set Starting Position
 		startingPosition = _chooserStartingPosition.GetSelected();
 
+		//Set if user wants to grab Second Cube after scoring (after Scale)
+		grabSecondCube = _chooserGrabSecondCube.GetSelected();
+
+		//Set if user wants to Push Cubes on back of switch (For autoline and after scoring in Switch)
+		pushCubes = _chooserPushCubes.GetSelected();
+
 		//Set Priority Order
 		int priorityGoal[5];
 		priorityGoal[SWITCH] = _chooserPrioritySwitch.GetSelected();
@@ -183,17 +199,32 @@ public:
 		priorityGoal[OPPOSITE_SCALE] = _chooserPriorityOppositeScale.GetSelected();
 		priorityGoal[AUTO_LINE] = _chooserPriorityAutoLine.GetSelected();
 
+
 		bool found = false;
 		//Choose which Autonomous CommandGroup to run based on Inputs from SmartDashboard and Field Management System
 		for (int currentPri = 0; currentPri <= 4 && found != true; currentPri++) {
 			//Runs if Switch is current priority and if the switch is on the same side as the starting position
-			if (currentPri == priorityGoal[SWITCH] && switchPosition == startingPosition) {
+			if (currentPri == priorityGoal[SWITCH] && switchPosition == startingPosition && pushCubes != "Y") {
 				_autoCommandGroup = new LR_SideSwitch(switchPosition);
 				chosenAuto = "LR_SideSwitch";
 				found = true;
 			}
+			//Runs if Switch is current priority, if the switch is on the same side as the starting position,
+			//and if the user wants to push the cubes along the Switch wall to the opposite side of the arena
+			else if(currentPri == priorityGoal[SWITCH] && switchPosition == startingPosition && pushCubes == "Y"){
+				_autoCommandGroup = new LR_SideSwitchPush(switchPosition);
+				chosenAuto = "LR_SideSwitchPush";
+				found = true;
+			}
 			//Runs if Scale is current priority and if the scale is on the same side as the starting position
-			else if (currentPri == priorityGoal[SCALE] && scalePosition == startingPosition) {
+			else if (currentPri == priorityGoal[SCALE] && scalePosition == startingPosition && grabSecondCube != "Y") {
+				_autoCommandGroup = new LR_SideScale(scalePosition);
+				chosenAuto = "LR_SideScale";
+				found = true;
+			}
+			//Runs if Scale is current priority, if the scale is on the same side as the starting position,
+			//and if the user wants to pick up a second cube after scoring
+			else if (currentPri == priorityGoal[SCALE] && scalePosition == startingPosition && grabSecondCube == "Y") {
 				_autoCommandGroup = new LR_SideScaleTwice(scalePosition);
 				chosenAuto = "LR_SideScaleTwice";
 				found = true;
@@ -223,7 +254,14 @@ public:
 				found = true;
 			}
 			//Runs if Auto Line is current priority and the starting position is not the middle
-			else if (currentPri == priorityGoal[AUTO_LINE] && startingPosition != "M") {
+			else if (currentPri == priorityGoal[AUTO_LINE] && startingPosition != "M" && pushCubes != "Y") {
+				_autoCommandGroup = new LR_AutoLine();
+				chosenAuto = "LR_AutoLine";
+				found = true;
+			}
+			//Runs if Auto Line is current priority, the starting position is not the middle
+			//and if the user wants to push the cubes along the switch to the opposite side of arena
+			else if (currentPri == priorityGoal[AUTO_LINE] && startingPosition != "M" && pushCubes == "Y") {
 				_autoCommandGroup = new LR_AutoLinePush(startingPosition);
 				chosenAuto = "LR_AutoLinePush";
 				found = true;
