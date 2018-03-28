@@ -5,7 +5,7 @@
 
 class SuckInCube : public CommandBase {
 public:
-	SuckInCube();
+	SuckInCube(int secondsToGrab);
 	void Initialize();
 	void Execute();
 	bool IsFinished();
