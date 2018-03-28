@@ -168,11 +168,16 @@ constexpr int M_FIRST_AUTO_LINE_DISTANCE = 22;
 constexpr int M_AUTO_LINE_ANGLE_R = 35;
 constexpr int M_AUTO_LINE_ANGLE_L = -35;
 
-///M_Switch//
+//M_Switch//
 constexpr int M_DRIVE_OFF_WALL = 22;
 constexpr int M_SWITCH_DISTANCE_1 = 60;
 constexpr int M_SWITCH_ANGLE = 43;
 constexpr int M_SWITCH_DISTANCE_2 = 30;
+
+//M_SwitchTwice
+constexpr int M_SWITCH_TWICE_1 = -30;
+constexpr double M_SWITCH_TWICE_ANGLE = 63.4;
+constexpr int M_SWITCH_TWICE_2 = 40;
 
 
 //Pathfinder CommandGroups

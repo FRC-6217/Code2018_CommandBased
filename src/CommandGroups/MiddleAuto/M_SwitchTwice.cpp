@@ -17,6 +17,7 @@ M_SwitchTwice::M_SwitchTwice(std::string scoreSide) {
 		turnDirection = 1;
 		amountOfDistanceOne = 1;
 	}
+	//Score in Switch from Middle Starting Position
 	AddSequential(new DriveDistance(M_DRIVE_OFF_WALL));
 	AddSequential(new TurnDegrees(turnDirection * M_SWITCH_ANGLE)); //Turn toward our switch side
 	AddSequential(new DriveDistance(amountOfDistanceOne * M_SWITCH_DISTANCE_1)); // Drive to Switch
@@ -24,10 +25,15 @@ M_SwitchTwice::M_SwitchTwice(std::string scoreSide) {
 	AddSequential(new DriveDistance(M_SWITCH_DISTANCE_2)); // Drive to Switch Wall
 	AddSequential(new spitOutCube());
 
-	//Going backwards to line up the the second cube
-	AddSequential(new DriveDistance(-M_SWITCH_DISTANCE_2)); // Drive to Switch Wall
-	AddSequential(new TurnDegrees(turnDirection * M_SWITCH_ANGLE)); //Align back to straight
-	AddSequential(new DriveDistance(-1 * amountOfDistanceOne * M_SWITCH_DISTANCE_1)); // Drive to Switch
+	//Grab Second Cube
+	AddSequential(new DriveDistance(M_SWITCH_TWICE_1)); // Drive away from Switch Wall
+	AddSequential(new TurnDegrees(-1 * turnDirection * M_SWITCH_TWICE_ANGLE)); //Align with Cube in front of Switch(corner cube)
+	AddParallel(new SuckInCube(3));
+	AddSequential(new DriveDistance(amountOfDistanceOne * M_SWITCH_TWICE_2)); //Drive to Grab Cube
 
-	//
+	//Drive back to Switch to Score Again
+	AddSequential(new DriveDistance(-1 * amountOfDistanceOne * M_SWITCH_TWICE_2)); //Drive backwards from cube pile
+	AddSequential(new TurnDegrees(turnDirection * M_SWITCH_TWICE_ANGLE)); //Align with Switch Again
+	AddSequential(new DriveDistance((-1 * M_SWITCH_TWICE_1) + 5)); // Drive Towards Switch Wall(add 5 inches to be sure to hit the wall)
+	AddSequential(new spitOutCube());
 }

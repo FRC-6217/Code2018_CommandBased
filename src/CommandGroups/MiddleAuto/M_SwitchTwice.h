@@ -5,6 +5,7 @@
 #include "Commands/DriveDistance.h"
 #include "Commands/TurnDegrees.h"
 #include "Commands/spitOutCube.h"
+#include "Commands/SuckInCube.h"
 
 class M_SwitchTwice : public CommandGroup {
 private:
