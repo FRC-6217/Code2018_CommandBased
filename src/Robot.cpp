@@ -30,6 +30,7 @@
 #include "CommandGroups\MiddleAuto\M_LeftAutoLine.h"
 #include "CommandGroups\MiddleAuto\M_RightAutoLine.h"
 #include "CommandGroups\MiddleAuto\M_Switch.h"
+#include "CommandGroups\MiddleAuto\M_SwitchTwice.h"
 #include "CommandGroups\RightSideAuto\R_LeftScale.h"
 #include "CommandGroups\RightSideAuto\R_LeftSwitch.h"
 #include "CommandBase.h"
@@ -267,9 +268,16 @@ public:
 				found = true;
 			}
 			//Runs if Switch is current priority and the starting position is the middle
-			else if (currentPri == priorityGoal[SWITCH] && startingPosition == "M") {
+			else if (currentPri == priorityGoal[SWITCH] && startingPosition == "M" && grabSecondCube != "Y") {
 				_autoCommandGroup = new M_Switch(switchPosition);
 				chosenAuto = "M_Switch";
+				found = true;
+			}
+			//Runs if Switch is current priority, the starting position is the middle,
+			//and the user would like to grab a second cube after scoring and score again
+			else if (currentPri == priorityGoal[SWITCH] && startingPosition == "M" && grabSecondCube == "Y") {
+				_autoCommandGroup = new M_SwitchTwice(switchPosition);
+				chosenAuto = "M_SwitchTwice";
 				found = true;
 			}
 			//Runs if Auto line is current priority and the starting position is the middle
