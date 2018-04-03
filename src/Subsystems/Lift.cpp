@@ -25,6 +25,9 @@ void Lift::Lift1Operate(int direction) {
 	else if(direction == LIFT_DIRECTION_DOWN) {
 		_acmeScrew1->Set(ACME_SCREW_SPEED_DOWN);
 	}
+	else if(direction == LIFT_DIRECTION_FAST){
+		_acmeScrew1->Set(ACME_SCREW_SPEED_FAST);
+	}
 	else {
 		_acmeScrew1->Set(0);
 	}

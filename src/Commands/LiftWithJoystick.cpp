@@ -23,7 +23,9 @@ void LiftWithJoystick::Execute() {
 	else if(lift1Down >= TRIGGER_PERCENT_PRESS) {
 		lift1Direction = LIFT_DIRECTION_DOWN;
 	}
-
+	else if(oi->GetGameController()->GetRawButton(LIFT_1_FAST)){
+		lift1Direction = LIFT_DIRECTION_FAST;
+	}
 	lift->Lift1Operate(lift1Direction);
 
 	//Determine Lift2 Direction based off buttons

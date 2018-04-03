@@ -24,9 +24,11 @@ constexpr int SCREW_2_CHANNEL_B = 7;
 constexpr double SCREW_2_ENCODER_VERTICAL_DPP = 0.00048828125;
 constexpr int LIFT_DIRECTION_UP = 1;
 constexpr int LIFT_DIRECTION_DOWN = -1;
+constexpr int LIFT_DIRECTION_FAST = -1.1;
 constexpr int LIFT_DIRECTION_STOP = 0;
 constexpr float ACME_SCREW_SPEED_UP = 1;
-constexpr float ACME_SCREW_SPEED_DOWN = 1;
+constexpr float ACME_SCREW_SPEED_DOWN = -.8;
+constexpr float ACME_SCREW_SPEED_FAST = -1;
 
 // Drive Train Motor Controller Ports
 #ifdef SECONDARY_ROBOT
@@ -61,6 +63,7 @@ constexpr int XY_DRIVE_GOVERNOR_NUMBER = 3;
 constexpr int ROT_DRIVE_GOVERNOR_NUMBER = 4;
 constexpr int LIFT_1_UP = 6; //Right Bumper Button
 constexpr int LIFT_1_DOWN = 3; //Right Trigger Button
+constexpr int LIFT_1_FAST = 8;//Start button
 constexpr int LIFT_2_UP = 5; //Left Bumper Up
 constexpr int LIFT_2_DOWN = 2; //Left Trigger Down
 constexpr float TRIGGER_PERCENT_PRESS = .25;//trigger have a percent not a one
@@ -128,7 +131,7 @@ constexpr double TURN_39_POINT_44_DEGREES = 39.44;
 constexpr int LR_AUTOLINE_DISTANCE = 120;
 
 //LR_AutoLinePush
-constexpr int LR_AUTOLINE_PUSH_DISTANCE_1 = 205;
+constexpr int LR_AUTOLINE_PUSH_DISTANCE_1 = 244;
 constexpr int LR_AUTOLINE_PUSH_DISTANCE_2 = 100;
 
 //L_LeftSwitch and R_RightSwitch
@@ -170,9 +173,9 @@ constexpr int M_AUTO_LINE_ANGLE_L = -35;
 
 //M_Switch//
 constexpr int M_DRIVE_OFF_WALL = 22;
-constexpr int M_SWITCH_DISTANCE_1 = 60;
+constexpr int M_SWITCH_DISTANCE_1 = 105;
 constexpr int M_SWITCH_ANGLE = 43;
-constexpr int M_SWITCH_DISTANCE_2 = 30;
+constexpr int M_SWITCH_DISTANCE_2 = 45;
 
 //M_SwitchTwice
 constexpr int M_SWITCH_TWICE_1 = -30;

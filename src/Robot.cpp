@@ -159,8 +159,8 @@ public:
 		std::string chosenAuto;
 
 		// Game data - for 2018 three characters indicating position of switch and scale (e.g. LRL)
-		WaitCommand(.2);
-		gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
+		//WaitCommand(.2);
+		//gameData = frc::DriverStation::GetInstance().GetGameSpecificMessage();
 
 		bool foundGameData = false;
 		for(int i = 0; i <50 && foundGameData != true; i++){
