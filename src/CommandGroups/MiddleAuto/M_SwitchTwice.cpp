@@ -26,12 +26,14 @@ M_SwitchTwice::M_SwitchTwice(std::string scoreSide) {
 	AddSequential(new spitOutCube());
 
 	//Grab Second Cube
+	AddParallel(new AutoLift1(40, -1)); //bring the lift down
 	AddSequential(new DriveDistance(M_SWITCH_TWICE_1)); // Drive away from Switch Wall
 	AddSequential(new TurnDegrees(-1 * turnDirection * M_SWITCH_TWICE_ANGLE)); //Align with Cube in front of Switch(corner cube)
 	AddParallel(new SuckInCube(3));
 	AddSequential(new DriveDistance(amountOfDistanceOne * M_SWITCH_TWICE_2)); //Drive to Grab Cube
 
 	//Drive back to Switch to Score Again
+	AddParallel(new AutoLift1(40, 1)); //bring the lift back up
 	AddSequential(new DriveDistance(-1 * amountOfDistanceOne * M_SWITCH_TWICE_2)); //Drive backwards from cube pile
 	AddSequential(new TurnDegrees(turnDirection * M_SWITCH_TWICE_ANGLE)); //Align with Switch Again
 	AddSequential(new DriveDistance((-1 * M_SWITCH_TWICE_1) + 5)); // Drive Towards Switch Wall(add 5 inches to be sure to hit the wall)
