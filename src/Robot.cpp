@@ -59,13 +59,18 @@ private:
 	frc::SendableChooser<int> _chooserPriorityOppositeSwitch;
 	frc::SendableChooser<int> _chooserPriorityOppositeScale;
 
+	//setting up camera port
+	cs::UsbCamera _camera = cs::UsbCamera("usb0",1);
 public:
 
 	void RobotInit() override {
 		CommandBase::init();
 
 		//Doing the camera code
-		CameraServer::GetInstance()->StartAutomaticCapture();
+		_camera.SetBrightness(BRIGHTNESS);
+		_camera.SetExposureManual(EXPOSURE);
+		_camera.SetResolution(WIDTH_RESOL, HEIGHT_RESOL);
+		CameraServer::GetInstance()->StartAutomaticCapture(_camera);
 
 		// Build Autonomous Mode Choices on Smart Dashboard
 

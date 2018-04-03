@@ -51,6 +51,11 @@ constexpr int GRABBER_RIGHT_SIDE_PORT = 46;
 
 #endif
 
+//Camera setting
+constexpr int EXPOSURE = 50;
+constexpr int BRIGHTNESS = 5;
+constexpr int WIDTH_RESOL = 320;
+constexpr int HEIGHT_RESOL = 240;
 // Joystick Ports
 constexpr int DRIVE_JOYSTICK_PORT	=	0;
 constexpr int GAME_CONTROLLER_PORT  =	1;
