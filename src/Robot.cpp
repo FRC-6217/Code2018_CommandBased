@@ -77,7 +77,7 @@ public:
 		CameraServer::GetInstance()->StartAutomaticCapture();
 //
 //		_camera.SetResolution(WIDTH_RESOL, HEIGHT_RESOL);
-		// Build Autonomous Mode Choices on Smart Dashboard
+		// Build Autonomous Mode Choices on Smart  Dashboard
 
 		//Choose Starting Position
 		_chooserStartingPosition.AddObject("Left", "L");
