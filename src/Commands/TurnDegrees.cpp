@@ -14,7 +14,7 @@ TurnDegrees::TurnDegrees(float turnDegrees) {
 	Requires(driveTrain);
 	_turnDegrees = turnDegrees;
 	//Will stop the robot even if the gyro isn't working
-	SetTimeout(fabs(_turnDegrees/69.5));
+	SetTimeout(fabs(_turnDegrees/79));
 }
 
 // Called just before this Command runs the first time

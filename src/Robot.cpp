@@ -36,6 +36,7 @@
 #include "CommandBase.h"
 #include "ctre\Phoenix.h"
 #include <CameraServer.h>
+#include <cscore.h>
 
 class Robot : public frc::TimedRobot {
 private:
@@ -59,19 +60,23 @@ private:
 	frc::SendableChooser<int> _chooserPriorityOppositeSwitch;
 	frc::SendableChooser<int> _chooserPriorityOppositeScale;
 
-	//setting up camera port
-	cs::UsbCamera _camera = cs::UsbCamera("usb0",1);
+
 public:
 
 	void RobotInit() override {
 		CommandBase::init();
 
-		//Doing the camera code
-		_camera.SetBrightness(BRIGHTNESS);
-		_camera.SetExposureManual(EXPOSURE);
-		_camera.SetResolution(WIDTH_RESOL, HEIGHT_RESOL);
-		CameraServer::GetInstance()->StartAutomaticCapture(_camera);
+		//setting up camera port
+//		cs::UsbCamera _camera = cs::UsbCamera("usb0",0);
 
+//		CameraServer::GetInstance()->StartAutomaticCapture(_camera);
+		//Doing the camera code
+//		_camera.SetBrightness(BRIGHTNESS);
+//		_camera.SetExposureManual(EXPOSURE);
+//
+		CameraServer::GetInstance()->StartAutomaticCapture();
+//
+//		_camera.SetResolution(WIDTH_RESOL, HEIGHT_RESOL);
 		// Build Autonomous Mode Choices on Smart Dashboard
 
 		//Choose Starting Position

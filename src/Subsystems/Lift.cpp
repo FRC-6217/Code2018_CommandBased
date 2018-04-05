@@ -20,7 +20,7 @@ void Lift::InitDefaultCommand() {
 
 void Lift::Lift1Operate(int direction) {
 	if(direction == LIFT_DIRECTION_UP) {
-		_acmeScrew1->Set(-ACME_SCREW_SPEED_UP);
+		_acmeScrew1->Set(ACME_SCREW_SPEED_UP);
 	}
 	else if(direction == LIFT_DIRECTION_DOWN) {
 		_acmeScrew1->Set(ACME_SCREW_SPEED_DOWN);
