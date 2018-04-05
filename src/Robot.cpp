@@ -17,8 +17,11 @@
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
 
+#include "Subsystems\DriveTrain.h"
 #include "CommandGroups\Auto1.h"
 #include "Commands\RampUp.h"
+#include "Commands\AutoLift1.h"
+#include "Commands\AutoLift2.h"
 #include "CommandGroups\LR_AutoLine.h"
 #include "CommandGroups\LR_AutoLinePush.h"
 #include "CommandGroups\LR_SideScale.h"
@@ -66,17 +69,10 @@ public:
 	void RobotInit() override {
 		CommandBase::init();
 
-		//setting up camera port
-//		cs::UsbCamera _camera = cs::UsbCamera("usb0",0);
+		//Create Camera, Start Capturing, Set Resolution
+		cs::UsbCamera camera = CameraServer::GetInstance()->StartAutomaticCapture();
+		camera.SetResolution(WIDTH_RESOL, HEIGHT_RESOL);
 
-//		CameraServer::GetInstance()->StartAutomaticCapture(_camera);
-		//Doing the camera code
-//		_camera.SetBrightness(BRIGHTNESS);
-//		_camera.SetExposureManual(EXPOSURE);
-//
-		CameraServer::GetInstance()->StartAutomaticCapture();
-//
-//		_camera.SetResolution(WIDTH_RESOL, HEIGHT_RESOL);
 		// Build Autonomous Mode Choices on Smart  Dashboard
 
 		//Choose Starting Position
@@ -146,8 +142,10 @@ public:
 
 		frc::SmartDashboard::PutData("Drive Ramp up.", new RampUp());
 		frc::SmartDashboard::PutData("Turn 90 degrees", new TurnDegrees(90));
-		//frc::SmartDashboard::PutData("Lift1 20 inches", new AutoLift1(20, -1));
-		frc::SmartDashboard::PutData("Lift2 15 inches", new AutoLift2(15, -1));
+
+		frc::SmartDashboard::PutData("Lift1 4.5sec", new AutoLift1(20, 1));
+		frc::SmartDashboard::PutData("Lift2 4.5sec", new AutoLift2(15, 1));
+
 
 	}
 

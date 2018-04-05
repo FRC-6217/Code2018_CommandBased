@@ -17,7 +17,7 @@ public:
 	Lift();
 	void InitDefaultCommand();
 	void Lift1Operate(int direction);
-	void Lift2Operate(int direction);
+	void Lift2Operate(double direction);
 
 	void ResetEncoder2();
 	void ResetEncoder1();

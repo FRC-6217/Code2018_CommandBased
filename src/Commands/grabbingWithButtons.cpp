@@ -2,6 +2,9 @@
 
 grabbingWithButtons::grabbingWithButtons() {
 	Requires(grabber);
+
+	currentSpeed = 0;
+	currentDirection = GRABBER_STOP;
 }
 
 // Called just before this Command runs the first time

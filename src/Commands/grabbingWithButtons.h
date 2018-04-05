@@ -5,8 +5,8 @@
 
 class grabbingWithButtons : public CommandBase {
 private:
-	int currentDirection = GRABBER_STOP;
-	int currentSpeed = .0;
+	int currentDirection;
+	float currentSpeed;
 public:
 	grabbingWithButtons();
 	void Initialize() override;

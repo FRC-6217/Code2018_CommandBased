@@ -3,7 +3,7 @@
 AutoLift2::AutoLift2(float heightToRaiseLift2, int screwDirection2) {
 	Requires(lift);
 	_heightToRaiseLift2 = heightToRaiseLift2;
-	//SetTimeout(4.5);
+	SetTimeout(4.5);
 	_direction = screwDirection2;
 }
 
@@ -19,7 +19,7 @@ void AutoLift2::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool AutoLift2::IsFinished() {
-	return lift->GetEncoder2() >= _heightToRaiseLift2; // || IsTimedOut();
+	return lift->GetEncoder2() >= _heightToRaiseLift2 || IsTimedOut();
 }
 
 // Called once after isFinished returns true

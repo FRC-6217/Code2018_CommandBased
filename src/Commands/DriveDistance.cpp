@@ -3,7 +3,7 @@
 DriveDistance::DriveDistance(float distanceToDrive) {
 	Requires(driveTrain);
 	_distanceToDrive = distanceToDrive;
-	SetTimeout(((fabs(_distanceToDrive) - 21.5)/44.262) + 1);
+	SetTimeout(((fabs(_distanceToDrive) - 14)/28.24) + 1.3);
 }
 
 // Called just before this Command runs the first time

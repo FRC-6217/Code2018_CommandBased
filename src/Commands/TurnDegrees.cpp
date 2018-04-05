@@ -8,13 +8,11 @@
 
 #include "TurnDegrees.h"
 
-
-
 TurnDegrees::TurnDegrees(float turnDegrees) {
 	Requires(driveTrain);
-	_turnDegrees = turnDegrees;
+	_turnDegrees = (turnDegrees - 10);
 	//Will stop the robot even if the gyro isn't working
-	SetTimeout(fabs(_turnDegrees/79));
+	//SetTimeout(fabs(_turnDegrees/79));
 }
 
 // Called just before this Command runs the first time
@@ -36,7 +34,7 @@ void TurnDegrees::Execute() {
 
 // Make this return true when this Command no longer needs to run execute()
 bool TurnDegrees::IsFinished() {
-	return (fabs(driveTrain->GetGyroAngle()) > fabs(_turnDegrees) || IsTimedOut());
+	return (fabs(driveTrain->GetGyroAngle()) >= fabs(_turnDegrees)); //|| IsTimedOut());
 }
 
 // Called once after isFinished returns true

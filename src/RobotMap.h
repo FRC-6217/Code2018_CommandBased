@@ -1,7 +1,7 @@
 #ifndef ROBOTMAP_H
 #define ROBOTMAP_H
 //#define TEST
-#define SECONDARY_ROBOT
+//#define SECONDARY_ROBOT
 #define TEST_ACCER
 //Only one or the other or both of the Second joystick has to be commented out
 //#define SECONDJOYSTICK
@@ -11,7 +11,7 @@
 
 // Speed of Auto Programs
 constexpr float DRIVE_DISTANCE_SPEED = -.6;
-constexpr float TURN_DEGREES_SPEED = .6; //If this is changed then you must go and change Timer.
+constexpr float TURN_DEGREES_SPEED = .5; //If this is changed then you must go and change Timer.
 
 //Lift motor controller ports
 constexpr int SPARK_ACMESCREW_1 = 8;
@@ -24,10 +24,10 @@ constexpr int SCREW_2_CHANNEL_B = 7;
 constexpr double SCREW_2_ENCODER_VERTICAL_DPP = 0.00048828125;
 constexpr int LIFT_DIRECTION_UP = 1;
 constexpr int LIFT_DIRECTION_DOWN = -1;
-constexpr int LIFT_DIRECTION_FAST = -1.1;
+constexpr int LIFT_DIRECTION_FAST = -2;
 constexpr int LIFT_DIRECTION_STOP = 0;
 constexpr float ACME_SCREW_SPEED_UP = 1;
-constexpr float ACME_SCREW_SPEED_DOWN = -.8;
+constexpr float ACME_SCREW_SPEED_DOWN = -0.8;
 constexpr float ACME_SCREW_SPEED_FAST = -1;
 
 // Drive Train Motor Controller Ports
@@ -118,8 +118,8 @@ constexpr float LIFTING_TO_SCALE_UPPER_1 = 50;
 constexpr float LIFTING_TO_SCALE_LOWER_2 = 50;
 
 //Lift Directions
-constexpr int LIFT_UP_DIRECTION = -1;
-constexpr int LIFT_DOWN_DIRECTION = 1;
+constexpr int LIFT_UP_DIRECTION = 1;
+constexpr int LIFT_DOWN_DIRECTION = -1;
 
 //Angle values
 constexpr int TURN_90_DEGREES = 90;
@@ -178,7 +178,7 @@ constexpr int M_AUTO_LINE_ANGLE_L = -35;
 
 //M_Switch//
 constexpr int M_DRIVE_OFF_WALL = 22;
-constexpr int M_SWITCH_DISTANCE_1 = 105;
+constexpr int M_SWITCH_DISTANCE_1 = 80;
 constexpr int M_SWITCH_ANGLE = 43;
 constexpr int M_SWITCH_DISTANCE_2 = 45;
 

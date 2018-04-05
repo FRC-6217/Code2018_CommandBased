@@ -1,3 +1,5 @@
+//Lift1 = Small(grabber stage)
+//Lift2 = Big(lift stage)
 #include "Lift.h"
 #include "..\CommandBase.h"
 #include "..\Commands\LiftWithJoystick.h"
@@ -20,25 +22,25 @@ void Lift::InitDefaultCommand() {
 
 void Lift::Lift1Operate(int direction) {
 	if(direction == LIFT_DIRECTION_UP) {
-		_acmeScrew1->Set(ACME_SCREW_SPEED_UP);
+		_acmeScrew1->Set(-ACME_SCREW_SPEED_UP);//inverted motor
 	}
 	else if(direction == LIFT_DIRECTION_DOWN) {
-		_acmeScrew1->Set(ACME_SCREW_SPEED_DOWN);
-	}
-	else if(direction == LIFT_DIRECTION_FAST){
-		_acmeScrew1->Set(ACME_SCREW_SPEED_FAST);
+		_acmeScrew1->Set(-ACME_SCREW_SPEED_DOWN);//inverted motor
 	}
 	else {
 		_acmeScrew1->Set(0);
 	}
 }
-void Lift::Lift2Operate(int direction) {
+void Lift::Lift2Operate(double direction) {
 	if(direction == LIFT_DIRECTION_UP) {
 		_acmeScrew2->Set(ACME_SCREW_SPEED_UP);
 	}
 	else if(direction == LIFT_DIRECTION_DOWN) {
-		_acmeScrew2->Set(-ACME_SCREW_SPEED_DOWN);
+		_acmeScrew2->Set(ACME_SCREW_SPEED_DOWN);
 	}
+	else if(direction == LIFT_DIRECTION_FAST){
+		_acmeScrew2->Set(ACME_SCREW_SPEED_FAST);
+		}
 	else {
 		_acmeScrew2->Set(0);
 	}

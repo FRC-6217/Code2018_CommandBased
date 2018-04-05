@@ -2,11 +2,12 @@
 
 DriveWithJoystick::DriveWithJoystick() {
 	Requires(driveTrain);
-
 }
 
 void DriveWithJoystick::Initialize() {
 	driveTrain->ResetEncoders();
+	driveTrain->ResetGyro();
+//	driveTrain->CalibrateGyro();
 }
 
 void DriveWithJoystick::Execute()

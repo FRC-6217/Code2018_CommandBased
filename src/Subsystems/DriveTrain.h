@@ -64,6 +64,7 @@ public:
 	double GetLEncoderValue();
 	void ResetGyro();
 	double GetGyroAngle();
+	void CalibrateGyro();
 	void DriveRampUp(float yDir);
 
 };

@@ -267,3 +267,7 @@ void DriveTrain::DriveRampUp(float yDir){
 
 	lastSpeedOfY = SpeedOfY;
 }
+
+void DriveTrain::CalibrateGyro() {
+	_gyro->Calibrate();
+}
