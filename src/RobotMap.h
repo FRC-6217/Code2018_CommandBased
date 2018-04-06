@@ -143,7 +143,7 @@ constexpr int LR_AUTOLINE_PUSH_DISTANCE_2 = 100;
 //line up directly with switch fence
 constexpr int LR_FIRST_DISTANCE_SWITCH_FENCE = 95;
 //line Outside the switch fence
-constexpr int LR_FIRST_DISTANCE_SWITCH_OFF_FENCE = 168;
+constexpr int LR_FIRST_DISTANCE_SWITCH_OFF_FENCE = 105;
 //star 36 inches from wall
 constexpr int LR_SECOND_DISTANCE_SWITCH_OFF_FENCE = 40;
 
@@ -152,7 +152,7 @@ constexpr int LR_SIDE_SWITCH_PUSH_DISTANCE_1 = 31.5;
 constexpr int LR_SIDE_SWITCH_PUSH_DISTANCE_2 = 150; //Adjust
 
 //L_LeftScale and R_RightScale
-constexpr int LR_SCALE_FIRST_DISTANCE = 307;
+constexpr int LR_SCALE_FIRST_DISTANCE = 203;
 constexpr int LR_SCALE_SECOND_DISTANCE = 17;
 
 //LR_SideScaleTwice
@@ -178,8 +178,7 @@ constexpr int M_AUTO_LINE_ANGLE_L = -35;
 
 //M_Switch//
 constexpr int M_DRIVE_OFF_WALL = 22;
-constexpr int M_SWITCH_DISTANCE_1 = 80;
-constexpr int M_SWITCH_ANGLE = 43;
+constexpr int M_SWITCH_DISTANCE_1 = 65;
 constexpr int M_SWITCH_DISTANCE_2 = 45;
 
 //M_SwitchTwice
