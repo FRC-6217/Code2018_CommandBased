@@ -122,6 +122,8 @@ constexpr int LIFT_UP_DIRECTION = 1;
 constexpr int LIFT_DOWN_DIRECTION = -1;
 
 //Angle values
+constexpr int TURN_110_DEGREES = 110;
+constexpr int TURN_70_DEGREES = 70;
 constexpr int TURN_90_DEGREES = 90;
 constexpr int L_TURN_RIGHT_DEGREES = -90;
 constexpr int L_TURN_LEFT_DEGREES = 90;
@@ -143,20 +145,20 @@ constexpr int LR_AUTOLINE_PUSH_DISTANCE_2 = 100;
 //line up directly with switch fence
 constexpr int LR_FIRST_DISTANCE_SWITCH_FENCE = 95;
 //line Outside the switch fence
-constexpr int LR_FIRST_DISTANCE_SWITCH_OFF_FENCE = 105;
+constexpr int LR_FIRST_DISTANCE_SWITCH_OFF_FENCE = 110;
 //star 36 inches from wall
-constexpr int LR_SECOND_DISTANCE_SWITCH_OFF_FENCE = 40;
+constexpr int LR_SECOND_DISTANCE_SWITCH_OFF_FENCE = 25;
 
 //LR_SideSwitchPush
 constexpr int LR_SIDE_SWITCH_PUSH_DISTANCE_1 = 31.5;
 constexpr int LR_SIDE_SWITCH_PUSH_DISTANCE_2 = 150; //Adjust
 
 //L_LeftScale and R_RightScale
-constexpr int LR_SCALE_FIRST_DISTANCE = 203;
+constexpr int LR_SCALE_FIRST_DISTANCE = 222;
 constexpr int LR_SCALE_SECOND_DISTANCE = 17;
 
 //LR_SideScaleTwice
-constexpr double LR_SCALE_TWICE_AWAY_FROM_SCALE = 24.35;
+constexpr double LR_SCALE_TWICE_AWAY_FROM_SCALE = 19.35;
 constexpr double LR_SCALE_TWICE_DRIVE_TO_CUBE = 134.2;
 
 //L_RightScale and R_LeftScale
@@ -179,12 +181,12 @@ constexpr int M_AUTO_LINE_ANGLE_L = -35;
 //M_Switch//
 constexpr int M_DRIVE_OFF_WALL = 22;
 constexpr int M_SWITCH_DISTANCE_1 = 65;
-constexpr int M_SWITCH_DISTANCE_2 = 45;
+constexpr int M_SWITCH_DISTANCE_2 = 26;
 
 //M_SwitchTwice
 constexpr int M_SWITCH_TWICE_1 = -30;
 constexpr double M_SWITCH_TWICE_ANGLE = 63.4;
-constexpr int M_SWITCH_TWICE_2 = 40;
+constexpr int M_SWITCH_TWICE_2 = 50;
 
 
 //Pathfinder CommandGroups

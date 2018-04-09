@@ -82,26 +82,26 @@ public:
 		frc::SmartDashboard::PutData("Starting Position", &_chooserStartingPosition);
 
 		//Choose if user wants to grab a second cube after scoring
-		_chooserGrabSecondCube.AddDefault("Yes", "Y");
-		_chooserGrabSecondCube.AddObject("No", "N");
+		_chooserGrabSecondCube.AddObject("Yes", "Y");
+		_chooserGrabSecondCube.AddDefault("No", "N");
 		frc::SmartDashboard::PutData("Grab Second Cube?", &_chooserGrabSecondCube);
 
 		//Choose if user wants to push the cubes on the back wall of the switch to the opposite side of arena
-		_chooserPushCubes.AddDefault("Yes", "Y");
-		_chooserPushCubes.AddObject("No", "N");
+		_chooserPushCubes.AddObject("Yes", "Y");
+		_chooserPushCubes.AddDefault("No", "N");
 		frc::SmartDashboard::PutData("Push Cubes Along Switch Across Field?", &_chooserPushCubes);
 
 		//Choose Priority AutoLine
-		_chooserPriorityAutoLine.AddDefault("1", 1);
-		_chooserPriorityAutoLine.AddObject("2", 2);
+		_chooserPriorityAutoLine.AddObject("1", 1);
+		_chooserPriorityAutoLine.AddDefault("2", 2);
 		_chooserPriorityAutoLine.AddObject("3", 3);
 		_chooserPriorityAutoLine.AddObject("4", 4);
 		_chooserPriorityAutoLine.AddObject("5", 5);
 		frc::SmartDashboard::PutData("AutoLine Priority", &_chooserPriorityAutoLine);
 
 		//Choose Priority Switch
-		_chooserPrioritySwitch.AddObject("1", 1);
-		_chooserPrioritySwitch.AddDefault("2", 2);
+		_chooserPrioritySwitch.AddDefault("1", 1);
+		_chooserPrioritySwitch.AddObject("2", 2);
 		_chooserPrioritySwitch.AddObject("3", 3);
 		_chooserPrioritySwitch.AddObject("4", 4);
 		_chooserPrioritySwitch.AddObject("5", 5);

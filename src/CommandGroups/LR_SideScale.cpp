@@ -9,8 +9,8 @@ LR_SideScale::LR_SideScale(std::string scoreSide) {
 		turnDirection = -1;
 	}
 
+	AddParallel(new AutoLift2(LIFTING_TO_SCALE_UPPER_1, LIFT_UP_DIRECTION));
 	AddSequential(new DriveDistance(LR_SCALE_FIRST_DISTANCE));
-	AddSequential(new TurnDegrees(turnDirection * TURN_90_DEGREES * .6));
-	AddSequential(new AutoLift2(LIFTING_TO_SCALE_UPPER_1, LIFT_UP_DIRECTION));
+	AddSequential(new TurnDegrees(turnDirection * TURN_70_DEGREES * 0.86));
 	AddSequential(new spitOutCube());
 }

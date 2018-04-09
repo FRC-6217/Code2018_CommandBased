@@ -10,8 +10,9 @@
 
 class M_SwitchTwice : public CommandGroup {
 private:
-	int turnDirection;
+	int turnAngleInitial;
 	int amountOfDistanceOne;
+	int turnDirection;
 public:
 	M_SwitchTwice(std::string scoreSide);
 };

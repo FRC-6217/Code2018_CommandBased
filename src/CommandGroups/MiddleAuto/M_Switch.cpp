@@ -3,11 +3,11 @@
 M_Switch::M_Switch(std::string scoreSide) {
 	//Tells whether to turn Left or Right
 	if (scoreSide == "L") {
-		turnDirection = -39.3;
+		turnDirection = -45;
 		amountOfDistanceOne = 1;
 	}
 	else if (scoreSide == "R") {
-		turnDirection = 25.7;
+		turnDirection = 32;
 		amountOfDistanceOne = 1;
 	}
 	AddSequential(new DriveDistance(M_DRIVE_OFF_WALL));
